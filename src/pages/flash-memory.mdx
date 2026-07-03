@@ -1,0 +1,147 @@
+---
+layout: '../layouts/ExhibitLayout.astro'
+title: "Flash Memory: How SSDs Store Data"
+description: "A virtual exhibit explaining how SSDs use NAND flash memory cells to store binary data."
+author: "Abenojar, Fredrikzen; Dollentas, Raine Anne; Encisco, Gabriel Jeremy; Obregon, Sian Ysabelle; Singson, Keith Railey"
+readingTime: "8 minutes"
+---
+
+# Flash Memory: How SSDs Store Data
+
+Solid-State Drives, or SSDs, are storage devices used in computers, laptops, consoles, and other digital systems. Unlike hard disk drives, SSDs do not use spinning magnetic platters or moving read/write heads. Instead, they store data electronically using NAND flash memory.
+
+The main idea of this exhibit is simple: files are stored as binary data, and SSDs preserve that data by controlling electrical charge inside tiny memory cells. By exploring the components of NAND flash memory, visitors can see how large files are built from small cells that represent binary values.
+
+## Learning Goal
+
+By the end of the exhibit, visitors should understand how SSDs store data using NAND flash memory, how NAND flash is organized, and why memory cells can represent binary data through different charge states.
+
+The exhibit begins with the SSD as a complete storage device, then zooms inward toward the NAND flash chip, its internal organization, and finally the memory cell.
+
+## What Is an SSD?
+
+An SSD is a storage device that keeps data even when power is removed. This makes it different from temporary working memory such as RAM, which loses its stored data when the device turns off.
+
+SSDs are commonly used as the main storage device in modern computers because they can access data without waiting for mechanical parts to move. Instead of rotating disks, an SSD uses flash memory chips and a controller that manages how data is stored, read, written, and erased.
+
+In this exhibit, the SSD is the starting point. From there, the focus moves into the NAND flash chips where the data is physically stored.
+
+## What Is NAND Flash Memory?
+
+NAND flash is a type of non-volatile memory, meaning it can retain data even without power. This is why an SSD still remembers files after the computer shuts down.
+
+NAND flash stores information using memory cells. A simplified NAND flash cell includes a control gate and a storage area, such as a floating gate or charge-trap layer. The amount of stored electrical charge affects how the cell is read. In simple terms, different charge or voltage states are interpreted as different binary values.
+
+This exhibit uses a simplified charge-level model so visitors can focus on the main concept: SSDs store data by changing and reading the state of flash memory cells.
+
+## Inside NAND Flash: The Storage Hierarchy
+
+NAND flash memory is organized from large structures down to very small storage elements. A simplified hierarchy is:
+
+```text
+SSD
+-> NAND flash chip
+-> die
+-> plane
+-> block
+-> page
+-> cell
+```
+
+The NAND flash chip is the memory package found inside a storage device such as an SSD or flash drive. It may contain one or more dies.
+
+A die is a separate piece of silicon inside the chip. Multiple dies can help the storage device perform operations in parallel.
+
+Each die is divided into planes. Planes help organize memory and can support parallel operations within the NAND device.
+
+Inside each plane are blocks, and each block contains multiple pages. A block is important because it is the smallest unit that can be erased in NAND flash memory.
+
+A page is a smaller group of memory cells. Pages are commonly treated as the unit for reading and writing data.
+
+Cells are the lowest level in this simplified hierarchy. They are the actual storage elements where data is physically represented by electrical charge.
+
+## Pages and Blocks
+
+A page is a section of NAND flash that contains many memory cells. SSDs commonly read and write data at the page level.
+
+A block contains many pages. Erase operations happen at the block level. This means the SSD cannot simply erase one tiny cell whenever it wants. If data in a block needs to be changed, the SSD controller may move valid data somewhere else, erase the block, and then reuse the space.
+
+This behavior is one reason SSDs need controllers, wear leveling, garbage collection, and error correction. For this exhibit, the most important idea is:
+
+```text
+Pages are read and written.
+Blocks are erased.
+```
+
+## What Is a Flash Memory Cell?
+
+A flash memory cell stores data by using electrical charge. In a simplified NAND explanation, an erased cell is often represented as `1`, while a programmed or written cell is represented as `0`.
+
+Real NAND flash is more complex than a simple charged-or-uncharged switch. SSDs read flash cells by sensing threshold voltage ranges, and the exact encoding can vary. However, for a beginner-friendly exhibit, charge level is a useful way to show how physical cell states can represent binary data.
+
+The future simulator will use this simplified model:
+
+```text
+Lower programmed charge = erased state
+Higher programmed charge = written/programmed state
+```
+
+## SLC vs TLC
+
+NAND flash can store different amounts of data per cell.
+
+### SLC: Single-Level Cell
+
+SLC stores 1 bit per cell. Since 1 bit has two possible values, an SLC cell only needs two states: `0` and `1`.
+
+Because it only needs to distinguish between two states, SLC is easier to read, faster, and more durable. The tradeoff is that it stores less data per cell and is more expensive per amount of storage.
+
+### TLC: Triple-Level Cell
+
+TLC stores 3 bits per cell. Since 3 bits can represent 8 possible binary values, TLC must distinguish between 8 charge or voltage states.
+
+This allows more storage capacity in the same number of cells, but it requires more precise reading and writing. TLC is common in many modern consumer SSDs because it balances capacity and cost.
+
+Example TLC values:
+
+```text
+000
+001
+010
+011
+100
+101
+110
+111
+```
+
+## Simulator Preview
+
+The interactive part of the exhibit will let the visitor act like a simplified SSD controller. This feature will be added after the core content layout is complete.
+
+Planned simulator controls:
+
+- Toggle between SLC and TLC mode
+- Write to a memory cell
+- Erase a memory cell
+- Display the current charge level
+- Display the binary value being represented
+- Show a short explanation of the current cell state
+
+In SLC mode, the simulator will show two possible cell states. In TLC mode, it will show eight possible cell states to demonstrate how 3 bits can be stored in one cell.
+
+## Key Takeaways
+
+- SSDs store data using NAND flash memory instead of spinning mechanical disks.
+- NAND flash is non-volatile, so it can retain stored data without power.
+- NAND flash is organized into chips, dies, planes, blocks, pages, and cells.
+- Pages are commonly read and written, while blocks are erased.
+- Flash memory cells represent data through charge or voltage states.
+- SLC stores 1 bit per cell, while TLC stores 3 bits per cell using more possible states.
+
+## References
+
+- Kingston Technology. "2D vs 3D NAND: Differences Between SLC, MLC, TLC and QLC Flash Storage." https://www.kingston.com/en/blog/pc-performance/difference-between-slc-mlc-tlc-3d-nand
+- TechTarget. "What is NAND flash memory?" https://www.techtarget.com/searchstorage/definition/NAND-flash-memory
+- ATP Electronics. "NAND Die Stacking Explained." https://www.atpinc.com/blog/what-is-nand-die-stacking
+- Prasad, A. "Flash Memory Explained: NAND vs NOR, Architecture, and Memory Organization." DEV Community. https://dev.to/amanprasad/flash-memory-explained-nand-vs-nor-architecture-and-memory-organization-3abf
