@@ -15,11 +15,21 @@
     font-family: "Tomorrow", sans-serif;
 }
 
-.toc a {
+.toc a, .article a {
     font-family: "Geist Mono", monospace;
     color: #4dd2fae5;
 }
 
-.article p {
+.article p, .article span {
     font-family: "Space Mono", monospace;
+}
+
+.article pre {
+    background-color: #131533 !important;
+    border-radius: 8px;
+}
+
+.article code span {
+    margin: 8px;
+    color: #e0abf2;
 }
