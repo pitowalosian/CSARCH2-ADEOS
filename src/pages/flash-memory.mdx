@@ -6,6 +6,8 @@ author: "Abenojar, Fredrikzen; Dollentas, Raine Anne; Encisco, Gabriel Jeremy; O
 readingTime: "8 minutes"
 ---
 
+import NandHierarchy from "../components/NandHierarchy.jsx";
+
 # Flash Memory: How SSDs Store Data
 
 Solid-State Drives, or SSDs, are storage devices used in computers, laptops, consoles, and other digital systems. Unlike hard disk drives, SSDs do not use spinning magnetic platters or moving read/write heads. Instead, they store data electronically using NAND flash memory.
@@ -16,7 +18,7 @@ The main idea of this exhibit is simple: files are stored as binary data, and SS
 
 By the end of the exhibit, visitors should understand how SSDs store data using NAND flash memory, how NAND flash is organized, and why memory cells can represent binary data through different charge states.
 
-The exhibit begins with the SSD as a complete storage device, then zooms inward toward the NAND flash chip, its internal organization, and finally the memory cell.
+The exhibit begins with the SSD as a complete storage device, then zooms inward toward the NAND flash chip, its internal organization, and finally the memory cell. An interactive hierarchy diagram will help visitors explore the structure before they move on to the write and erase simulator.
 
 ## What Is an SSD?
 
@@ -60,6 +62,14 @@ A page is a smaller group of memory cells. Pages are commonly treated as the uni
 
 Cells are the lowest level in this simplified hierarchy. They are the actual storage elements where data is physically represented by electrical charge.
 
+## Interactive NAND Hierarchy
+
+The diagram below connects the storage hierarchy to a visual NAND structure. Each selectable layer represents one level of organization: `Chip`, `Die`, `Planes`, `Blocks`, `Pages`, and `Cell`.
+
+<NandHierarchy client:visible />
+
+This hierarchy interaction is separate from the final write and erase simulator. The hierarchy diagram explains where NAND parts are located, while the simulator will later focus on how memory cells change state.
+
 ## Pages and Blocks
 
 A page is a section of NAND flash that contains many memory cells. SSDs commonly read and write data at the page level.
@@ -82,8 +92,8 @@ Real NAND flash is more complex than a simple charged-or-uncharged switch. SSDs 
 The future simulator will use this simplified model:
 
 ```text
-Lower programmed charge = erased state
-Higher programmed charge = written/programmed state
+Lower charge or threshold-voltage state = erased state
+Higher charge or threshold-voltage state = written/programmed state
 ```
 
 ## SLC vs TLC
