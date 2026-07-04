@@ -13,6 +13,7 @@
 .content__titlemeta span,
 .toc h2 {
     font-family: "Tomorrow", sans-serif;
+    text-shadow: #468f96 0 0 6px;
 }
 
 .toc a, .article a {
@@ -32,4 +33,29 @@
 .article code span {
     margin: 8px;
     color: #e0abf2;
+}
+
+.component {
+    --cyan: #65fbff;
+    --blue: #4c94ff;
+    --green: #00ffc8;
+    --panel: rgba(5, 10, 28, 0.58);
+    --text: #ffffff;
+    --muted: #b8d6e8;
+    --line: rgba(255, 255, 255, 0.92);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(101, 251, 255, 0.18);
+    border-radius: 8px;
+    background: #0b0d22;
+    color: var(--text);
+    box-shadow: 0 0 24px rgba(101, 251, 255, 0.12), inset 0 0 46px rgba(21, 103, 146, 0.12);
+    font-family: "Space Mono", "Noto Sans Variable", monospace;
+    isolation: isolate;
+    aspect-ratio: 16 / 9;
+    min-height: 560px;
+    content-visibility: auto;
+    contain-intrinsic-size: 560px;
+    container-type: inline-size;
+    container-name: component;
 }

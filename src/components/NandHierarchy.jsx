@@ -126,7 +126,7 @@ export default function NandHierarchy() {
   }
 
   return (
-    <section className="nand-hierarchy" aria-labelledby="nand-hierarchy-title">
+    <section className="component" aria-labelledby="nand-hierarchy-title">
       <img
         className="nand-hierarchy__background-elements"
         src={assetSrc(backgroundElements)}
@@ -214,29 +214,6 @@ export default function NandHierarchy() {
       )}
 
       <style suppressHydrationWarning>{`
-        .nand-hierarchy {
-          --cyan: #65fbff;
-          --blue: #4c94ff;
-          --green: #00ffc8;
-          --panel: rgba(5, 10, 28, 0.58);
-          --text: #ffffff;
-          --muted: #b8d6e8;
-          --line: rgba(255, 255, 255, 0.92);
-          position: relative;
-          overflow: hidden;
-          border: 1px solid rgba(101, 251, 255, 0.18);
-          border-radius: 8px;
-          background: #0b0d22;
-          color: var(--text);
-          box-shadow: 0 0 24px rgba(101, 251, 255, 0.12), inset 0 0 46px rgba(21, 103, 146, 0.12);
-          font-family: "Space Mono", "Noto Sans Variable", monospace;
-          isolation: isolate;
-          aspect-ratio: 16 / 9;
-          min-height: 560px;
-          content-visibility: auto;
-          contain-intrinsic-size: 560px;
-        }
-
         .nand-hierarchy__background-elements {
           position: absolute;
           left: -12%;

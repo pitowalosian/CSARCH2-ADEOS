@@ -1,0 +1,145 @@
+import background from "../assets/Intro-bg v3.svg";
+import leftBorder from "../assets/Left-Border.svg";
+import rightBorder from "../assets/Right-Border.svg";
+
+
+const parts = [
+    {
+        id: "left",
+        text: "Solid-State Drives, or SSDs, are storage devices used in computers, laptops, consoles, and other digital systems. Unlike hard disk drives, SSDs do not use spinning magnetic platters or moving read/write heads. Instead, they store data electronically using NAND flash memory.",
+        border: leftBorder,
+    },
+    {
+        id: "right",
+        text: "The main idea of this exhibit is simple: files are stored as binary data, and SSDs preserve that data by controlling electrical charge inside tiny memory cells. By exploring the components of NAND flash memory, visitors can see how large files are built from small cells that represent binary values.",
+        border: rightBorder,
+    }
+]
+
+function assetSrc(asset) {
+  return asset.src ?? asset;
+}
+
+export default function Introduction() {
+    return (
+        <>
+            <section className="component" aria-labelledby="introduction-title">
+                <img 
+                    className="introduction__bg"
+                    src={assetSrc(background)}
+                    decoding="async"
+                    loading="lazy"
+                />
+                <header className="introduction__header">
+                    <h2>
+                        Flash Memory: <br /> How SSDs Store Data
+                    </h2>
+                </header>
+                <div className="introduction__text">
+                    {parts.map((part) => (
+                        <div key={part.id} className="text-container">
+                            <img
+                                src={assetSrc(part.border)}
+                                className={`introduction__text-bg--${part.id}`}
+                                decoding="async"
+                                width="40%"
+                            />
+                            <span className={`introduction__text--${part.id}`}>{part.text}</span>
+                        </div>
+                    ))}
+                </div>
+            </section>
+            <style suppressHydrationWarning> {`
+                .introduction__bg {
+                    position: absolute;
+                    z-index: 0;
+                    width: auto;
+                    height: 100%;
+                    display: block;
+                    object-fit: fill;
+                    opacity: 0.96;
+                    pointer-events: none;
+                    user-select: none;
+                }
+
+                .introduction__header {
+                    position: absolute;
+                    inset: 20% 24px auto;
+                    z-index: 6;
+                    text-align: center;
+                    pointer-events: none;
+                }
+
+                .introduction__header h2 {
+                    margin: 0;
+                    border: 0;
+                    color: #ffffff;
+                    font-family: "Tomorrow", "Noto Sans Variable", sans-serif;
+                    font-size: 50px;
+                    font-weight: 500;
+                    letter-spacing: 0;
+                    line-height: 1.08;
+                    text-shadow: 0 0 10px rgba(255, 255, 255, 0.88), 0 0 22px rgba(255, 255, 255, 0.62);
+                }
+
+                .introduction__text {
+                    position: absolute;
+                    z-index: 2;
+                    width: 100%;
+                    height: 100%;
+                    padding: 0;
+                    justify-content: center;
+                    font-family: "Space Mono", "Noto Sans Variable", sans-serif;
+                    font-size: clamp(0.2rem, 2.6cqw, 1rem);
+                    line-height: 1.25;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                }
+                
+                .text-container {
+                    margin-top: 60%;
+                    padding-right: 0 !important;
+                }
+
+                .introduction__text-bg--left {
+                    position: absolute;
+                    z-index: 1;
+                    transform: translateX(26.5%);
+                    object-fit: cover;
+                }
+                
+                .introduction__text-bg--right {
+                    position: absolute;
+                    z-index: 1;
+                    transform: translateX(1%);
+                    object-fit: cover;
+                }
+
+                .introduction__text--left {
+                    position: absolute;
+                    z-index: 3;
+                    top: 50%;
+                    left: 10.7%;
+                    max-width: 35%;
+                    transform: translateY(55%);
+                    color: #ffffff;
+                    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+                    padding: 1rem;
+                }
+
+                .introduction__text--right {
+                    position: absolute;
+                    z-index: 3;
+                    top: 50%;
+                    right: 9.5%;
+                    max-width: 35%;
+                    transform: translateY(45%);
+                    color: #ffffff;
+                    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+                    padding: 1rem;
+                }
+            `}
+            </style>
+        </>
+    )
+}
