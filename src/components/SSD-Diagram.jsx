@@ -9,7 +9,7 @@ export default function SSDDiagram() {
         <>
             <section className="component">
                 <img 
-                    className="component__bg"
+                    className="component__bg ssd__bg"
                     src={assetSrc(SSD_Diagram)}
                     decoding="async"
                     loading="lazy"
@@ -19,6 +19,10 @@ export default function SSDDiagram() {
                 </header>
             </section>
             <style>{`
+                .ssd__bg {
+                    height: 101%;
+                }
+
                 .ssd__header {
                     position: absolute;
                     inset: 10% 24px auto;
