@@ -234,7 +234,7 @@ export default function NandHierarchy() {
           border: 0;
           color: #ffffff;
           font-family: "Tomorrow", "Noto Sans Variable", sans-serif;
-          font-size: clamp(1.5rem, 5cqw, 3rem);
+          font-size: clamp(1.5rem, 5cqw, 2.5rem);
           font-weight: 500;
           letter-spacing: 0;
           line-height: 1.08;
