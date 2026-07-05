@@ -77,7 +77,7 @@ export default function Introduction() {
                     padding: 0;
                     justify-content: center;
                     font-family: "Space Mono", "Noto Sans Variable", sans-serif;
-                    font-size: clamp(0.4rem, 2cqw, 1rem);
+                    font-size: clamp(0.4rem, 1.4cqw, 1rem);
                     line-height: 1.25;
                     display: grid;
                     grid-template-columns: 1fr 1fr;
@@ -101,30 +101,25 @@ export default function Introduction() {
                     object-fit: cover;
                 }
 
-                .introduction__text--left {
+                .introduction__text--left,
+                .introduction__text--right {
                     position: absolute;
                     z-index: 3;
                     top: 48%;
-                    left: 11%;
+                    transform: translateY(47%);
                     max-width: 34.5%;
-                    transform: translateY(55%);
                     color: #ffffff;
                     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
                     text-align: center;
                     padding: 1rem;
                 }
 
+                .introduction__text--left {
+                    left: 10.5%;
+                }
+
                 .introduction__text--right {
-                    position: absolute;
-                    z-index: 3;
-                    top: 50%;
                     right: 10%;
-                    max-width: 34.5%;
-                    transform: translateY(47%);
-                    color: #ffffff;
-                    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-                    text-align: center;
-                    padding: 1rem;
                 }
             `}
             </style>

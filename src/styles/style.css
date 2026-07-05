@@ -17,15 +17,15 @@
 }
 
 .article h2, .toc h2 {
-    font-size: 2.2rem;
-}
-
-.article h3 {
     font-size: 1.8rem;
 }
 
+.article h3 {
+    font-size: 1.5rem;
+}
+
 .content__titlemeta h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
 }
 
 .toc a, .article a {
@@ -37,17 +37,17 @@
 }
 
 .toc li {
-    font-size: 1.15rem;
+    font-size: 1rem;
 }
 
 .article p, .content__titlemeta span {
     font-family: "Space Mono", monospace;
-    font-size: 1.3rem;
+    font-size: 1.05rem;
 }
 
 .article li, .article code span {
     font-family: "Space Mono", monospace;
-    font-size: 1.15rem;
+    font-size: 1rem;
 }
 
 .article pre {
