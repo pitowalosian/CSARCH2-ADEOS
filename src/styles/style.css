@@ -16,13 +16,25 @@
     text-shadow: #468f96 0 0 6px;
 }
 
+.article h2, .toc h2 {
+    font-size: 2.2rem;
+}
+
+.content__titlemeta h1 {
+    font-size: 2.5rem;
+}
+
 .toc a, .article a {
     font-family: "Geist Mono", monospace;
     color: #4dd2fae5;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
 }
 
-.article p, .article span {
+.article p, .article code span, .content__titlemeta span {
     font-family: "Space Mono", monospace;
+    font-size: 1.3rem;
 }
 
 .article pre {

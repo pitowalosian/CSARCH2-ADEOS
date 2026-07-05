@@ -75,7 +75,7 @@ export default function Introduction() {
                     border: 0;
                     color: #ffffff;
                     font-family: "Tomorrow", "Noto Sans Variable", sans-serif;
-                    font-size: 50px;
+                    font-size: clamp(1.5rem, 7cqw, 4rem);
                     font-weight: 500;
                     letter-spacing: 0;
                     line-height: 1.08;
@@ -90,7 +90,7 @@ export default function Introduction() {
                     padding: 0;
                     justify-content: center;
                     font-family: "Space Mono", "Noto Sans Variable", sans-serif;
-                    font-size: clamp(0.2rem, 2.6cqw, 1rem);
+                    font-size: clamp(0.4rem, 2cqw, 1rem);
                     line-height: 1.25;
                     display: grid;
                     grid-template-columns: 1fr 1fr;
@@ -98,7 +98,6 @@ export default function Introduction() {
                 
                 .text-container {
                     margin-top: 60%;
-                    padding-right: 0 !important;
                 }
 
                 .introduction__text-bg--left {
@@ -118,12 +117,13 @@ export default function Introduction() {
                 .introduction__text--left {
                     position: absolute;
                     z-index: 3;
-                    top: 50%;
-                    left: 10.7%;
-                    max-width: 35%;
+                    top: 48%;
+                    left: 11%;
+                    max-width: 34.5%;
                     transform: translateY(55%);
                     color: #ffffff;
                     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+                    text-align: center;
                     padding: 1rem;
                 }
 
@@ -131,11 +131,12 @@ export default function Introduction() {
                     position: absolute;
                     z-index: 3;
                     top: 50%;
-                    right: 9.5%;
-                    max-width: 35%;
-                    transform: translateY(45%);
+                    right: 10%;
+                    max-width: 34.5%;
+                    transform: translateY(47%);
                     color: #ffffff;
                     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+                    text-align: center;
                     padding: 1rem;
                 }
             `}
