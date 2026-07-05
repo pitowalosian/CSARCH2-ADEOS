@@ -20,6 +20,10 @@
     font-size: 2.2rem;
 }
 
+.article h3 {
+    font-size: 1.8rem;
+}
+
 .content__titlemeta h1 {
     font-size: 2.5rem;
 }
@@ -32,18 +36,28 @@
     hyphens: auto;
 }
 
-.article p, .article code span, .content__titlemeta span {
+.toc li {
+    font-size: 1.15rem;
+}
+
+.article p, .content__titlemeta span {
     font-family: "Space Mono", monospace;
     font-size: 1.3rem;
 }
 
+.article li, .article code span {
+    font-family: "Space Mono", monospace;
+    font-size: 1.15rem;
+}
+
 .article pre {
     background-color: #131533 !important;
+    padding: 2%;
     border-radius: 8px;
 }
 
 .article code span {
-    margin: 8px;
+    margin-left: 1%;
     color: #e0abf2;
 }
 
@@ -70,4 +84,16 @@
     contain-intrinsic-size: 560px;
     container-type: inline-size;
     container-name: component;
+}
+
+.component__bg {
+    position: absolute;
+    z-index: 0;
+    width: auto;
+    height: 100%;
+    display: block;
+    object-fit: fill;
+    opacity: 0.96;
+    pointer-events: none;
+    user-select: none;
 }

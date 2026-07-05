@@ -128,7 +128,7 @@ export default function NandHierarchy() {
   return (
     <section className="component" aria-labelledby="nand-hierarchy-title">
       <img
-        className="nand-hierarchy__background-elements"
+        className="component__bg nand-hierarchy__background-elements"
         src={assetSrc(backgroundElements)}
         alt=""
         aria-hidden="true"
@@ -215,18 +215,10 @@ export default function NandHierarchy() {
 
       <style suppressHydrationWarning>{`
         .nand-hierarchy__background-elements {
-          position: absolute;
           left: -12%;
           top: -10%;
-          z-index: 0;
-          display: block;
           width: 142%;
           height: 128%;
-          object-fit: fill;
-          object-position: left center;
-          opacity: 0.96;
-          pointer-events: none;
-          user-select: none;
         }
 
         .nand-hierarchy__header {
@@ -242,8 +234,8 @@ export default function NandHierarchy() {
           border: 0;
           color: #ffffff;
           font-family: "Tomorrow", "Noto Sans Variable", sans-serif;
-          font-size: 35px;
-          font-weight: 700;
+          font-size: clamp(1.5rem, 5cqw, 3rem);
+          font-weight: 500;
           letter-spacing: 0;
           line-height: 1.08;
           text-shadow: 0 0 10px rgba(255, 255, 255, 0.88), 0 0 22px rgba(255, 255, 255, 0.62);
@@ -381,14 +373,15 @@ export default function NandHierarchy() {
           position: relative;
           z-index: 2;
           display: block;
+          margin-left: 4%;
         }
 
         .nand-hierarchy__tile-title {
           margin-bottom: 10px;
           color: #ffffff;
           font-family: "Space Mono", "Noto Sans Variable", monospace;
-          font-size: 18.6px;
-          font-weight: 700;
+          font-size: clamp(0.4rem, 2.2cqw, 1.4rem);
+          font-weight: 500;
           line-height: 1;
           text-shadow: 0 0 8px rgba(255, 255, 255, 0.45);
         }
@@ -396,8 +389,8 @@ export default function NandHierarchy() {
         .nand-hierarchy__tile-body {
           color: var(--text);
           font-family: "Space Mono", "Noto Sans Variable", monospace;
-          font-size: 10.5px;
-          font-weight: 700;
+          font-size: clamp(0.4rem, 1.2cqw, 1rem);
+          letter-spacing: 0.5px;
           line-height: 1.12;
           opacity: 0;
           transition: opacity 0.2s ease;
@@ -445,7 +438,7 @@ export default function NandHierarchy() {
           top: 68.8%;
           width: 24.0%;
           min-height: 145px;
-          padding: 17px 21px 16px;
+          padding: 17px 21px 30px;
         }
 
         .nand-hierarchy__tile--cell {
@@ -453,7 +446,7 @@ export default function NandHierarchy() {
           top: 72.0%;
           width: 28.6%;
           min-height: 159px;
-          padding: 17px 22px 17px;
+          padding: 17px 22px 40px;
         }
 
         .nand-hierarchy__readout {

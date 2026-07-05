@@ -25,7 +25,7 @@ export default function Introduction() {
         <>
             <section className="component" aria-labelledby="introduction-title">
                 <img 
-                    className="introduction__bg"
+                    className="component__bg"
                     src={assetSrc(background)}
                     decoding="async"
                     loading="lazy"
@@ -50,22 +50,9 @@ export default function Introduction() {
                 </div>
             </section>
             <style suppressHydrationWarning> {`
-                .introduction__bg {
-                    position: absolute;
-                    z-index: 0;
-                    width: auto;
-                    height: 100%;
-                    display: block;
-                    object-fit: fill;
-                    opacity: 0.96;
-                    pointer-events: none;
-                    user-select: none;
-                }
-
                 .introduction__header {
                     position: absolute;
                     inset: 20% 24px auto;
-                    z-index: 6;
                     text-align: center;
                     pointer-events: none;
                 }
@@ -75,7 +62,7 @@ export default function Introduction() {
                     border: 0;
                     color: #ffffff;
                     font-family: "Tomorrow", "Noto Sans Variable", sans-serif;
-                    font-size: clamp(1.5rem, 7cqw, 4rem);
+                    font-size: clamp(1.5rem, 5cqw, 4rem);
                     font-weight: 500;
                     letter-spacing: 0;
                     line-height: 1.08;

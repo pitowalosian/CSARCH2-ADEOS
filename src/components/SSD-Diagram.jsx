@@ -1,4 +1,4 @@
-import SSD_Diagram from "../assets/SSD-Diagram v2.svg";
+import SSD_Diagram from "../assets/SSD-Diagram v3.svg";
 
 function assetSrc(asset) {
   return asset.src ?? asset;
@@ -9,23 +9,33 @@ export default function SSDDiagram() {
         <>
             <section className="component">
                 <img 
-                    className="ssd__bg"
+                    className="component__bg"
                     src={assetSrc(SSD_Diagram)}
                     decoding="async"
                     loading="lazy"
                 />
+                <header className="ssd__header">
+                    <h2>SSD Diagram</h2>
+                </header>
             </section>
             <style>{`
-                .ssd__bg {
+                .ssd__header {
                     position: absolute;
-                    z-index: 0;
-                    width: auto;
-                    height: 100%;
-                    display: block;
-                    object-fit: fill;
-                    opacity: 0.96;
+                    inset: 10% 24px auto;
+                    text-align: center;
                     pointer-events: none;
-                    user-select: none;
+                }
+
+                .ssd__header h2 {
+                    margin: 0;
+                    border: 0;
+                    color: #ffffff;
+                    font-family: "Tomorrow", "Noto Sans Variable", sans-serif;
+                    font-size: clamp(1.5rem, 7cqw, 3rem);
+                    font-weight: 500;
+                    letter-spacing: 0;
+                    line-height: 1.08;
+                    text-shadow: 0 0 10px rgba(255, 255, 255, 0.88), 0 0 22px rgba(255, 255, 255, 0.62);
                 }
             `}
             </style>
