@@ -1,0 +1,212 @@
+---
+// SLC.astro
+const c = Array.from({ length: 1 });
+import '../styles/interactables.css'; 
+---
+
+
+<div class="container">
+  <div class="cell">
+    <div id="w1" class="box btn">control gate (MS)</div>
+      <div id="insulation" class="box">Isolation Layer</div>
+      <div id="float" class="box">Floating Gate<div id="r" class="box"></div></div>
+      <div id="insulation" class="box">Isolation Layer</div>
+      <div id="substrate" class="box">Substrate<div id="l" class="box">
+          {c.map((_, i) => (
+          <div class="square c" data-id={i}></div>
+          ))}
+      </div> 
+    </div>
+  </div>
+
+  <div class="cell">
+    <div id="w2" class="box btn">control gate</div>
+      <div id="insulation" class="box">Isolation Layer</div>
+      <div id="float" class="box">Floating Gate<div id="r2" class="box"></div></div>
+      <div id="insulation" class="box">Isolation Layer</div>
+      <div id="substrate" class="box">Substrate<div id="l2" class="box">
+          {c.map((_, i) => (
+          <div class="square c2" data-id={i}></div>
+          ))}
+      </div> 
+    </div>
+  </div>
+
+  <div class="cell">
+    <div id="w3" class="box btn">control gate</div>
+      <div id="insulation" class="box">Isolation Layer</div>
+      <div id="float" class="box">Floating Gate<div id="r3" class="box"></div></div>
+      <div id="insulation" class="box">Isolation Layer</div>
+      <div id="substrate" class="box">Substrate<div id="l3" class="box">
+          {c.map((_, i) => (
+          <div class="square c3" data-id={i}></div>
+          ))}
+      </div> 
+    </div>
+  </div>
+
+  <div class="cell">
+    <div id="w4" class="box btn">control gate (LS)</div>
+      <div id="insulation" class="box">Isolation Layer</div>
+      <div id="float" class="box">Floating Gate<div id="r4" class="box"></div></div>
+      <div id="insulation" class="box">Isolation Layer</div>
+      <div id="substrate" class="box">Substrate<div id="l4" class="box">
+          {c.map((_, i) => (
+          <div class="square c4" data-id={i}></div>
+          ))}
+      </div> 
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel" >Clicking a control gate applies voltage to said control gate and grounds the substrate</div>
+    <div class="sbox" >Every time the screen changes a reference voltage is applied through the substrate</div>
+    <div class="panel display">
+      <div class="sbox" id="d1"></div>
+      <div class="sbox" id="d2"></div>
+      <div class="sbox" id="d3"></div>
+      <div class="sbox" id="d4"></div>
+      <div class="sbox">
+        <div>total:</div>
+        <div class="sbox" id="d5"></div>
+      </div>
+      <div class="sbox">
+        <div>hex: </div>
+        <div class="sbox" id="d6"></div>
+      </div>
+    </div>
+    <div class="panel btn" id="erase">[Erase] apply high voltage to substrate and negative voltage to control gate</div>
+  </div>
+  
+
+</div>
+
+<script is:inline>
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cirlces1 = document.querySelectorAll(".c");
+  const circles2 = document.querySelectorAll(".c2");
+  const circles3 = document.querySelectorAll(".c3");
+  const circles4 = document.querySelectorAll(".c4");
+    const r1 = document.getElementById("r");
+    const l = document.getElementById("l");
+
+    const r2 = document.getElementById("r2");
+    const l2 = document.getElementById("l2");
+
+    const r3 = document.getElementById("r3");
+    const l3 = document.getElementById("l3");
+
+    const r4 = document.getElementById("r4");
+    const l4 = document.getElementById("l4");
+
+    const w1 = document.getElementById("w1");
+    const w2 = document.getElementById("w2");
+    const w3 = document.getElementById("w3");
+
+    const d1 = document.getElementById("d1");
+    const d2 = document.getElementById("d2");
+    const d3 = document.getElementById("d3");
+    const d4 = document.getElementById("d4");
+    const d5 = document.getElementById("d5");
+    const d6 = document.getElementById("d6");
+
+    const erase = document.getElementById("erase");
+
+    let state1 = 1;
+    let state2 = 1;
+    let state3 = 1;
+    let state4 = 1;
+
+
+    function updateDisplay() {
+      d1.textContent = state1.toString(2);
+      d2.textContent = state2.toString(2);
+      d3.textContent = state3.toString(2);
+      d4.textContent = state4.toString(2);
+      d5.textContent = (state1.toString() + state2.toString()+ state3.toString() + state4.toString());
+      d6.textContent = parseInt((state1.toString() + state2.toString()+ state3.toString() + state4.toString()),2).toString(16);
+    }
+
+    updateDisplay();
+
+    erase.addEventListener("click", () => {
+      state1 = 1;
+      state2 = 1;
+      state3 = 1;
+      state4 = 1;
+
+      document.querySelectorAll(".c").forEach(c => {
+        l.appendChild(c);
+        updateDisplay();
+      });
+
+      document.querySelectorAll(".c2").forEach(c2 => {
+        l2.appendChild(c2);
+        updateDisplay();
+      });
+
+      document.querySelectorAll(".c3").forEach(c3 => {
+        l3.appendChild(c3);
+        updateDisplay();
+      });
+
+      document.querySelectorAll(".c4").forEach(c4 => {
+        l4.appendChild(c4);
+        updateDisplay();
+      });
+    });
+
+
+
+
+    
+    w1.addEventListener("click", () => {
+
+      if (state1 >= 0) {
+        
+        document.querySelector(".c") ;
+        r1.appendChild(cirlces1[state1-1]);
+        state1--;
+        updateDisplay();
+      }
+    });
+
+    w2.addEventListener("click", () => {
+      
+      if (state2 >= 0) {
+        
+        document.querySelector(".c2") ;
+        r2.appendChild(circles2[state2-1]);
+        state2--;
+        updateDisplay();
+      }
+    });
+
+
+    w3.addEventListener("click", () => {
+      
+      if (state3 >= 0) {
+        
+        document.querySelector(".c3") ;
+        r3.appendChild(circles3[state3-1]);
+        state3--;
+        updateDisplay();
+      }
+    });
+
+    w4.addEventListener("click", () => {
+      
+      if (state4 >= 0) {
+        
+        document.querySelector(".c4") ;
+        r4.appendChild(circles4[state4-1]);
+        state4--;
+        updateDisplay();
+      }
+    });
+
+  });
+
+</script>
+
