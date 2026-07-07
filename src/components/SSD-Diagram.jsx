@@ -7,15 +7,17 @@ function assetSrc(asset) {
 export default function SSDDiagram() {
     return (
         <>
-            <section className="component">
+            <section className="component" aria-labelledby="ssd-diagram-title">
                 <img 
                     className="component__bg ssd__bg"
                     src={assetSrc(SSD_Diagram)}
+                    alt=""
+                    aria-hidden="true"
                     decoding="async"
                     loading="lazy"
                 />
                 <header className="ssd__header">
-                    <h4>SSD Diagram</h4>
+                    <h4 id="ssd-diagram-title">SSD Diagram</h4>
                 </header>
             </section>
             <style>{`

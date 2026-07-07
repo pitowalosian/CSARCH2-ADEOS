@@ -126,7 +126,7 @@ export default function NandHierarchy() {
   }
 
   return (
-    <section className="component" aria-labelledby="nand-hierarchy-title">
+    <section className="component nand-hierarchy" aria-labelledby="nand-hierarchy-title">
       <img
         className="component__bg nand-hierarchy__background-elements"
         src={assetSrc(backgroundElements)}
@@ -214,11 +214,13 @@ export default function NandHierarchy() {
       )}
 
       <style suppressHydrationWarning>{`
-        .nand-hierarchy__background-elements {
-          left: -12%;
+        .component.nand-hierarchy .component__bg.nand-hierarchy__background-elements {
+          left: -16%;
           top: -10%;
-          width: 142%;
+          width: 150%;
           height: 128%;
+          max-width: none;
+          object-fit: fill;
         }
 
         .nand-hierarchy__header {

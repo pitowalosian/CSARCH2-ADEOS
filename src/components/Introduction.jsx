@@ -27,11 +27,13 @@ export default function Introduction() {
                 <img 
                     className="component__bg"
                     src={assetSrc(background)}
+                    alt=""
+                    aria-hidden="true"
                     decoding="async"
                     loading="lazy"
                 />
                 <header className="introduction__header">
-                    <h4>
+                    <h4 id="introduction-title">
                         Flash Memory: <br /> How SSDs Store Data
                     </h4>
                 </header>
@@ -41,6 +43,8 @@ export default function Introduction() {
                             <img
                                 src={assetSrc(part.border)}
                                 className={`introduction__text-bg--${part.id}`}
+                                alt=""
+                                aria-hidden="true"
                                 decoding="async"
                                 width="40%"
                             />

@@ -10,7 +10,7 @@
 - Designed the interface following the proposed cyberpunk style.
 - Developed a functional Astro website.
 - Implemented the complete exhibit flow from the landing page through the NAND flash memory lessons.
-- Implemented an the interactive Write/Erase simulator with SLC/TLC switching and binary output.
+- Implemented the interactive Write/Erase simulator with SLC/TLC switching and binary output.
 - Implemented an interactable version of the NAND Cell Hierarchy section.
 
 **Development insights** 
@@ -24,8 +24,8 @@
 **Challenges Encountered** 
 
 - At first, the group was confused on what to do and where to start, but after looking at the guide and the example page of Linux, we were able to derive and take inspiration from it and started working.
-- For the NAND Hierarchy, we had to remove most animations since it was laggy. So maybe, in the future, we will add more optimizations so that we can include animations without sacrificing the performance so that the demo's and interactable elements will look nicer and more engaging.
-- The styling file we have has indirectly been using by the homepage, which we think that is a problem since we are told not to modify some files, and we assume it is the same indirectly! So to make it future-proof, we have painstakingly renamed styling and selector names so that it is not conflicting with the homepage one. Afterwards, we did a thorough manual search on which parts of the exhibit has been modified indirectly besides our page just to double check and to make sure it will not be in conflict when merging with the main exhibit repository.
+- For the NAND Hierarchy, we had to remove most animations since it was laggy. So maybe, in the future, we will add more optimizations so that we can include animations without sacrificing performance so that the demos and interactable elements will look nicer and more engaging.
+- The styling file was indirectly being used by the homepage, which we think is a problem since we are told not to modify some files, and we assume indirect changes count too. So to make it future-proof, we have painstakingly renamed styling and selector names so that they do not conflict with the homepage ones. Afterwards, we did a thorough manual search on which parts of the exhibit had been modified indirectly besides our page just to double check and to make sure it will not be in conflict when merging with the main exhibit repository.
 - During the development of the TLC and SLC demonstrations, bugs and mistakes were made due to carelessness.
 
 **Future Features:**
@@ -34,7 +34,7 @@
 - Expand the Write/Erase simulator to support multiple memory cells.
 - Include explanations of wear leveling and garbage collection.
 - Improve mobile interactions and further polish the cyberpunk-inspired interface.
-- Add animations to the interactable componenents.
+- Add animations to the interactable components.
 - Completing the full original proposal of the group.
 
 **Declaration of AI Usage:**
@@ -57,11 +57,11 @@ This README contains the revised proposal for **Group 9: Adeos**. The revision a
 - Added a **Concept Discussion** section explaining NAND flash organization and basic storage behavior.
 - Clarified the use of **Single-Level Cells (SLC)** and **Triple-Level Cells (TLC)**.
 - Corrected wording such as **SATA SSD**, **NAND**, **Single-Level Cell**, and **Triple-Level Cell**.
-- Expanded and Added more details to the style guide snapshot with colors, fonts, typography examples, diagram/icon style, and visual effects.
+- Expanded and added more details to the style guide snapshot with colors, fonts, typography examples, diagram/icon style, and visual effects.
 - Kept the exhibit interactive through clickable components, hover/tap information panels, zoom-in transitions, SLC/TLC toggles, Write/Erase actions, and an output display.
 
 **Feedback attachment:** [Proposal feedback screenshot](docs/feedback/proposal-feedback.png)  
-**Full Original proposal:** [Initial proposal DOCX](docs/proposals/initial-proposal.docx)  
+**Full original proposal:** [Initial proposal DOCX](docs/proposals/initial-proposal.docx)  
 **Full Revised proposal:** [Revised proposal DOCX](docs/proposals/revised-proposal.docx)
 
 ---
@@ -211,15 +211,15 @@ This layout moves from larger SSD components to smaller internal structures:
 
 ```text
 Hero Section (Landing Page; Shows the SSD)
-↓
+->
 Introduction: What Is an SSD?
-↓
+->
 Interactive Scene 1: Click a NAND Flash Chip
-↓
+->
 Interactive Scene 2: Explore Die, Planes, Blocks, and Pages
-↓
+->
 Transition: Zoom Into a Page Containing Cells
-↓
+->
 Interactive Scene 3: Explore Single-Level and Triple-Level Cells
 ```
 

@@ -2,7 +2,7 @@
 layout: '../layouts/ExhibitLayout.astro'
 title: "Flash Memory: How SSDs Store Data"
 description: "A virtual exhibit explaining how SSDs use NAND flash memory cells to store binary data."
-author: "Abenojar, Fredrikzen; Dollentas, Raine Anne; Enciso, Gabriel Jeremy; Obregon, Sian Ysabelle; Singson, Keith Railey"
+author: "Abenojar, Fredrikzen; Dollentas, Raine Anne; Encisco, Gabriel Jeremy; Obregon, Sian Ysabelle; Singson, Keith Railey"
 readingTime: "8 minutes"
 ---
 
@@ -47,7 +47,7 @@ The diagram below connects the storage hierarchy to a visual NAND structure. Eac
 
 <NandHierarchy client:visible />
 
-This hierarchy interaction is separate from the final write and erase simulator. The hierarchy diagram explains where NAND parts are located, while the simulator will later focus on how memory cells change state.
+This hierarchy interaction is separate from the SLC/TLC demos. The hierarchy diagram explains where NAND parts are located, while the demos focus on how memory cells change state.
 
 ## Pages and Blocks
 
@@ -68,7 +68,7 @@ A flash memory cell stores data by using electrical charge. In a simplified NAND
 
 Real NAND flash is more complex than a simple charged-or-uncharged switch. SSDs read flash cells by sensing threshold voltage ranges, and the exact encoding can vary. However, for a beginner-friendly exhibit, charge level is a useful way to show how physical cell states can represent binary data.
 
-The future simulator will use this simplified model:
+The demos use this simplified model:
 
 ```text
 Lower charge or threshold-voltage state = erased state
