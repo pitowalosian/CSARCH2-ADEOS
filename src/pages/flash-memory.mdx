@@ -9,7 +9,10 @@ readingTime: "8 minutes"
 import NandHierarchy from "../components/NandHierarchy.jsx";
 import Introduction from "../components/Introduction.jsx";
 import SSD_Diagram from "../components/SSD-Diagram.jsx";
+import TLC from "../components/TLC.astro";
+import SLC from "../components/SLC.astro";
 import "../styles/style.css";
+
 
 <Introduction />
 
@@ -126,6 +129,9 @@ Example TLC values:
 ```
 
 ## Simulator Preview
+
+<TLC client:visible />
+<SLC client:visible />
 
 The interactive part of the exhibit will let the visitor act like a simplified SSD controller. This feature will be added after the core content layout is complete.
 
