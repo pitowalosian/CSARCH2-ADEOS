@@ -1,38 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.article, .content__titlemeta, .toc {
+/* Scope this page theme so it does not restyle the template homepage. */
+body:has(.flash-memory-page) .article,
+body:has(.flash-memory-page) .content__titlemeta,
+body:has(.flash-memory-page) .toc {
     background-color: #0b0d22;
     border: none;
     color: #ffff;
     box-shadow: #1a1a21 5px 5px;
 }
 
-.article h2, 
-.article h3,
-.content__titlemeta h1,
-.content__titlemeta span,
-.toc h2 {
+body:has(.flash-memory-page) .article h2, 
+body:has(.flash-memory-page) .article h3,
+body:has(.flash-memory-page) .content__titlemeta h1,
+body:has(.flash-memory-page) .content__titlemeta span,
+body:has(.flash-memory-page) .toc h2 {
     font-family: "Tomorrow", sans-serif;
     text-shadow: #468f96 0 0 6px;
 }
 
-.article h2, .toc h2 {
+body:has(.flash-memory-page) .article h2,
+body:has(.flash-memory-page) .toc h2 {
     font-size: 1.8rem;
 }
 
-.article h2, .article h3 {
+body:has(.flash-memory-page) .article h2,
+body:has(.flash-memory-page) .article h3 {
     border-bottom: 1px solid rgba(101, 250, 255, 0.2);
 }
 
-.article h3 {
+body:has(.flash-memory-page) .article h3 {
     font-size: 1.5rem;
 }
 
-.content__titlemeta h1 {
+body:has(.flash-memory-page) .content__titlemeta h1 {
     font-size: 2.2rem;
 }
 
-.toc a, .article a {
+body:has(.flash-memory-page) .toc a,
+body:has(.flash-memory-page) .article a {
     font-family: "Geist Mono", monospace;
     color: #4dd2fae5;
     overflow-wrap: break-word;
@@ -40,32 +46,34 @@
     hyphens: auto;
 }
 
-.toc li {
+body:has(.flash-memory-page) .toc li {
     font-size: 1rem;
 }
 
-.article p, .content__titlemeta span {
+body:has(.flash-memory-page) .article p,
+body:has(.flash-memory-page) .content__titlemeta span {
     font-family: "Space Mono", monospace;
     font-size: 1.05rem;
 }
 
-.article li, .article code span {
+body:has(.flash-memory-page) .article li,
+body:has(.flash-memory-page) .article code span {
     font-family: "Space Mono", monospace;
     font-size: 1rem;
 }
 
-.article pre {
+body:has(.flash-memory-page) .article pre {
     background-color: #131533 !important;
     padding: 2%;
     border-radius: 8px;
 }
 
-.article code span {
+body:has(.flash-memory-page) .article code span {
     margin-left: 1%;
     color: #e0abf2;
 }
 
-.component {
+body:has(.flash-memory-page) .component {
     --cyan: #65fbff;
     --blue: #4c94ff;
     --green: #00ffc8;
@@ -90,7 +98,7 @@
     container-name: component;
 }
 
-.component__bg {
+body:has(.flash-memory-page) .component__bg {
     position: absolute;
     z-index: 0;
     width: auto;
