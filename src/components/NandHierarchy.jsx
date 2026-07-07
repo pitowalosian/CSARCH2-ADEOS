@@ -139,7 +139,7 @@ export default function NandHierarchy() {
       />
 
       <header className="nand-hierarchy__header">
-        <h2 id="nand-hierarchy-title">Inside NAND Flash: The Storage Hierarchy</h2>
+        <h4 id="nand-hierarchy-title">Inside NAND Flash: The Storage Hierarchy</h4>
       </header>
 
       <div className="nand-hierarchy__stage">
@@ -229,7 +229,7 @@ export default function NandHierarchy() {
           pointer-events: none;
         }
 
-        .nand-hierarchy__header h2 {
+        .nand-hierarchy__header h4 {
           margin: 0;
           border: 0;
           color: #ffffff;

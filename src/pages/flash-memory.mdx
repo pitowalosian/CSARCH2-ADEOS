@@ -40,32 +40,6 @@ NAND flash stores information using memory cells. A simplified NAND flash cell i
 
 This exhibit uses a simplified charge-level model so visitors can focus on the main concept: SSDs store data by changing and reading the state of flash memory cells.
 
-{/* ## Inside NAND Flash: The Storage Hierarchy
-
-NAND flash memory is organized from large structures down to very small storage elements. A simplified hierarchy is:
-
-```text
-SSD
--> NAND flash chip
--> die
--> plane
--> block
--> page
--> cell
-```
-
-The NAND flash chip is the memory package found inside a storage device such as an SSD or flash drive. It may contain one or more dies.
-
-A die is a separate piece of silicon inside the chip. Multiple dies can help the storage device perform operations in parallel.
-
-Each die is divided into planes. Planes help organize memory and can support parallel operations within the NAND device.
-
-Inside each plane are blocks, and each block contains multiple pages. A block is important because it is the smallest unit that can be erased in NAND flash memory.
-
-A page is a smaller group of memory cells. Pages are commonly treated as the unit for reading and writing data.
-
-Cells are the lowest level in this simplified hierarchy. They are the actual storage elements where data is physically represented by electrical charge. */}
-
 ## Interactive NAND Hierarchy
 
 The diagram below connects the storage hierarchy to a visual NAND structure. Each selectable layer represents one level of organization: `Chip`, `Die`, `Planes`, `Blocks`, `Pages`, and `Cell`.

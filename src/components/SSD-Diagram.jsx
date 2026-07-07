@@ -15,7 +15,7 @@ export default function SSDDiagram() {
                     loading="lazy"
                 />
                 <header className="ssd__header">
-                    <h2>SSD Diagram</h2>
+                    <h4>SSD Diagram</h4>
                 </header>
             </section>
             <style>{`
@@ -30,7 +30,7 @@ export default function SSDDiagram() {
                     pointer-events: none;
                 }
 
-                .ssd__header h2 {
+                .ssd__header h4 {
                     margin: 0;
                     border: 0;
                     color: #ffffff;

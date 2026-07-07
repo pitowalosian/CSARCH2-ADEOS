@@ -31,9 +31,9 @@ export default function Introduction() {
                     loading="lazy"
                 />
                 <header className="introduction__header">
-                    <h2>
+                    <h4>
                         Flash Memory: <br /> How SSDs Store Data
-                    </h2>
+                    </h4>
                 </header>
                 <div className="introduction__text">
                     {parts.map((part) => (
@@ -57,9 +57,8 @@ export default function Introduction() {
                     pointer-events: none;
                 }
 
-                .introduction__header h2 {
+                .introduction__header h4 {
                     margin: 0;
-                    border: 0;
                     color: #ffffff;
                     font-family: "Tomorrow", "Noto Sans Variable", sans-serif;
                     font-size: clamp(1.5rem, 5cqw, 4rem);

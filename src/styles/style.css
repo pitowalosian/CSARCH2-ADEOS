@@ -12,6 +12,7 @@ body:has(.flash-memory-page) .toc {
 
 body:has(.flash-memory-page) .article h2, 
 body:has(.flash-memory-page) .article h3,
+body:has(.flash-memory-page) .article h4,
 body:has(.flash-memory-page) .content__titlemeta h1,
 body:has(.flash-memory-page) .content__titlemeta span,
 body:has(.flash-memory-page) .toc h2 {
@@ -31,6 +32,10 @@ body:has(.flash-memory-page) .article h3 {
 
 body:has(.flash-memory-page) .article h3 {
     font-size: 1.5rem;
+}
+
+body:has(.flash-memory-page) .article h4 {
+    border-bottom: none;
 }
 
 body:has(.flash-memory-page) .content__titlemeta h1 {
