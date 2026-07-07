@@ -14,6 +14,7 @@
 
 **Development insights** 
 
+- The project introduced us to the Astro framework and React library, giving us a hands-on experience in interacting and working with them. With this, we obtained a better understanding on how real-world websites are built and structured. Additionally, we were able to develop a stronger grasp of our web development fundamentals due to the creation of interactive components. 
 - Throughout the development process, we discovered that breaking the exhibit into multiple sections made the content easier to understand by presenting information in smaller, more manageable parts rather than overwhelming users all at once. We also found that interactive elements, such as the clickable NAND storage hierarchy and the Write/Erase simulator, were much more effective than static images in helping users visualize how NAND flash memory is organized and how it stores data.
 
 **Challenges Encountered** 
@@ -27,6 +28,9 @@
 - Include explanations of wear leveling and garbage collection.
 - Improve mobile interactions and further polish the cyberpunk-inspired interface.
 
+**Declaration of AI Usage:**
+
+- [Insert]
 
 # CSARCH2 Virtual Exhibit Case Proposal
 
