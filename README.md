@@ -12,6 +12,21 @@
 - Implemented the complete exhibit flow from the landing page through the NAND flash memory lessons.
 - Implemented an the interactive Write/Erase simulator with SLC/TLC switching and binary output.
 
+**Development insights** 
+
+- Throughout the development process, we discovered that breaking the exhibit into multiple sections made the content easier to understand by presenting information in smaller, more manageable parts rather than overwhelming users all at once. We also found that interactive elements, such as the clickable NAND storage hierarchy and the Write/Erase simulator, were much more effective than static images in helping users visualize how NAND flash memory is organized and how it stores data.
+
+**Challenges Encountered** 
+
+-
+
+**Future Features:**
+
+- Add clickable SATA and NVMe SSD visuals with highlighted NAND flash chips.
+- Expand the Write/Erase simulator to support multiple memory cells.
+- Include explanations of wear leveling and garbage collection.
+- Improve mobile interactions and further polish the cyberpunk-inspired interface.
+
 
 # CSARCH2 Virtual Exhibit Case Proposal
 
