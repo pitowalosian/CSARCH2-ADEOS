@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    padding: 30px;
+}
+
+.box {
+    width: 320px;
+    min-height: 50px;
+    border: 2px solid #333;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    align-content: flex-start;
+}
+
+
+.panel {
+    width: 200px;
+    min-height: 50px;
+    border: 2px solid #333;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    align-content: flex-start;
+}
+
+.sbox {
+    border: 2px solid #333;
+}
+
+.square {
+    width: 99%;
+    height: 99%;
+    gap: 10px;
+    background: yellow;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    gap: 10px;
+    background: yellow;
+}
+
+.btn {
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: yellow;
+}
