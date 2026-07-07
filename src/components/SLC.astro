@@ -1,82 +1,82 @@
 ---
 // SLC.astro
-const c = Array.from({ length: 1 });
+const c_s = Array.from({ length: 1 });
 import '../styles/interactables.css'; 
 ---
 
 
 <div class="container">
-  <div id='title'>Single Level Cell</div>
+  <div id='title_s'>Single Level Cell</div>
   <div class="cell">
-    <div id="w1" class="box btn">control gate (MS)</div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="float" class="box">Floating Gate<div id="r" class="box"></div></div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="substrate" class="box">Substrate<div id="l" class="box">
-          {c.map((_, i) => (
-          <div class="square c" data-id={i}></div>
+    <div id="w1_s" class="box btn">control gate (MS)</div>
+      <div id="insulation_s" class="box">Isolation Layer</div>
+      <div id="float_s" class="box">Floating Gate<div id="r_s" class="box"></div></div>
+      <div id="insulation_s" class="box">Isolation Layer</div>
+      <div id="substrate_s" class="box">Substrate<div id="l_s" class="box">
+          {c_s.map((_, i) => (
+          <div class="square c_s" data-id={i}></div>
           ))}
       </div> 
     </div>
   </div>
 
   <div class="cell">
-    <div id="w2" class="box btn">control gate</div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="float" class="box">Floating Gate<div id="r2" class="box"></div></div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="substrate" class="box">Substrate<div id="l2" class="box">
-          {c.map((_, i) => (
-          <div class="square c2" data-id={i}></div>
+    <div id="w2_s" class="box btn">control gate</div>
+      <div id="insulation_s" class="box">Isolation Layer</div>
+      <div id="float_s" class="box">Floating Gate<div id="r2_s" class="box"></div></div>
+      <div id="insulation_s" class="box">Isolation Layer</div>
+      <div id="substrate_s" class="box">Substrate<div id="l2_s" class="box">
+          {c_s.map((_, i) => (
+          <div class="square c2_s" data-id={i}></div>
           ))}
       </div> 
     </div>
   </div>
 
   <div class="cell">
-    <div id="w3" class="box btn">control gate</div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="float" class="box">Floating Gate<div id="r3" class="box"></div></div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="substrate" class="box">Substrate<div id="l3" class="box">
-          {c.map((_, i) => (
-          <div class="square c3" data-id={i}></div>
+    <div id="w3_s" class="box btn">control gate</div>
+      <div id="insulation_s" class="box">Isolation Layer</div>
+      <div id="float_s" class="box">Floating Gate<div id="r3_s" class="box"></div></div>
+      <div id="insulation_s" class="box">Isolation Layer</div>
+      <div id="substrate_s" class="box">Substrate<div id="l3_s" class="box">
+          {c_s.map((_, i) => (
+          <div class="square c3_s" data-id={i}></div>
           ))}
       </div> 
     </div>
   </div>
 
   <div class="cell">
-    <div id="w4" class="box btn">control gate (LS)</div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="float" class="box">Floating Gate<div id="r4" class="box"></div></div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="substrate" class="box">Substrate<div id="l4" class="box">
-          {c.map((_, i) => (
-          <div class="square c4" data-id={i}></div>
+    <div id="w4_s" class="box btn">control gate (LS)</div>
+      <div id="insulation_s" class="box">Isolation Layer</div>
+      <div id="float_s" class="box">Floating Gate<div id="r4_s" class="box"></div></div>
+      <div id="insulation_s" class="box">Isolation Layer</div>
+      <div id="substrate_s" class="box">Substrate<div id="l4_s" class="box">
+          {c_s.map((_, i) => (
+          <div class="square c4_s" data-id={i}></div>
           ))}
       </div> 
     </div>
   </div>
 
   <div class="panel">
-    <div class="panel" >Clicking a control gate applies voltage to said control gate and grounds the substrate</div>
-    <div class="sbox" >Every time the screen changes a reference voltage is applied through the substrate</div>
+    <div class="panel">Clicking a control gate applies voltage to said control gate and grounds the substrate</div>
+    <div class="sbox">Every time the screen changes a reference voltage is applied through the substrate</div>
     <div class="panel display">
-      <div class="sbox" id="d1"></div>
-      <div class="sbox" id="d2"></div>
-      <div class="sbox" id="d3"></div>
-      <div class="sbox" id="d4"></div>
+      <div class="sbox" id="d1_s"></div>
+      <div class="sbox" id="d2_s"></div>
+      <div class="sbox" id="d3_s"></div>
+      <div class="sbox" id="d4_s"></div>
       <div class="sbox">
         <div>total:</div>
-        <div class="sbox" id="d5"></div>
+        <div class="sbox" id="d5_s"></div>
       </div>
       <div class="sbox">
         <div>hex: </div>
-        <div class="sbox" id="d6"></div>
+        <div class="sbox" id="d6_s"></div>
       </div>
     </div>
-    <div class="panel btn" id="erase">[Erase] apply high voltage to substrate and negative voltage to control gate</div>
+    <div class="panel btn" id="erase_s">[Erase] apply high voltage to substrate and negative voltage to control gate</div>
   </div>
   
 
@@ -85,129 +85,126 @@ import '../styles/interactables.css';
 <script is:inline>
 
 document.addEventListener("DOMContentLoaded", () => {
-  const cirlces1 = document.querySelectorAll(".c");
-  const circles2 = document.querySelectorAll(".c2");
-  const circles3 = document.querySelectorAll(".c3");
-  const circles4 = document.querySelectorAll(".c4");
-    const r1 = document.getElementById("r");
-    const l = document.getElementById("l");
+  const cirlces1_s = document.querySelectorAll(".c_s");
+  const circles2_s = document.querySelectorAll(".c2_s");
+  const circles3_s = document.querySelectorAll(".c3_s");
+  const circles4_s = document.querySelectorAll(".c4_s");
+    const r1_s = document.getElementById("r_s");
+    const l_s = document.getElementById("l_s");
 
-    const r2 = document.getElementById("r2");
-    const l2 = document.getElementById("l2");
+    const r2_s = document.getElementById("r2_s");
+    const l2_s = document.getElementById("l2_s");
 
-    const r3 = document.getElementById("r3");
-    const l3 = document.getElementById("l3");
+    const r3_s = document.getElementById("r3_s");
+    const l3_s = document.getElementById("l3_s");
 
-    const r4 = document.getElementById("r4");
-    const l4 = document.getElementById("l4");
+    const r4_s = document.getElementById("r4_s");
+    const l4_s = document.getElementById("l4_s");
 
-    const w1 = document.getElementById("w1");
-    const w2 = document.getElementById("w2");
-    const w3 = document.getElementById("w3");
+    const w1_s = document.getElementById("w1_s");
+    const w2_s = document.getElementById("w2_s");
+    const w3_s = document.getElementById("w3_s");
+    const w4_s = document.getElementById("w4_s");
 
-    const d1 = document.getElementById("d1");
-    const d2 = document.getElementById("d2");
-    const d3 = document.getElementById("d3");
-    const d4 = document.getElementById("d4");
-    const d5 = document.getElementById("d5");
-    const d6 = document.getElementById("d6");
+    const d1_s = document.getElementById("d1_s");
+    const d2_s = document.getElementById("d2_s");
+    const d3_s = document.getElementById("d3_s");
+    const d4_s = document.getElementById("d4_s");
+    const d5_s = document.getElementById("d5_s");
+    const d6_s = document.getElementById("d6_s");
 
-    const erase = document.getElementById("erase");
+    const erase_s = document.getElementById("erase_s");
 
-    let state1 = 1;
-    let state2 = 1;
-    let state3 = 1;
-    let state4 = 1;
+    let state1_s = 1;
+    let state2_s = 1;
+    let state3_s = 1;
+    let state4_s = 1;
 
 
-    function updateDisplay() {
-      d1.textContent = state1.toString(2);
-      d2.textContent = state2.toString(2);
-      d3.textContent = state3.toString(2);
-      d4.textContent = state4.toString(2);
-      d5.textContent = (state1.toString() + state2.toString()+ state3.toString() + state4.toString());
-      d6.textContent = parseInt((state1.toString() + state2.toString()+ state3.toString() + state4.toString()),2).toString(16);
+    function updateDisplay_s() {
+      d1_s.textContent = state1_s.toString(2);
+      d2_s.textContent = state2_s.toString(2);
+      d3_s.textContent = state3_s.toString(2);
+      d4_s.textContent = state4_s.toString(2);
+      d5_s.textContent = (state1_s.toString() + state2_s.toString()+ state3_s.toString() + state4_s.toString());
+      d6_s.textContent = parseInt((state1_s.toString() + state2_s.toString()+ state3_s.toString() + state4_s.toString()),2).toString(16);
     }
 
-    updateDisplay();
+    updateDisplay_s();
 
-    erase.addEventListener("click", () => {
-      state1 = 1;
-      state2 = 1;
-      state3 = 1;
-      state4 = 1;
+    erase_s.addEventListener("click", () => {
+      state1_s = 1;
+      state2_s = 1;
+      state3_s = 1;
+      state4_s = 1;
 
-      document.querySelectorAll(".c").forEach(c => {
-        l.appendChild(c);
-        updateDisplay();
+      document.querySelectorAll(".c_s").forEach(c_s => {
+        l_s.appendChild(c_s);
+        updateDisplay_s();
       });
 
-      document.querySelectorAll(".c2").forEach(c2 => {
-        l2.appendChild(c2);
-        updateDisplay();
+      document.querySelectorAll(".c2_s").forEach(c2_s => {
+        l2_s.appendChild(c2_s);
+        updateDisplay_s();
       });
 
-      document.querySelectorAll(".c3").forEach(c3 => {
-        l3.appendChild(c3);
-        updateDisplay();
+      document.querySelectorAll(".c3_s").forEach(c3_s => {
+        l3_s.appendChild(c3_s);
+        updateDisplay_s();
       });
 
-      document.querySelectorAll(".c4").forEach(c4 => {
-        l4.appendChild(c4);
-        updateDisplay();
+      document.querySelectorAll(".c4_s").forEach(c4_s => {
+        l4_s.appendChild(c4_s);
+        updateDisplay_s();
       });
     });
 
 
+    w1_s.addEventListener("click", () => {
 
-
-    
-    w1.addEventListener("click", () => {
-
-      if (state1 >= 0) {
+      if (state1_s >= 0) {
         
-        document.querySelector(".c") ;
-        r1.appendChild(cirlces1[state1-1]);
-        state1--;
-        updateDisplay();
+        document.querySelector(".c_s");
+        r1_s.appendChild(cirlces1_s[state1_s-1]);
+        state1_s--;
+        updateDisplay_s();
       }
     });
 
-    w2.addEventListener("click", () => {
+    w2_s.addEventListener("click", () => {
       
-      if (state2 >= 0) {
+      if (state2_s >= 0) {
         
-        document.querySelector(".c2") ;
-        r2.appendChild(circles2[state2-1]);
-        state2--;
-        updateDisplay();
+        document.querySelector(".c2_s");
+        r2_s.appendChild(circles2_s[state2_s-1]);
+        state2_s--;
+        updateDisplay_s();
       }
     });
 
 
-    w3.addEventListener("click", () => {
+    w3_s.addEventListener("click", () => {
       
-      if (state3 >= 0) {
+      if (state3_s >= 0) {
         
-        document.querySelector(".c3") ;
-        r3.appendChild(circles3[state3-1]);
-        state3--;
-        updateDisplay();
+        document.querySelector(".c3_s");
+        r3_s.appendChild(circles3_s[state3_s-1]);
+        state3_s--;
+        updateDisplay_s();
       }
     });
 
-    w4.addEventListener("click", () => {
+    w4_s.addEventListener("click", () => {
       
-      if (state4 >= 0) {
+      if (state4_s >= 0) {
         
-        document.querySelector(".c4") ;
-        r4.appendChild(circles4[state4-1]);
-        state4--;
-        updateDisplay();
+        document.querySelector(".c4_s");
+        r4_s.appendChild(circles4_s[state4_s-1]);
+        state4_s--;
+        updateDisplay_s();
       }
     });
 
   });
 
 </script>
-
