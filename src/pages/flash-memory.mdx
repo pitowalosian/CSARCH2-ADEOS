@@ -120,8 +120,19 @@ The demos below let visitors act like a simplified SSD controller. Clicking a co
 
 In SLC mode, each cell shows two possible states. In TLC mode, each cell can represent eight possible states, demonstrating how 3 bits can be stored in one cell.
 
-## Key Takeaways
+## Summary and Key Takeaways
 
+### Summary
+Solid-State Drives (SSDs) are the primary non-volatile storage in modern computers and preserves data even when power is off, using NAND flash memory instead of moving mechanical components. Data is organized in a structural hierarchy that includes the following: **chips** that contain **dies**, which are divided into **planes**, which consist of **blocks**, which contains many **pages** made up of individual memory **cells**.
+In SSD architecture, data can be read and written at the Page level, but can only be erased at the Block level. This characteristic creates the need for background processes such as garbage collection and controllers to manage data.  
+
+Data storage relies on adjusting and reading voltage charge or threshold voltage state within the individual flash memory cells. The previous demonstrations follow this simplified model: cell charge states are converted directly into binary values, where erased states are represented by lower charges (1) and a programmed state represents a higher charge (0). 
+
+The efficiency and density of this storage depend on the cell technology used: 
+- Single-Level Cell (SLC): quick and durable, but with lower capacity (distinguishes between only 2 voltage states: 0 and 1)
+- Triple-Level Cell (TLC): offers higher storage capacity (managing 8 distinct voltage states from 000 to 111).
+
+### Key Takeaways
 - SSDs store data using NAND flash memory instead of spinning mechanical disks.
 - NAND flash is non-volatile, so it can retain stored data without power.
 - NAND flash is organized into chips, dies, planes, blocks, pages, and cells.
