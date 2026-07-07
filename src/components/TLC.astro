@@ -1,102 +1,77 @@
 ---
 // TLC.astro
-const c = Array.from({ length: 7 });
-import '../styles/interactables.css'; 
+import "../styles/interactables.css";
+
+const charges = Array.from({ length: 7 });
+const cells = [
+  { gate: "w1", store: "r", bank: "l", display: "d1", label: "Control Gate (MS)", chargeClass: "c" },
+  { gate: "w2", store: "r2", bank: "l2", display: "d2", label: "Control Gate", chargeClass: "c2" },
+  { gate: "w3", store: "r3", bank: "l3", display: "d3", label: "Control Gate", chargeClass: "c3" },
+  { gate: "w4", store: "r4", bank: "l4", display: "d4", label: "Control Gate (LS)", chargeClass: "c4" },
+];
 ---
 
-
-<div class="container">
-  <div class="cell">
-    <div id="w1" class="box btn">control gate (MS)</div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="float" class="box">Floating Gate<div id="r" class="box"></div></div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="substrate" class="box">Substrate<div id="l" class="box">
-          {c.map((_, i) => (
-          <div class="circle c" data-id={i}></div>
-          ))}
-      </div> 
-    </div>
+<section class="flash-demo flash-demo--tlc" aria-label="Triple-Level Cell demo">
+  <div class="flash-demo__cells">
+    {cells.map((cell) => (
+      <article class="flash-demo__cell">
+        <button id={cell.gate} class="flash-demo__layer flash-demo__gate" type="button">{cell.label}</button>
+        <div class="flash-demo__layer flash-demo__oxide">Isolation Layer</div>
+        <div class="flash-demo__layer flash-demo__floating">
+          Floating Gate
+          <div id={cell.store} class="flash-demo__charge-well"></div>
+        </div>
+        <div class="flash-demo__layer flash-demo__oxide">Isolation Layer</div>
+        <div class="flash-demo__layer flash-demo__substrate">
+          Substrate
+          <div id={cell.bank} class="flash-demo__charge-bank">
+            {charges.map((_, i) => (
+              <div class={`flash-demo__charge flash-demo__charge--tlc ${cell.chargeClass}`} data-id={i}></div>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
   </div>
 
-  <div class="cell">
-    <div id="w2" class="box btn">control gate</div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="float" class="box">Floating Gate<div id="r2" class="box"></div></div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="substrate" class="box">Substrate<div id="l2" class="box">
-          {c.map((_, i) => (
-          <div class="circle c2" data-id={i}></div>
-          ))}
-      </div> 
-    </div>
-  </div>
+  <aside class="flash-demo__panel">
+    <p>Click a control gate to move one charge marker into the floating gate.</p>
+    <p>Each TLC cell represents 3 bits, so each cell can step through eight possible states.</p>
 
-  <div class="cell">
-    <div id="w3" class="box btn">control gate</div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="float" class="box">Floating Gate<div id="r3" class="box"></div></div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="substrate" class="box">Substrate<div id="l3" class="box">
-          {c.map((_, i) => (
-          <div class="circle c3" data-id={i}></div>
-          ))}
-      </div> 
-    </div>
-  </div>
-
-  <div class="cell">
-    <div id="w4" class="box btn">control gate (LS)</div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="float" class="box">Floating Gate<div id="r4" class="box"></div></div>
-      <div id="insulation" class="box">Isolation Layer</div>
-      <div id="substrate" class="box">Substrate<div id="l4" class="box">
-          {c.map((_, i) => (
-          <div class="circle c4" data-id={i}></div>
-          ))}
-      </div> 
-    </div>
-  </div>
-
-  <div class="panel">
-    <div class="panel" >Clicking a control gate applies voltage to said control gate and grounds the substrate</div>
-    <div class="sbox" >Every time the screen changes a reference voltage is applied through the substrate</div>
-    <div class="panel display">
-      <div class="sbox" id="d1"></div>
-      <div class="sbox" id="d2"></div>
-      <div class="sbox" id="d3"></div>
-      <div class="sbox" id="d4"></div>
-      <div class="sbox">
-        <div>total:</div>
-        <div class="sbox" id="d5"></div>
+    <div class="flash-demo__display" aria-label="Current TLC stored values">
+      {cells.map((cell) => (
+        <div class="flash-demo__value">
+          <span>{cell.label.replace("Control Gate ", "")}</span>
+          <strong id={cell.display}></strong>
+        </div>
+      ))}
+      <div class="flash-demo__value flash-demo__value--wide">
+        <span>Total bits</span>
+        <strong id="d5"></strong>
       </div>
-      <div class="sbox">
-        <div>hex: </div>
-        <div class="sbox" id="d6"></div>
+      <div class="flash-demo__value">
+        <span>Hex</span>
+        <strong id="d6"></strong>
       </div>
     </div>
-    <div class="panel btn" id="erase">[Erase] apply high voltage to substrate and negative voltage to control gate</div>
-  </div>
-  
 
-</div>
+    <button class="flash-demo__erase" id="erase" type="button">Erase cells</button>
+  </aside>
+</section>
 
 <script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const circles1 = document.querySelectorAll(".c");
+    const circles2 = document.querySelectorAll(".c2");
+    const circles3 = document.querySelectorAll(".c3");
+    const circles4 = document.querySelectorAll(".c4");
 
-document.addEventListener("DOMContentLoaded", () => {
-  const cirlces1 = document.querySelectorAll(".c");
-  const circles2 = document.querySelectorAll(".c2");
-  const circles3 = document.querySelectorAll(".c3");
-  const circles4 = document.querySelectorAll(".c4");
     const r1 = document.getElementById("r");
     const l = document.getElementById("l");
-
     const r2 = document.getElementById("r2");
     const l2 = document.getElementById("l2");
-
     const r3 = document.getElementById("r3");
     const l3 = document.getElementById("l3");
-
     const r4 = document.getElementById("r4");
     const l4 = document.getElementById("l4");
 
@@ -111,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const d4 = document.getElementById("d4");
     const d5 = document.getElementById("d5");
     const d6 = document.getElementById("d6");
-
     const erase = document.getElementById("erase");
 
     let state1 = 7;
@@ -119,16 +93,19 @@ document.addEventListener("DOMContentLoaded", () => {
     let state3 = 7;
     let state4 = 7;
 
-
-    function updateDisplay() {
-      d1.textContent = state1.toString(2).padStart(3, '0');
-      d2.textContent = state2.toString(2).padStart(3, '0');
-      d3.textContent = state3.toString(2).padStart(3, '0');
-      d4.textContent = state4.toString(2).padStart(3, '0');
-      d5.textContent = (state1.toString(2).padStart(3, '0') + state2.toString(2).padStart(3, '0') + state3.toString(2).padStart(3, '0') + state4.toString(2).padStart(3, '0'));
-      d6.textContent = parseInt((state1.toString(2).padStart(3, '0') + state2.toString(2).padStart(3, '0') + state3.toString(2).padStart(3, '0') + state4.toString(2).padStart(3, '0')), 2).toString(16);
+    function bits(value) {
+      return value.toString(2).padStart(3, "0");
     }
 
+    function updateDisplay() {
+      const total = bits(state1) + bits(state2) + bits(state3) + bits(state4);
+      d1.textContent = bits(state1);
+      d2.textContent = bits(state2);
+      d3.textContent = bits(state3);
+      d4.textContent = bits(state4);
+      d5.textContent = total;
+      d6.textContent = parseInt(total, 2).toString(16).toUpperCase();
+    }
 
     updateDisplay();
 
@@ -138,77 +115,43 @@ document.addEventListener("DOMContentLoaded", () => {
       state3 = 7;
       state4 = 7;
 
-      document.querySelectorAll(".c").forEach(c => {
-        l.appendChild(c);
-        updateDisplay();
-      });
-
-      document.querySelectorAll(".c2").forEach(c2 => {
-        l2.appendChild(c2);
-        updateDisplay();
-      });
-
-      document.querySelectorAll(".c3").forEach(c3 => {
-        l3.appendChild(c3);
-        updateDisplay();
-      });
-
-      document.querySelectorAll(".c4").forEach(c4 => {
-        l4.appendChild(c4);
-        updateDisplay();
-      });
+      circles1.forEach((circle) => l.appendChild(circle));
+      circles2.forEach((circle) => l2.appendChild(circle));
+      circles3.forEach((circle) => l3.appendChild(circle));
+      circles4.forEach((circle) => l4.appendChild(circle));
+      updateDisplay();
     });
 
-
-
-
-    
     w1.addEventListener("click", () => {
-
-      if (state1 >= 0) {
-        
-        document.querySelector(".c") ;
-        r1.appendChild(cirlces1[state1-1]);
+      if (state1 > 0) {
+        r1.appendChild(circles1[state1 - 1]);
         state1--;
         updateDisplay();
       }
     });
 
     w2.addEventListener("click", () => {
-      
-      if (state2 >= 0) {
-        
-        document.querySelector(".c2") ;
-        r2.appendChild(circles2[state2-1]);
+      if (state2 > 0) {
+        r2.appendChild(circles2[state2 - 1]);
         state2--;
         updateDisplay();
       }
     });
 
-
     w3.addEventListener("click", () => {
-      
-      if (state3 >= 0) {
-        
-        document.querySelector(".c3") ;
-        r3.appendChild(circles3[state3-1]);
+      if (state3 > 0) {
+        r3.appendChild(circles3[state3 - 1]);
         state3--;
         updateDisplay();
       }
     });
 
     w4.addEventListener("click", () => {
-      
-      if (state4 >= 0) {
-        
-        document.querySelector(".c4") ;
-        r4.appendChild(circles4[state4-1]);
+      if (state4 > 0) {
+        r4.appendChild(circles4[state4 - 1]);
         state4--;
         updateDisplay();
       }
     });
-
   });
-
 </script>
-

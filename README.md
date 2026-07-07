@@ -18,12 +18,13 @@
 - The project introduced us to the Astro framework and React library, giving us a hands-on experience in interacting and working with them. With this, we obtained a better understanding on how real-world websites are built and structured. Additionally, we were able to develop a stronger grasp of our web development fundamentals due to the creation of interactive components. 
 - Throughout the development process, we discovered that breaking the exhibit into multiple sections made the content easier to understand by presenting information in smaller, more manageable parts rather than overwhelming users all at once. We also found that interactive elements, such as the clickable NAND storage hierarchy and the Write/Erase simulator, were much more effective than static images in helping users visualize how NAND flash memory is organized and how it stores data.
 - Extending the previous insight, when the group was designing the NAND Hierarchy section, we had a look and we just had to make it interactable as well. Since initially, it was supposed to be a stack of tiles and showing the hierarchy! We just had to do it to make it more engaging!
-- 
+- Regarding the website template, everything just felt so seamless and smooth. It was so easy to implement and look at our changes. Very nice!
 
 **Challenges Encountered** 
 
 - For the NAND Hierarchy, we had to remove most animations since it was laggy. So maybe, in the future, we will add more optimizations so that we can include animations without sacrificing the performance so that the demo's and interactable elements will look nicer and more engaging!
-- 
+- The group had to refactor and refine our groupmate's work for the SLC/TLC demo since the astro file was not consistent with the group's schema/markup/classes due to reasons. Additionally, because of this, we could not integrate the styling the group already has effectively. One of the refactoring includes renaming class names into much more specific and scoped ones because we thought there might be a chance for it to affect other parts of the website when finally merging onto the big exhibit. Another major one was making the id names unique and turning them into classes to use the styles we already implemented. Last major one was fixing and removing the Astro "hydration" warnings.
+- At first, the group was confused on what to do and where to start, but after looking at the guide and the example page of Linux, we were able to derive and take inspiration from it and started working!
 
 **Future Features:**
 
@@ -31,10 +32,13 @@
 - Expand the Write/Erase simulator to support multiple memory cells.
 - Include explanations of wear leveling and garbage collection.
 - Improve mobile interactions and further polish the cyberpunk-inspired interface.
+- Add animations to the interactable componenents.
+- Completing the full original proposal of the group.
 
 **Declaration of AI Usage:**
 
-- [Insert]
+- This project used AI assistance as a support and guiding tool. AI was used to suggest layout improvements, correct grammar mistakes, dumb down terminologies and concepts, debug build and interaction issues, and assist with code optimization.
+- The group remained responsible for the final content, design decisions, implementation, styling, testing, and documentation.
 
 # CSARCH2 Virtual Exhibit Case Proposal
 

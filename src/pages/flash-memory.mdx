@@ -128,33 +128,19 @@ Example TLC values:
 111
 ```
 
-## Simulator Preview
-Triple-Layer Cell Demo
-<TLC client:visible />
-Single-Layer Cell Demo
-<SLC client:visible />
+## SLC/TLC Demo Preview
 
-The interactive part of the exhibit will let the visitor act like a simplified SSD controller. This feature will be added after the core content layout is complete.
+The demos below let visitors act like a simplified SSD controller. Clicking a control gate programs a cell by moving charge into the floating gate, while erasing returns the cells to their starting state.
 
-Planned simulator controls:
+### SLC Demo
 
-- Toggle between SLC and TLC mode
-- Write to a memory cell
-- Erase a memory cell
-- Display the current charge level
-- Display the binary value being represented
-- Show a short explanation of the current cell state
+<SLC />
 
-In SLC mode, the simulator will show two possible cell states. In TLC mode, it will show eight possible cell states to demonstrate how 3 bits can be stored in one cell.
+### TLC Demo
 
-## Key Takeaways
+<TLC />
 
-- SSDs store data using NAND flash memory instead of spinning mechanical disks.
-- NAND flash is non-volatile, so it can retain stored data without power.
-- NAND flash is organized into chips, dies, planes, blocks, pages, and cells.
-- Pages are commonly read and written, while blocks are erased.
-- Flash memory cells represent data through charge or voltage states.
-- SLC stores 1 bit per cell, while TLC stores 3 bits per cell using more possible states.
+In SLC mode, each cell shows two possible states. In TLC mode, each cell can represent eight possible states, demonstrating how 3 bits can be stored in one cell.
 
 ## References
 

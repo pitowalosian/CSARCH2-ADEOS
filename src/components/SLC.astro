@@ -1,209 +1,153 @@
 ---
 // SLC.astro
-const c_s = Array.from({ length: 1 });
-import '../styles/interactables.css'; 
+import "../styles/interactables.css";
+
+const charges = Array.from({ length: 1 });
+const cells = [
+  { gate: "w1_s", store: "r_s", bank: "l_s", display: "d1_s", label: "Control Gate (MS)", chargeClass: "c_s" },
+  { gate: "w2_s", store: "r2_s", bank: "l2_s", display: "d2_s", label: "Control Gate", chargeClass: "c2_s" },
+  { gate: "w3_s", store: "r3_s", bank: "l3_s", display: "d3_s", label: "Control Gate", chargeClass: "c3_s" },
+  { gate: "w4_s", store: "r4_s", bank: "l4_s", display: "d4_s", label: "Control Gate (LS)", chargeClass: "c4_s" },
+];
 ---
 
-
-<div class="container">
-  <div class="cell">
-    <div id="w1_s" class="box btn">control gate (MS)</div>
-      <div id="insulation_s" class="box">Isolation Layer</div>
-      <div id="float_s" class="box">Floating Gate<div id="r_s" class="box"></div></div>
-      <div id="insulation_s" class="box">Isolation Layer</div>
-      <div id="substrate_s" class="box">Substrate<div id="l_s" class="box">
-          {c_s.map((_, i) => (
-          <div class="square c_s" data-id={i}></div>
-          ))}
-      </div> 
-    </div>
+<section class="flash-demo flash-demo--slc" aria-label="Single-Level Cell demo">
+  <div class="flash-demo__cells">
+    {cells.map((cell) => (
+      <article class="flash-demo__cell">
+        <button id={cell.gate} class="flash-demo__layer flash-demo__gate" type="button">{cell.label}</button>
+        <div class="flash-demo__layer flash-demo__oxide">Isolation Layer</div>
+        <div class="flash-demo__layer flash-demo__floating">
+          Floating Gate
+          <div id={cell.store} class="flash-demo__charge-well"></div>
+        </div>
+        <div class="flash-demo__layer flash-demo__oxide">Isolation Layer</div>
+        <div class="flash-demo__layer flash-demo__substrate">
+          Substrate
+          <div id={cell.bank} class="flash-demo__charge-bank">
+            {charges.map((_, i) => (
+              <div class={`flash-demo__charge flash-demo__charge--slc ${cell.chargeClass}`} data-id={i}></div>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
   </div>
 
-  <div class="cell">
-    <div id="w2_s" class="box btn">control gate</div>
-      <div id="insulation_s" class="box">Isolation Layer</div>
-      <div id="float_s" class="box">Floating Gate<div id="r2_s" class="box"></div></div>
-      <div id="insulation_s" class="box">Isolation Layer</div>
-      <div id="substrate_s" class="box">Substrate<div id="l2_s" class="box">
-          {c_s.map((_, i) => (
-          <div class="square c2_s" data-id={i}></div>
-          ))}
-      </div> 
-    </div>
-  </div>
+  <aside class="flash-demo__panel">
+    <p>Click a control gate to program one SLC cell.</p>
+    <p>Each SLC cell represents 1 bit, so each cell only needs two possible states: 1 or 0.</p>
 
-  <div class="cell">
-    <div id="w3_s" class="box btn">control gate</div>
-      <div id="insulation_s" class="box">Isolation Layer</div>
-      <div id="float_s" class="box">Floating Gate<div id="r3_s" class="box"></div></div>
-      <div id="insulation_s" class="box">Isolation Layer</div>
-      <div id="substrate_s" class="box">Substrate<div id="l3_s" class="box">
-          {c_s.map((_, i) => (
-          <div class="square c3_s" data-id={i}></div>
-          ))}
-      </div> 
-    </div>
-  </div>
-
-  <div class="cell">
-    <div id="w4_s" class="box btn">control gate (LS)</div>
-      <div id="insulation_s" class="box">Isolation Layer</div>
-      <div id="float_s" class="box">Floating Gate<div id="r4_s" class="box"></div></div>
-      <div id="insulation_s" class="box">Isolation Layer</div>
-      <div id="substrate_s" class="box">Substrate<div id="l4_s" class="box">
-          {c_s.map((_, i) => (
-          <div class="square c4_s" data-id={i}></div>
-          ))}
-      </div> 
-    </div>
-  </div>
-
-  <div class="panel">
-    <div class="panel">Clicking a control gate applies voltage to said control gate and grounds the substrate</div>
-    <div class="sbox">Every time the screen changes a reference voltage is applied through the substrate</div>
-    <div class="panel display">
-      <div class="sbox" id="d1_s"></div>
-      <div class="sbox" id="d2_s"></div>
-      <div class="sbox" id="d3_s"></div>
-      <div class="sbox" id="d4_s"></div>
-      <div class="sbox">
-        <div>total:</div>
-        <div class="sbox" id="d5_s"></div>
+    <div class="flash-demo__display" aria-label="Current SLC stored values">
+      {cells.map((cell) => (
+        <div class="flash-demo__value">
+          <span>{cell.label.replace("Control Gate ", "")}</span>
+          <strong id={cell.display}></strong>
+        </div>
+      ))}
+      <div class="flash-demo__value flash-demo__value--wide">
+        <span>Total bits</span>
+        <strong id="d5_s"></strong>
       </div>
-      <div class="sbox">
-        <div>hex: </div>
-        <div class="sbox" id="d6_s"></div>
+      <div class="flash-demo__value">
+        <span>Hex</span>
+        <strong id="d6_s"></strong>
       </div>
     </div>
-    <div class="panel btn" id="erase_s">[Erase] apply high voltage to substrate and negative voltage to control gate</div>
-  </div>
-  
 
-</div>
+    <button class="flash-demo__erase" id="erase_s" type="button">Erase cells</button>
+  </aside>
+</section>
 
 <script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const circles1 = document.querySelectorAll(".c_s");
+    const circles2 = document.querySelectorAll(".c2_s");
+    const circles3 = document.querySelectorAll(".c3_s");
+    const circles4 = document.querySelectorAll(".c4_s");
 
-document.addEventListener("DOMContentLoaded", () => {
-  const cirlces1_s = document.querySelectorAll(".c_s");
-  const circles2_s = document.querySelectorAll(".c2_s");
-  const circles3_s = document.querySelectorAll(".c3_s");
-  const circles4_s = document.querySelectorAll(".c4_s");
-    const r1_s = document.getElementById("r_s");
-    const l_s = document.getElementById("l_s");
+    const r1 = document.getElementById("r_s");
+    const l1 = document.getElementById("l_s");
+    const r2 = document.getElementById("r2_s");
+    const l2 = document.getElementById("l2_s");
+    const r3 = document.getElementById("r3_s");
+    const l3 = document.getElementById("l3_s");
+    const r4 = document.getElementById("r4_s");
+    const l4 = document.getElementById("l4_s");
 
-    const r2_s = document.getElementById("r2_s");
-    const l2_s = document.getElementById("l2_s");
+    const w1 = document.getElementById("w1_s");
+    const w2 = document.getElementById("w2_s");
+    const w3 = document.getElementById("w3_s");
+    const w4 = document.getElementById("w4_s");
 
-    const r3_s = document.getElementById("r3_s");
-    const l3_s = document.getElementById("l3_s");
+    const d1 = document.getElementById("d1_s");
+    const d2 = document.getElementById("d2_s");
+    const d3 = document.getElementById("d3_s");
+    const d4 = document.getElementById("d4_s");
+    const d5 = document.getElementById("d5_s");
+    const d6 = document.getElementById("d6_s");
+    const erase = document.getElementById("erase_s");
 
-    const r4_s = document.getElementById("r4_s");
-    const l4_s = document.getElementById("l4_s");
+    let state1 = 1;
+    let state2 = 1;
+    let state3 = 1;
+    let state4 = 1;
 
-    const w1_s = document.getElementById("w1_s");
-    const w2_s = document.getElementById("w2_s");
-    const w3_s = document.getElementById("w3_s");
-    const w4_s = document.getElementById("w4_s");
-
-    const d1_s = document.getElementById("d1_s");
-    const d2_s = document.getElementById("d2_s");
-    const d3_s = document.getElementById("d3_s");
-    const d4_s = document.getElementById("d4_s");
-    const d5_s = document.getElementById("d5_s");
-    const d6_s = document.getElementById("d6_s");
-
-    const erase_s = document.getElementById("erase_s");
-
-    let state1_s = 1;
-    let state2_s = 1;
-    let state3_s = 1;
-    let state4_s = 1;
-
-
-    function updateDisplay_s() {
-      d1_s.textContent = state1_s.toString(2);
-      d2_s.textContent = state2_s.toString(2);
-      d3_s.textContent = state3_s.toString(2);
-      d4_s.textContent = state4_s.toString(2);
-      d5_s.textContent = (state1_s.toString() + state2_s.toString()+ state3_s.toString() + state4_s.toString());
-      d6_s.textContent = parseInt((state1_s.toString() + state2_s.toString()+ state3_s.toString() + state4_s.toString()),2).toString(16);
+    function updateDisplay() {
+      const total = `${state1}${state2}${state3}${state4}`;
+      d1.textContent = state1.toString(2);
+      d2.textContent = state2.toString(2);
+      d3.textContent = state3.toString(2);
+      d4.textContent = state4.toString(2);
+      d5.textContent = total;
+      d6.textContent = parseInt(total, 2).toString(16).toUpperCase();
     }
 
-    updateDisplay_s();
+    updateDisplay();
 
-    erase_s.addEventListener("click", () => {
-      state1_s = 1;
-      state2_s = 1;
-      state3_s = 1;
-      state4_s = 1;
+    erase.addEventListener("click", () => {
+      state1 = 1;
+      state2 = 1;
+      state3 = 1;
+      state4 = 1;
 
-      document.querySelectorAll(".c_s").forEach(c_s => {
-        l_s.appendChild(c_s);
-        updateDisplay_s();
-      });
-
-      document.querySelectorAll(".c2_s").forEach(c2_s => {
-        l2_s.appendChild(c2_s);
-        updateDisplay_s();
-      });
-
-      document.querySelectorAll(".c3_s").forEach(c3_s => {
-        l3_s.appendChild(c3_s);
-        updateDisplay_s();
-      });
-
-      document.querySelectorAll(".c4_s").forEach(c4_s => {
-        l4_s.appendChild(c4_s);
-        updateDisplay_s();
-      });
+      circles1.forEach((charge) => l1.appendChild(charge));
+      circles2.forEach((charge) => l2.appendChild(charge));
+      circles3.forEach((charge) => l3.appendChild(charge));
+      circles4.forEach((charge) => l4.appendChild(charge));
+      updateDisplay();
     });
 
-
-    w1_s.addEventListener("click", () => {
-
-      if (state1_s >= 0) {
-        
-        document.querySelector(".c_s");
-        r1_s.appendChild(cirlces1_s[state1_s-1]);
-        state1_s--;
-        updateDisplay_s();
+    w1.addEventListener("click", () => {
+      if (state1 > 0) {
+        r1.appendChild(circles1[state1 - 1]);
+        state1--;
+        updateDisplay();
       }
     });
 
-    w2_s.addEventListener("click", () => {
-      
-      if (state2_s >= 0) {
-        
-        document.querySelector(".c2_s");
-        r2_s.appendChild(circles2_s[state2_s-1]);
-        state2_s--;
-        updateDisplay_s();
+    w2.addEventListener("click", () => {
+      if (state2 > 0) {
+        r2.appendChild(circles2[state2 - 1]);
+        state2--;
+        updateDisplay();
       }
     });
 
-
-    w3_s.addEventListener("click", () => {
-      
-      if (state3_s >= 0) {
-        
-        document.querySelector(".c3_s");
-        r3_s.appendChild(circles3_s[state3_s-1]);
-        state3_s--;
-        updateDisplay_s();
+    w3.addEventListener("click", () => {
+      if (state3 > 0) {
+        r3.appendChild(circles3[state3 - 1]);
+        state3--;
+        updateDisplay();
       }
     });
 
-    w4_s.addEventListener("click", () => {
-      
-      if (state4_s >= 0) {
-        
-        document.querySelector(".c4_s");
-        r4_s.appendChild(circles4_s[state4_s-1]);
-        state4_s--;
-        updateDisplay_s();
+    w4.addEventListener("click", () => {
+      if (state4 > 0) {
+        r4.appendChild(circles4[state4 - 1]);
+        state4--;
+        updateDisplay();
       }
     });
-
   });
-
 </script>
