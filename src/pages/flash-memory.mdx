@@ -2,13 +2,14 @@
 layout: '../layouts/ExhibitLayout.astro'
 title: "Flash Memory: How SSDs Store Data"
 description: "A virtual exhibit explaining how SSDs use NAND flash memory cells to store binary data."
-author: "Abenojar, Fredrikzen; Dollentas, Raine Anne; Encisco, Gabriel Jeremy; Obregon, Sian Ysabelle; Singson, Keith Railey"
+author: "Abenojar, Fredrikzen; Dollentas, Raine Anne; Enciso, Gabriel Jeremy; Obregon, Sian Ysabelle; Singson, Keith Railey"
 readingTime: "8 minutes"
 ---
 
 import NandHierarchy from "../components/NandHierarchy.jsx";
 import Introduction from "../components/Introduction.jsx";
 import SSD_Diagram from "../components/SSD-Diagram.jsx";
+import SLCvsTLC from "../components/SLCvsTLC.jsx";
 import TLC from "../components/TLC.astro";
 import SLC from "../components/SLC.astro";
 import "../styles/style.css";
@@ -75,6 +76,8 @@ Higher charge or threshold-voltage state = written/programmed state
 ```
 
 ## SLC vs TLC
+
+<SLCvsTLC />
 
 NAND flash can store different amounts of data per cell.
 
