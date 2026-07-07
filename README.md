@@ -11,15 +11,19 @@
 - Developed a functional Astro website.
 - Implemented the complete exhibit flow from the landing page through the NAND flash memory lessons.
 - Implemented an the interactive Write/Erase simulator with SLC/TLC switching and binary output.
+- Implemented an interactable version of the NAND Cell Hierarchy section.
 
 **Development insights** 
 
 - The project introduced us to the Astro framework and React library, giving us a hands-on experience in interacting and working with them. With this, we obtained a better understanding on how real-world websites are built and structured. Additionally, we were able to develop a stronger grasp of our web development fundamentals due to the creation of interactive components. 
 - Throughout the development process, we discovered that breaking the exhibit into multiple sections made the content easier to understand by presenting information in smaller, more manageable parts rather than overwhelming users all at once. We also found that interactive elements, such as the clickable NAND storage hierarchy and the Write/Erase simulator, were much more effective than static images in helping users visualize how NAND flash memory is organized and how it stores data.
+- Extending the previous insight, when the group was designing the NAND Hierarchy section, we had a look and we just had to make it interactable as well. Since initially, it was supposed to be a stack of tiles and showing the hierarchy! We just had to do it to make it more engaging!
+- 
 
 **Challenges Encountered** 
 
--
+- For the NAND Hierarchy, we had to remove most animations since it was laggy. So maybe, in the future, we will add more optimizations so that we can include animations without sacrificing the performance so that the demo's and interactable elements will look nicer and more engaging!
+- 
 
 **Future Features:**
 
