@@ -4,8 +4,8 @@
 }
 
 .box {
-    width: 320px;
-    min-height: 50px;
+    width: 200px;
+    min-height: 20px;
     border: 2px solid #333;
     display: flex;
     flex-wrap: wrap;
@@ -16,14 +16,15 @@
 
 
 .panel {
-    width: 200px;
-    min-height: 50px;
+    width: 160px;
+    min-height: 20px;
     border: 2px solid #333;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     padding: 10px;
     align-content: flex-start;
+    font-size: 10px;
 }
 
 .sbox {
@@ -38,8 +39,8 @@
 }
 
 .circle {
-    width: 30px;
-    height: 30px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     gap: 10px;
     background: yellow;
@@ -47,7 +48,7 @@
 
 .btn {
     cursor: pointer;
-    background-color: white;
+    background-color: rgb(107, 0, 0);
     transition: background-color 0.2s ease;
 }
 
