@@ -1,3 +1,18 @@
+
+# Mid-Milestone Update
+
+## Project Status 
+
+**Completed tasks:**
+
+- Researched about SSDs, NAND flash memory, and related concepts.
+- Gathered and organized information about SSD architecture, NAND flash organization, memory cells, and the differences between Single-Level Cells (SLC) and Triple-Level Cells (TLC).
+- Designed the interface following the proposed cyberpunk style.
+- Developed a functional Astro website.
+- Implemented the complete exhibit flow from the landing page through the NAND flash memory lessons.
+- Implemented an the interactive Write/Erase simulator with SLC/TLC switching and binary output.
+
+
 # CSARCH2 Virtual Exhibit Case Proposal
 
 ## Revision Highlights
