@@ -24,7 +24,7 @@
 
 - For the NAND Hierarchy, we had to remove most animations since it was laggy. So maybe, in the future, we will add more optimizations so that we can include animations without sacrificing the performance so that the demo's and interactable elements will look nicer and more engaging!
 - At first, the group was confused on what to do and where to start, but after looking at the guide and the example page of Linux, we were able to derive and take inspiration from it and started working!
-- The styling file we have has indirectly been using by the homepage, which we think that is a problem since we are told not to modify some files, and we assume its the same indirectly! So, we have painstakingly renamed styling and selector names so that it is not conflicting with the homepage one. Afterwards, we did a thorough manual search on which parts of the exhibit has been modified indirectly besides our page just to double check and to make sure it will not be in conflict when merging with the main exhibit repo!
+- The styling file we have has indirectly been using by the homepage, which we think that is a problem since we are told not to modify some files, and we assume its the same indirectly! So to make it future-proof, we have painstakingly renamed styling and selector names so that it is not conflicting with the homepage one. Afterwards, we did a thorough manual search on which parts of the exhibit has been modified indirectly besides our page just to double check and to make sure it will not be in conflict when merging with the main exhibit repo!
 
 **Future Features:**
 
