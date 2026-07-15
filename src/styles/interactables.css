@@ -22,11 +22,21 @@
   font-family: "Space Mono", "Noto Sans Variable", monospace;
 }
 
+.shrink {
+  transform: scale(0.8);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .flash-demo__cells {
   display: grid;
   grid-template-columns: repeat(4, minmax(130px, 1fr));
   gap: 0.75rem;
   min-width: 0;
+  align-items: center;
+  position: relative;
 }
 
 .flash-demo__cell {
@@ -50,12 +60,14 @@
   line-height: 1.15;
 }
 
+
 .flash-demo__gate,
 .flash-demo__erase {
   cursor: pointer;
   border-color: rgba(101, 251, 255, 0.74);
   background: linear-gradient(180deg, rgba(101, 251, 255, 0.18), rgba(76, 148, 255, 0.18));
   box-shadow: 0 0 14px rgba(101, 251, 255, 0.16);
+  min-width: 11rem;
 }
 
 .flash-demo__gate:hover,
@@ -68,6 +80,7 @@
 }
 
 .flash-demo__oxide {
+  min-width: 10rem;
   min-height: 1.65rem;
   border-color: rgba(184, 214, 232, 0.22);
   background: rgba(184, 214, 232, 0.08);
@@ -76,6 +89,7 @@
 
 .flash-demo__floating {
   min-height: 5.5rem;
+  min-width: 10rem;
   flex-direction: column;
   align-items: stretch;
   gap: 0.45rem;
@@ -84,12 +98,32 @@
 }
 
 .flash-demo__substrate {
+  width: 124%;
+  min-width: 12.4rem;
   min-height: 6.4rem;
   flex-direction: column;
   align-items: stretch;
   gap: 0.45rem;
   border-color: rgba(76, 148, 255, 0.42);
   background: rgba(76, 148, 255, 0.08);
+  position: relative;
+}
+
+.substrate_box {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  position: absolute;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+#source {
+  top: 0;
+  left: 0;
+}
+
+#drain {
+  top: 0;
+  right: 0;
 }
 
 .flash-demo__charge-well,
@@ -111,8 +145,8 @@
 
 .flash-demo__charge {
   flex: 0 0 auto;
-  width: 0.9rem;
-  height: 0.9rem;
+  width: 0.7rem;
+  height: 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.7);
   background: var(--demo-green);
   box-shadow: 0 0 10px rgba(0, 255, 200, 0.38);
@@ -184,6 +218,8 @@
   font-size: 0.8rem;
 }
 
+
+
 @media (max-width: 980px) {
   .flash-demo {
     grid-template-columns: 1fr;
@@ -191,7 +227,28 @@
 
   .flash-demo__cells {
     grid-template-columns: repeat(2, minmax(150px, 1fr));
+    position: relative;
   }
+}
+
+
+.bitline {
+  position: absolute;
+  top: 31%;
+  left: 49.7%;
+  transform: translate(-50%, -50%);
+  width: 104%;
+  height: 0.25rem;
+  z-index: 9999;
+  background: yellow;
+  color: yellow;
+  display: flex;
+  align-items: flex-end;
+  font-size: 1rem;
+}
+
+#bitline2 {
+  top: 81.75%;
 }
 
 @media (max-width: 560px) {
@@ -199,3 +256,25 @@
     grid-template-columns: 1fr;
   }
 }
+
+  #tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #222;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate(-9999px, -9999px);
+    transition: opacity 0.1s ease;
+    z-index: 1000;
+    white-space: pre-line;
+  }
+
+  #tooltip.visible {
+    opacity: 1;
+  }

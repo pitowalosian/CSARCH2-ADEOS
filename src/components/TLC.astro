@@ -3,35 +3,52 @@
 import "../styles/interactables.css";
 
 const charges = Array.from({ length: 7 });
-const cells = [
-  { gate: "w1", store: "r", bank: "l", display: "d1", label: "Cell 1 (MS)", chargeClass: "c" },
-  { gate: "w2", store: "r2", bank: "l2", display: "d2", label: "Cell 2 ", chargeClass: "c2" },
-  { gate: "w3", store: "r3", bank: "l3", display: "d3", label: "Cell 3 ", chargeClass: "c3" },
-  { gate: "w4", store: "r4", bank: "l4", display: "d4", label: "Cell 4 (LS)", chargeClass: "c4" },
-];
+const NUM_CELLS = 8;
+
+const cells = Array.from({ length: NUM_CELLS }, (_, i) => {
+  const index = i + 1;
+
+  return {
+    gate: `w${index}`,
+    store: index === 1 ? "r" : `r${index}`,
+    bank: index === 1 ? "l" : `l${index}`,
+    display: `d${index}`,
+    label:
+      index === 1
+      ? `Cell ${index} (MS)`
+      : index === NUM_CELLS
+      ? `Cell ${index} (LS)`
+      : `Cell ${index}`,
+    chargeClass: index === 1 ? "c" : `c${index}`,
+  };
+});
 ---
 
 <section class="flash-demo flash-demo--tlc" aria-label="Triple-Level Cell demo">
   <div class="flash-demo__cells">
     {cells.map((cell) => (
-      <article class="flash-demo__cell">
-        <button id={cell.gate} class="flash-demo__layer flash-demo__gate" type="button">{cell.label}</button>
-        <div class="flash-demo__layer flash-demo__oxide">Isolation Layer</div>
-        <div class="flash-demo__layer flash-demo__floating">
+      <div class="shrink">
+        <button id={cell.gate} class="flash-demo__layer flash-demo__gate" type="button" data-tooltip="A voltage is applied to the control gate allowing it to write/read/erase the contents of a cell. \n clicking this adds a charge to the floating gate.">{cell.label}'s control gate</button>
+        <div class="flash-demo__layer flash-demo__oxide" data-tooltip="The insulator prevents electrons from escaping">Insulator Layer</div>
+        <div class="flash-demo__layer flash-demo__floating" data-tooltip="this is where the charge is stored and it determines the value of a cell.\n The amount of charge also affects the cells conductivity.">
           Floating Gate
           <div id={cell.store} class="flash-demo__charge-well"></div>
         </div>
-        <div class="flash-demo__layer flash-demo__oxide">Isolation Layer</div>
-        <div class="flash-demo__layer flash-demo__substrate">
+        <div class="flash-demo__layer flash-demo__oxide" data-tooltip="The insulator prevents electrons from escaping">Insulator Layer</div>
+        <div class="flash-demo__layer flash-demo__substrate" data-tooltip="The substrate is a medium for voltage to pass through that allows for read/write operations.">
+          <div class="substrate_box" id="source" data-tooltip="This is where electrons come from when entering a cell.">source</div>
           Substrate
-          <div id={cell.bank} class="flash-demo__charge-bank">
+          <div class="substrate_box" id="drain" data-tooltip="This is where electrons go to after an erase/write">drain</div>
+          <div id={cell.bank} class="flash-demo__charge-bank" data-tooltip="represents the electrons that came from the source">
             {charges.map((_, i) => (
               <div class={`flash-demo__charge flash-demo__charge--tlc ${cell.chargeClass}`} data-id={i}></div>
             ))}
           </div>
         </div>
-      </article>
+      </div>
     ))}
+    <div class="bitline" data-tooltip="During read operations the bitline applies a charge that can sense a cells value depending on it's conductivity.\n During write operations the bitline delivers the charge that changes a cell's value.">Bit Line 2</div>
+    <div id="bitline2" class="bitline" data-tooltip="During read operations the bitline applies a charge that can sense a cells value depending on it's conductivity.\n During write operations the bitline delivers the charge that changes a cell's value.">Bit Line 2</div>
   </div>
 
   <aside class="flash-demo__panel">
@@ -47,111 +64,100 @@ const cells = [
       ))}
       <div class="flash-demo__value flash-demo__value--wide">
         <span>Total bits</span>
-        <strong id="d5"></strong>
+        <strong id="totalBits"></strong>
       </div>
       <div class="flash-demo__value">
         <span>Hex</span>
-        <strong id="d6"></strong>
+        <strong id="hexValue"></strong>
       </div>
     </div>
 
-    <button class="flash-demo__erase" id="erase" type="button">Erase cells</button>
+    <button class="flash-demo__erase" id="erase" type="button" data-tooltip="A cell must be erased before it can be written on.\n This button brings cells back to its highest state.">Erase cells</button>
+
+    <div id="tooltip"></div>
   </aside>
 </section>
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
-    const circles1 = document.querySelectorAll(".c");
-    const circles2 = document.querySelectorAll(".c2");
-    const circles3 = document.querySelectorAll(".c3");
-    const circles4 = document.querySelectorAll(".c4");
+    const NUM_CELLS = 8; //Keep the same as the one ontop!
 
-    const r1 = document.getElementById("r");
-    const l = document.getElementById("l");
-    const r2 = document.getElementById("r2");
-    const l2 = document.getElementById("l2");
-    const r3 = document.getElementById("r3");
-    const l3 = document.getElementById("l3");
-    const r4 = document.getElementById("r4");
-    const l4 = document.getElementById("l4");
-
-    const w1 = document.getElementById("w1");
-    const w2 = document.getElementById("w2");
-    const w3 = document.getElementById("w3");
-    const w4 = document.getElementById("w4");
-
-    const d1 = document.getElementById("d1");
-    const d2 = document.getElementById("d2");
-    const d3 = document.getElementById("d3");
-    const d4 = document.getElementById("d4");
-    const d5 = document.getElementById("d5");
-    const d6 = document.getElementById("d6");
     const erase = document.getElementById("erase");
 
-    let state1 = 7;
-    let state2 = 7;
-    let state3 = 7;
-    let state4 = 7;
+    const cells = Array.from({ length: NUM_CELLS }, (_, i) => {
+      const index = i + 1;
+
+      return {
+        circles: document.querySelectorAll(`.c${index === 1 ? "" : index}`),
+        r: document.getElementById(index === 1 ? "r" : `r${index}`),
+        l: document.getElementById(index === 1 ? "l" : `l${index}`),
+        w: document.getElementById(`w${index}`),
+        d: document.getElementById(`d${index}`),
+        state: 7,
+      };
+    });
+
+    const totalBits = document.getElementById("totalBits");
+    const hexValue = document.getElementById("hexValue");
+
+    const tooltip = document.getElementById('tooltip');
+    const boxes = document.querySelectorAll('[data-tooltip]');
 
     function bits(value) {
       return value.toString(2).padStart(3, "0");
     }
 
     function updateDisplay() {
-      const total = bits(state1) + bits(state2) + bits(state3) + bits(state4);
-      d1.textContent = bits(state1);
-      d2.textContent = bits(state2);
-      d3.textContent = bits(state3);
-      d4.textContent = bits(state4);
-      d5.textContent = total;
-      d6.textContent = parseInt(total, 2).toString(16).toUpperCase();
+      let total = "";
+
+      cells.forEach((cell) => {
+        const b = bits(cell.state);
+        cell.d.textContent = b;
+        total += b;
+      });
+
+      totalBits.textContent = total;
+      hexValue.textContent = parseInt(total, 2).toString(16).toUpperCase();
     }
 
     updateDisplay();
 
     erase.addEventListener("click", () => {
-      state1 = 7;
-      state2 = 7;
-      state3 = 7;
-      state4 = 7;
-
-      circles1.forEach((circle) => l.appendChild(circle));
-      circles2.forEach((circle) => l2.appendChild(circle));
-      circles3.forEach((circle) => l3.appendChild(circle));
-      circles4.forEach((circle) => l4.appendChild(circle));
+      cells.forEach((cell) => {
+        cell.state = 7;
+        cell.circles.forEach((circle) => cell.l.appendChild(circle));
+      });
       updateDisplay();
     });
 
-    w1.addEventListener("click", () => {
-      if (state1 > 0) {
-        r1.appendChild(circles1[state1 - 1]);
-        state1--;
-        updateDisplay();
-      }
+    cells.forEach((cell) => {
+      cell.w.addEventListener("click", () => {
+        if (cell.state > 0) {
+          cell.r.appendChild(cell.circles[cell.state - 1]);
+          cell.state--;
+          updateDisplay();
+        }
+      });
     });
 
-    w2.addEventListener("click", () => {
-      if (state2 > 0) {
-        r2.appendChild(circles2[state2 - 1]);
-        state2--;
-        updateDisplay();
-      }
+
+    //tooltip
+    boxes.forEach(box => {
+    box.addEventListener('mouseenter', () => {
+      tooltip.textContent = box.dataset.tooltip;
+      tooltip.classList.add('visible');
+    });
+ 
+    box.addEventListener('mousemove', (e) => {
+      const offsetX = 15;
+      const offsetY = 15;
+      tooltip.style.transform = `translate(${e.clientX + offsetX}px, ${e.clientY + offsetY}px)`;
+    });
+ 
+    box.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('visible');
     });
 
-    w3.addEventListener("click", () => {
-      if (state3 > 0) {
-        r3.appendChild(circles3[state3 - 1]);
-        state3--;
-        updateDisplay();
-      }
-    });
-
-    w4.addEventListener("click", () => {
-      if (state4 > 0) {
-        r4.appendChild(circles4[state4 - 1]);
-        state4--;
-        updateDisplay();
-      }
-    });
   });
+});
 </script>
