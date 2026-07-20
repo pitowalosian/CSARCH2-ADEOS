@@ -240,8 +240,8 @@
   width: 104%;
   height: 0.25rem;
   z-index: 9999;
-  background: yellow;
-  color: yellow;
+  background: #e0abf2;
+  color: #e0abf2;
   display: flex;
   align-items: flex-end;
   font-size: 1rem;

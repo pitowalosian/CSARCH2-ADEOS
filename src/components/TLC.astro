@@ -28,18 +28,18 @@ const cells = Array.from({ length: NUM_CELLS }, (_, i) => {
   <div class="flash-demo__cells">
     {cells.map((cell) => (
       <div class="shrink">
-        <button id={cell.gate} class="flash-demo__layer flash-demo__gate" type="button" data-tooltip="A voltage is applied to the control gate allowing it to write/read/erase the contents of a cell. \n clicking this adds a charge to the floating gate.">{cell.label}'s control gate</button>
-        <div class="flash-demo__layer flash-demo__oxide" data-tooltip="The insulator prevents electrons from escaping">Insulator Layer</div>
-        <div class="flash-demo__layer flash-demo__floating" data-tooltip="this is where the charge is stored and it determines the value of a cell.\n The amount of charge also affects the cells conductivity.">
+        <button id={cell.gate} class="flash-demo__layer flash-demo__gate" type="button" data-tooltip="A voltage is applied to the control gate allowing it to write/read/erase the contents of a cell. \n Clicking this adds a charge to the floating gate.">{cell.label}'s control gate</button>
+        <div class="flash-demo__layer flash-demo__oxide" data-tooltip="The insulator prevents electrons from escaping.">Insulator Layer</div>
+        <div class="flash-demo__layer flash-demo__floating" data-tooltip="This is where the charge is stored and it determines the value of a cell.\n The amount of charge also affects the cells conductivity.">
           Floating Gate
           <div id={cell.store} class="flash-demo__charge-well"></div>
         </div>
-        <div class="flash-demo__layer flash-demo__oxide" data-tooltip="The insulator prevents electrons from escaping">Insulator Layer</div>
+        <div class="flash-demo__layer flash-demo__oxide" data-tooltip="The insulator prevents electrons from escaping.">Insulator Layer</div>
         <div class="flash-demo__layer flash-demo__substrate" data-tooltip="The substrate is a medium for voltage to pass through that allows for read/write operations.">
           <div class="substrate_box" id="source" data-tooltip="This is where electrons come from when entering a cell.">source</div>
           Substrate
-          <div class="substrate_box" id="drain" data-tooltip="This is where electrons go to after an erase/write">drain</div>
-          <div id={cell.bank} class="flash-demo__charge-bank" data-tooltip="represents the electrons that came from the source">
+          <div class="substrate_box" id="drain" data-tooltip="This is where electrons go to after an erase/write.">drain</div>
+          <div id={cell.bank} class="flash-demo__charge-bank" data-tooltip="Represents the electrons that came from the source.">
             {charges.map((_, i) => (
               <div class={`flash-demo__charge flash-demo__charge--tlc ${cell.chargeClass}`} data-id={i}></div>
             ))}
@@ -47,8 +47,8 @@ const cells = Array.from({ length: NUM_CELLS }, (_, i) => {
         </div>
       </div>
     ))}
-    <div class="bitline" data-tooltip="During read operations the bitline applies a charge that can sense a cells value depending on it's conductivity.\n During write operations the bitline delivers the charge that changes a cell's value.">Bit Line 2</div>
-    <div id="bitline2" class="bitline" data-tooltip="During read operations the bitline applies a charge that can sense a cells value depending on it's conductivity.\n During write operations the bitline delivers the charge that changes a cell's value.">Bit Line 2</div>
+    <div class="bitline" data-tooltip="During read operations, the bitline applies a charge that can sense a cells value depending on it's conductivity.\n During write operations, the bitline delivers the charge that changes a cell's value.">Bit Line 2</div>
+    <div id="bitline2" class="bitline" data-tooltip="During read operations, the bitline applies a charge that can sense a cells value depending on it's conductivity.\n During write operations, the bitline delivers the charge that changes a cell's value.">Bit Line 2</div>
   </div>
 
   <aside class="flash-demo__panel">
