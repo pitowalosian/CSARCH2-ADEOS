@@ -257,24 +257,24 @@
   }
 }
 
-  #tooltip {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #222;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 4px;
-    font-size: 13px;
-    pointer-events: none;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translate(-9999px, -9999px);
-    transition: opacity 0.1s ease;
-    z-index: 1000;
-    white-space: pre-line;
-  }
+#tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #222;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-9999px, -9999px);
+  transition: opacity 0.1s ease;
+  z-index: 1000;
+  white-space: pre-line;
+}
 
-  #tooltip.visible {
-    opacity: 1;
-  }
+#tooltip.visible {
+  opacity: 1;
+}
