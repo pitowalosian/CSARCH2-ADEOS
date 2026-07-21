@@ -1,5 +1,22 @@
+# Flash Memory: How SSDs Store Data
 
-## Here is our deployed link: http://pitowalosian.github.io/CSARCH2-ADEOS/
+## GitHub Repository: https://github.com/pitowalosian/CSARCH2-ADEOS
+## Deployed Website: http://pitowalosian.github.io/CSARCH2-ADEOS/
+
+# Final Milestone Update
+
+**Group Technical Discussions:**
+
+**Group Creative Discussions:**
+
+**Group Realizations:**
+
+**Group Challenges Encountered:**
+
+**Declaration of AI Usage:**
+
+- This project used AI assistance as a support and guiding tool. AI was used to suggest layout improvements, correct grammar mistakes, assist and explain feedback, dumb down terminologies and concepts, debug build and interaction issues, and assist with code optimization and code rating.
+- The group remained responsible for the final content, design decisions, implementation, styling, testing, and documentation.
 
 # Mid-Milestone Update
 
