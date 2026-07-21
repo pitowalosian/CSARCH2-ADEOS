@@ -37,7 +37,7 @@
 - We may have also realized or just agreed amongst ourselves to do the mobile view even if it is not in the rubric anymore. There might be a chance of plus points.
 
 **Group Challenges Encountered:**
-- We renamed each file in the repository to this format: `ADEOS-Group9_{filename}` and each className to `adeos-g9-{className}`to ensure no duplicate files with other groups during the great merge! So expectedly, we encountered numerous code breaks due to the sheer amount of filename and classname changes. So we had to take a long time on this phase of the project. As you can already tell from the updates in each category, this was a long part of the project.  As you can already tell from the updates in each category, this was a long part of the project.
+- We renamed each file in the repository to this format: `ADEOS-Group9_{filename}` and each className to `adeos-g9-{className}`to ensure no duplicate files with other groups during the great merge! So expectedly, we encountered numerous code breaks due to the sheer amount of filename and classname changes. So we had to take a long time on this phase of the project. As you can already tell from the updates in each category, this was a long part of the project. 
 
 **Declaration of AI Usage:**
 
