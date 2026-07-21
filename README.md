@@ -1,5 +1,5 @@
 
-# http://pitowalosian.github.io/CSARCH2-ADEOS/
+## Here is our deployed link: http://pitowalosian.github.io/CSARCH2-ADEOS/
 
 # Mid-Milestone Update
 
