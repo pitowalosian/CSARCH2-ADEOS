@@ -99,10 +99,10 @@ body:has(.flash-memory-page) .component {
     box-shadow: 0 0 24px rgba(101, 251, 255, 0.12), inset 0 0 46px rgba(21, 103, 146, 0.12);
     font-family: "Space Mono", "Noto Sans Variable", monospace;
     isolation: isolate;
-    min-height: 50vh;
+    min-height: 560px;
     aspect-ratio: 16 / 9;
     content-visibility: auto;
-    contain-intrinsic-size: 100vh;
+    contain-intrinsic-size: 560px;
     container-type: inline-size;
     container-name: component;
 }
@@ -112,6 +112,7 @@ body:has(.flash-memory-page) .component__bg {
     z-index: 0;
     width: auto;
     height: 100%;
+    justify-self:center;
     display: block;
     object-fit: fill;
     opacity: 0.96;
@@ -147,5 +148,13 @@ body:has(.flash-memory-page) .component__bg {
     body:has(.flash-memory-page) .article code span {
         font-family: "Space Mono", monospace;
         font-size: 1.8rem;
+    }
+
+    /* Updated styles for .component on mobile */
+    body:has(.flash-memory-page) .component {
+        min-height: 70vh; /* Increase the minimum height */
+        width: 100%; /* Ensure it takes full width */
+        aspect-ratio: 1/1.5; /* Change aspect ratio to square for better mobile display */
+        font-size: 1.2rem; /* Adjust font size inside the component */
     }
 }

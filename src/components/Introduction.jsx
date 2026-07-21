@@ -1,7 +1,7 @@
 import background from "../assets/Intro-bg v3.svg";
 import leftBorder from "../assets/Left-Border.svg";
 import rightBorder from "../assets/Right-Border.svg";
-
+import introContent from "../assets/Intro-content.svg";
 
 const parts = [
     {
@@ -38,6 +38,13 @@ export default function Introduction() {
                     </h4>
                 </header>
                 <div className="introduction__text">
+                    {/* <img
+                        src={assetSrc(introContent)}
+                        alt=""
+                        aria-hidden="true"
+                        decoding="async"
+                        width="100%"
+                    /> */}
                     {parts.map((part) => (
                         <div key={part.id} className="text-container">
                             <img
@@ -123,6 +130,74 @@ export default function Introduction() {
 
                 .introduction__text--right {
                     right: 10%;
+                }
+
+                @media (max-width: 450px) {
+                    .introduction__header {
+                        inset: 15% 24px auto;
+                    }
+
+                    .introduction__header h4 {
+                        font-size: 5rem;
+                    }
+
+                    .introduction__text {
+                        position: static;
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        height: auto;
+                        padding: 1rem 0;
+                        font-size: 0.85rem;
+                        gap: 1.5rem;
+                    }
+
+                    .text-container {
+                        position: relative;
+                        margin-top: 0%;
+                        height: auto;
+                        width: 100%;
+                    }
+
+                    .introduction__text-bg--left,
+                    .introduction__text-bg--right {
+                        position: relative;
+                        display: block;
+                        margin: 0 auto;
+                        transform: none;
+                        width: 80%;
+                    }
+
+                    .introduction__text-bg--left {
+                        margin-top: 50%
+                    }
+
+                    .introduction__text--left,
+                    .introduction__text--right {
+                        position: absolute;
+                        inset: 0;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        transform: none;
+                        max-width: 70%;
+                        margin: 0 auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 2rem;
+                        padding: 1rem 1.25rem;
+                    }
+
+                    .introduction__text--left {
+                        top: 65%;
+                        right: 5%;
+                    }
+
+                    .introduction__text--right {
+                        top: 20%;
+                        left: 5%;
+                    }
                 }
             `}
             </style>
