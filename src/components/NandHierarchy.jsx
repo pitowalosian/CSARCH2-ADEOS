@@ -598,6 +598,47 @@ export default function NandHierarchy() {
             top: 770px;
           }
         }
+
+        /*--- ANIMATIONS ---*/
+        /* hover animations */
+        .nand-hierarchy__stage {
+          --lerp-0: 1;
+          --lerp-1: 0.5625;
+          --lerp-2: 0.25;
+        }
+
+        .nand-hierarchy__asset-layer {
+          transition: transform 0.2s;
+        }
+
+        /* hovered layer */
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(1):hover) .nand-hierarchy__asset-layer:nth-child(1),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(2):hover) .nand-hierarchy__asset-layer:nth-child(2),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(3):hover) .nand-hierarchy__asset-layer:nth-child(3),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(4):hover) .nand-hierarchy__asset-layer:nth-child(4),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(5):hover) .nand-hierarchy__asset-layer:nth-child(5),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(6):hover) .nand-hierarchy__asset-layer:nth-child(6) {
+          transform: scale(calc(1 + var(--lerp-0) * 0.25));
+          z-index: 10;
+        }
+
+        /* neighbor layers */
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(1):hover) .nand-hierarchy__asset-layer:nth-child(2),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(2):hover) .nand-hierarchy__asset-layer:nth-child(1),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(2):hover) .nand-hierarchy__asset-layer:nth-child(3),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(3):hover) .nand-hierarchy__asset-layer:nth-child(2),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(3):hover) .nand-hierarchy__asset-layer:nth-child(4),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(4):hover) .nand-hierarchy__asset-layer:nth-child(3),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(4):hover) .nand-hierarchy__asset-layer:nth-child(5),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(5):hover) .nand-hierarchy__asset-layer:nth-child(4),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(5):hover) .nand-hierarchy__asset-layer:nth-child(6),
+        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(6):hover) .nand-hierarchy__asset-layer:nth-child(5) {
+          transform: scale(calc(1 + var(--lerp-1) * 0.15));
+          z-index: 9;
+        }
+        
+        /*on click animations*/
+
       `}</style>
     </section>
   );
