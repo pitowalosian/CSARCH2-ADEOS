@@ -33,6 +33,7 @@
 - During the mid-milestone phase, we were wondering why the exhibit list had our styling? The page were you can see the list of exhibits listed, the homepage! So, we had to find where the problem lies and lo and behold, it was because of a exact naming for the css selector, so we took this as a lesson and when we are now in the compatibility phase of this project, we made sure to rename/prefix our files and class names so that the same mistake would not happen again.
 
 **Group Challenges Encountered:**
+- 
 
 **Declaration of AI Usage:**
 
