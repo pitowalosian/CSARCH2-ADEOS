@@ -247,7 +247,11 @@ export default function NandHierarchy() {
       </div>
 
       {activePart && (
-        <aside className="adeos-g9-nand-hierarchy__readout" aria-live="polite">
+        <aside
+          key={activeKey}
+          className={`adeos-g9-nand-hierarchy__readout ${isClosing ? "adeos-g9-is-closing" : "adeos-g9-is-selected"}`}
+          aria-live="polite"
+        >
           <span>Selected layer</span>
           <strong>{activePart.title}</strong>
           <p>{activePart.text}</p>
@@ -525,9 +529,18 @@ export default function NandHierarchy() {
         }
 
         @media (max-width: 900px) {
-          .adeos-g9-nand-hierarchy {
+          body:has(.adeos-g9-flash-memory-page) .adeos-g9-component.adeos-g9-nand-hierarchy {
+            display: flex;
+            flex-direction: column;
             aspect-ratio: auto;
-            min-height: 720px;
+            min-height: 0;
+          }
+
+          .adeos-g9-nand-hierarchy__stage {
+            position: relative;
+            inset: auto;
+            flex: 0 0 clamp(460px, 62vw, 560px);
+            height: clamp(460px, 62vw, 560px);
           }
 
           .adeos-g9-nand-hierarchy__header {
@@ -549,50 +562,51 @@ export default function NandHierarchy() {
           }
 
           .adeos-g9-nand-hierarchy__tile {
-            width: calc(50% - 28px);
-            min-height: 76px;
-            padding: 14px 16px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--chip,
-          .adeos-g9-nand-hierarchy__tile--planes,
-          .adeos-g9-nand-hierarchy__tile--pages {
-            left: 18px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--die,
-          .adeos-g9-nand-hierarchy__tile--blocks,
-          .adeos-g9-nand-hierarchy__tile--cell {
-            right: 18px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--chip,
-          .adeos-g9-nand-hierarchy__tile--die {
-            top: 452px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--planes,
-          .adeos-g9-nand-hierarchy__tile--blocks {
-            top: 546px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--pages,
-          .adeos-g9-nand-hierarchy__tile--cell {
-            top: 640px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile-body {
             display: none;
           }
 
           .adeos-g9-nand-hierarchy__readout {
             display: block;
+            position: relative;
+            z-index: 8;
+            width: auto;
+            margin: 0 18px 18px;
+            padding: 16px 18px 18px;
+            border: 1px solid rgba(101, 251, 255, 0.58);
+            background: rgba(3, 10, 24, 0.9);
+            box-shadow: 0 0 18px rgba(101, 251, 255, 0.16);
+          }
+
+          .adeos-g9-nand-hierarchy__readout.adeos-g9-is-selected {
+            animation: adeos-g9-readout-in 0.22s ease-out both;
+          }
+
+          .adeos-g9-nand-hierarchy__readout.adeos-g9-is-closing {
+            animation: adeos-g9-fade-out 0.2s ease-out forwards;
+          }
+
+          .adeos-g9-nand-hierarchy__readout span {
+            letter-spacing: 0;
+          }
+
+          .adeos-g9-nand-hierarchy__readout strong {
+            font-size: 1.1rem;
+          }
+
+          .adeos-g9-nand-hierarchy__readout p {
+            font-size: 0.82rem;
+            line-height: 1.55;
           }
         }
 
         @media (max-width: 560px) {
-          .adeos-g9-nand-hierarchy {
-            min-height: 840px;
+          body:has(.adeos-g9-flash-memory-page) .adeos-g9-component.adeos-g9-nand-hierarchy {
+            min-height: 0;
+          }
+
+          .adeos-g9-nand-hierarchy__stage {
+            flex-basis: 420px;
+            height: 420px;
           }
 
           .adeos-g9-nand-hierarchy__header {
@@ -609,34 +623,9 @@ export default function NandHierarchy() {
             height: 295px;
           }
 
-          .adeos-g9-nand-hierarchy__tile {
-            left: 18px !important;
-            right: 18px !important;
-            width: auto;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--chip {
-            top: 410px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--die {
-            top: 482px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--planes {
-            top: 554px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--blocks {
-            top: 626px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--pages {
-            top: 698px;
-          }
-
-          .adeos-g9-nand-hierarchy__tile--cell {
-            top: 770px;
+          .adeos-g9-nand-hierarchy__readout {
+            margin: 0 12px 12px;
+            padding: 14px 15px 16px;
           }
         }
 
@@ -707,6 +696,17 @@ export default function NandHierarchy() {
           to { opacity: 0; }
         }
 
+        @keyframes adeos-g9-readout-in {
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         .adeos-g9-nand-hierarchy__tile.adeos-g9-is-selected,
         .adeos-g9-nand-hierarchy__connectors g.adeos-g9-is-selected {
           animation: adeos-g9-fade-in 0.5s ease-out forwards;
@@ -716,6 +716,12 @@ export default function NandHierarchy() {
         .adeos-g9-nand-hierarchy__connectors g.adeos-g9-is-closing {
           animation: adeos-g9-fade-out 0.5s ease-out forwards;
           pointer-events: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .adeos-g9-nand-hierarchy__readout {
+            animation: none !important;
+          }
         }
       `}</style>
     </section>
