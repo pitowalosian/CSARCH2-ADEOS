@@ -1,7 +1,7 @@
 # Flash Memory: How SSDs Store Data
 
 ## GitHub Repository: https://github.com/pitowalosian/CSARCH2-ADEOS
-## Deployed Website: http://pitowalosian.github.io/CSARCH2-ADEOS/
+## Deployed Website: http://pitowalosian.github.io/CSARCH2-ADEOS
 
 # Final Milestone Update
 
