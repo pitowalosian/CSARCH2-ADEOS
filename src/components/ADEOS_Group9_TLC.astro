@@ -37,7 +37,7 @@ const cells = Array.from({ length: NUM_CELLS }, (_, i) => {
         <div class="adeos-g9-flash-demo__layer adeos-g9-flash-demo__oxide" data-tooltip="The insulating oxide separates the charge-storage region from the transistor channel.">Insulator Layer</div>
         <div class="adeos-g9-flash-demo__layer adeos-g9-flash-demo__substrate" data-tooltip="In this simplified planar cell, the substrate is the silicon body where a transistor channel can form between source and drain. Stored charge changes the gate voltage needed to make that channel conduct." tabindex={cellIndex === 0 ? 0 : undefined}>
           <div class="adeos-g9-substrate-box adeos-g9-substrate-box--source" data-tooltip="The source is one end of the transistor channel. Together with the drain, it forms the current path used to read the selected cell." tabindex={cellIndex === 0 ? 0 : undefined}>source</div>
-          Substrate
+          <span class="adeos-g9-flash-demo__substrate-label">Substrate</span>
           <div class="adeos-g9-substrate-box adeos-g9-substrate-box--drain" data-tooltip="The drain is the other end of the transistor channel. Read circuitry senses the current through this path to determine the cell's threshold-voltage range." tabindex={cellIndex === 0 ? 0 : undefined}>drain</div>
           <div id={cell.bank} class="adeos-g9-flash-demo__charge-bank" data-tooltip="These movable markers are a visual model of stored charge, not a physical electron reservoir inside an SSD." tabindex={cellIndex === 0 ? 0 : undefined}>
             {charges.map((_, i) => (
@@ -47,8 +47,8 @@ const cells = Array.from({ length: NUM_CELLS }, (_, i) => {
         </div>
       </div>
     ))}
-    <div class="adeos-g9-bitline adeos-g9-bitline--top" data-tooltip="The bit line connects a NAND string to program and sensing circuitry. During a read, a sense amplifier detects the string current to determine the selected cell's range." tabindex="0">Bit Line 2</div>
-    <div class="adeos-g9-bitline adeos-g9-bitline--bottom" data-tooltip="The bit line connects a NAND string to program and sensing circuitry. During a read, a sense amplifier detects the string current to determine the selected cell's range.">Bit Line 2</div>
+    <div class="adeos-g9-bitline adeos-g9-bitline--top" data-tooltip="The bit line connects a NAND string to program and sensing circuitry. During a read, a sense amplifier detects the string current to determine the selected cell's range." tabindex="0"><span>Bit Line 2</span></div>
+    <div class="adeos-g9-bitline adeos-g9-bitline--bottom" data-tooltip="The bit line connects a NAND string to program and sensing circuitry. During a read, a sense amplifier detects the string current to determine the selected cell's range."><span>Bit Line 2</span></div>
   </div>
 
   <aside class="adeos-g9-flash-demo__panel">
@@ -100,6 +100,10 @@ const cells = Array.from({ length: NUM_CELLS }, (_, i) => {
       };
     });
 
+    cells.forEach((cell) => {
+      cell.element = cell.w.closest(".adeos-g9-flash-demo__cell");
+    });
+
     const totalBits = demo.querySelector("#adeos-g9-tlc-total-bits");
     const hexValue = demo.querySelector("#adeos-g9-tlc-hex-value");
     const tooltip = demo.querySelector(".adeos-g9-flash-demo__tooltip");
@@ -117,7 +121,12 @@ const cells = Array.from({ length: NUM_CELLS }, (_, i) => {
 
       cells.forEach((cell) => {
         const b = bits(cell.state);
+        const isFull = cell.state === 0;
+
         cell.d.textContent = b;
+        cell.element.classList.toggle("adeos-g9-is-full", isFull);
+        cell.w.disabled = isFull;
+        cell.w.setAttribute("aria-disabled", String(isFull));
         total += b;
       });
 
@@ -199,17 +208,21 @@ const cells = Array.from({ length: NUM_CELLS }, (_, i) => {
       target.addEventListener("blur", () => hideTooltip());
     });
 
-    demo.addEventListener("click", (event) => {
-      const target = event.target.closest("[data-tooltip]");
-
-      if (!target || !demo.contains(target)) {
-        hideTooltip(true);
-      } else if (pinnedTarget === target) {
-        hideTooltip(true);
-      } else {
-        showTooltip(target, event, true);
-      }
-    });
+demo.addEventListener("click", (event) => {
+  const gate = event.target.closest(".adeos-g9-flash-demo__gate");
+  if (gate && demo.contains(gate)) {
+    hideTooltip(true);
+    return;
+  }
+  const target = event.target.closest("[data-tooltip]");
+  if (!target || !demo.contains(target)) {
+    hideTooltip(true);
+  } else if (pinnedTarget === target) {
+    hideTooltip(true);
+  } else {
+    showTooltip(target, event, true);
+  }
+});
 
     demo.addEventListener("keydown", (event) => {
       if (event.key === "Escape") hideTooltip(true);
