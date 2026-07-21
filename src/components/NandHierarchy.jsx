@@ -116,14 +116,23 @@ function assetSrc(asset) {
 
 export default function NandHierarchy() {
   const [selected, setSelected] = useState(null);
-
-  const activeKey = selected;
-  const highlightedKey = selected;
-  const activePart = activeKey ? hierarchyParts[activeKey] : null;
+  const [closing, setClosing] = useState(null); // key currently fading out
 
   function selectPart(key) {
-    setSelected((current) => (current === key ? null : key));
+    if (selected === key) {
+      setClosing(key);
+      setSelected(null);
+      setTimeout(() => setClosing((c) => (c === key ? null : c)), 500); 
+    } else {
+      setClosing(null);
+      setSelected(key);
+    }
   }
+
+  const activeKey = selected ?? closing;
+  const activePart = activeKey ? hierarchyParts[activeKey] : null;
+  const isClosing = !selected && !!closing;
+  const highlightedKey = selected;
 
   return (
     <section className="component nand-hierarchy" aria-labelledby="nand-hierarchy-title">
@@ -163,7 +172,7 @@ export default function NandHierarchy() {
 
         <svg className="nand-hierarchy__connectors" viewBox="0 0 1440 810" preserveAspectRatio="none" aria-hidden="true">
           {activePart && (
-            <g key={activeKey} className="is-active">
+            <g key={activeKey} className={`is-active ${isClosing ? "is-closing" : "is-selected"}`}>
               <path d={activePart.line} />
               <circle cx={activePart.dot[0]} cy={activePart.dot[1]} r="7" />
               <circle cx={activePart.target[0]} cy={activePart.target[1]} r="6" />
@@ -194,9 +203,9 @@ export default function NandHierarchy() {
             <button
               key={activeKey}
               type="button"
-              className={`nand-hierarchy__tile nand-hierarchy__tile--${activeKey} is-active is-selected`}
+              className={`nand-hierarchy__tile nand-hierarchy__tile--${activeKey} is-active ${isClosing ? "is-closing" : "is-selected"}`}
               onClick={() => selectPart(activeKey)}
-              aria-pressed="true"
+              aria-pressed={!isClosing}
             >
               <img className="nand-hierarchy__tile-border" src={assetSrc(activePart.border)} alt="" decoding="async" />
               <span className="nand-hierarchy__tile-title">{activePart.title}</span>
@@ -638,7 +647,21 @@ export default function NandHierarchy() {
         }
         
         /*on click animations*/
-
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes fade-out {
+          from { opacity: 1; }
+          to { opacity: 0; }
+        }
+        .nand-hierarchy__tile.is-selected, .nand-hierarchy__connectors g.is-selected {
+          animation: fade-in 0.5s ease-out forwards;
+        }
+        .nand-hierarchy__tile.is-closing, .nand-hierarchy__connectors g.is-closing {
+          animation: fade-out 0.5s ease-out forwards;
+          pointer-events: none;
+        }
       `}</style>
     </section>
   );
