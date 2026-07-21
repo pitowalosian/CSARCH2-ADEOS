@@ -35,7 +35,7 @@
 - During the mid-milestone phase, we were wondering why the exhibit list had our styling? The page were you can see the list of exhibits listed, the homepage! So, we had to find where the problem lies and lo and behold, it was because of a exact naming for the css selector, so we took this as a lesson and when we are now in the compatibility phase of this project, we made sure to rename/prefix our files and class names so that the same mistake would not happen again.
 
 **Group Challenges Encountered:**
-- We renamed each file in the repository to this format: `ADEOS-Group9_{filename}` and each className to `adeos-g9-{className}`to ensure no duplicate files with other groups. However, during this event, we encountered numerous code breaks due to the sheer amount of filename changes. We overlooked some imports and className renames, which contributed to the errors we found.
+- We renamed each file in the repository to this format: `ADEOS-Group9_{filename}` and each className to `adeos-g9-{className}`to ensure no duplicate files with other groups during the great merge! So expectedly, we encountered numerous code breaks due to the sheer amount of filename and classname changes. So we had to take a long time on this phase of the project.
 
 **Declaration of AI Usage:**
 
