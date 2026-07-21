@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import backgroundElements from "../assets/ADEOS_Group9_BackgroundElements.svg";
 import blockAsset from "../assets/ADEOS_Group9_Block.svg";
@@ -121,9 +121,29 @@ function assetSrc(asset) {
 }
 
 export default function NandHierarchy() {
+  const sectionRef = useRef(null);
+  const [hasEntered, setHasEntered] = useState(false);     
   const [selected, setSelected] = useState(null);
   const [hasStacked, setHasStacked] = useState(false);
   const [closing, setClosing] = useState(null);
+
+  useEffect(() => {
+      const section = sectionRef.current;
+      if (!section || hasEntered) return;
+
+      const observer = new IntersectionObserver(
+          ([entry]) => {
+              if (entry.isIntersecting) {
+                  setHasEntered(true);
+                  observer.disconnect();
+              }
+          },
+          { threshold: 0.25 },
+      );
+
+      observer.observe(section);
+      return () => observer.disconnect();
+  }, [hasEntered]);
 
   function selectPart(key) {
     if (selected === key) {
@@ -142,7 +162,10 @@ export default function NandHierarchy() {
   const highlightedKey = selected;
 
   return (
-    <section className="adeos-g9-component adeos-g9-nand-hierarchy" aria-labelledby="adeos-g9-nand-hierarchy-title">
+    <section 
+      ref={sectionRef}
+      className={`adeos-g9-component adeos-g9-nand-hierarchy${hasEntered ? " adeos-g9-nand-hierarchy--entered" : ""}`}
+      aria-labelledby="adeos-g9-nand-hierarchy-title">
       <img
         className="adeos-g9-component__bg adeos-g9-nand-hierarchy__background-elements"
         src={assetSrc(backgroundElements)}
@@ -633,8 +656,8 @@ export default function NandHierarchy() {
           }
         }
 
-        .adeos-g9-nand-hierarchy__asset-layer.adeos-g9-is-stacking {
-          animation: stack-in 10s cubic-bezier(0.22, 1, 0.36, 1) both;
+        .adeos-g9-nand-hierarchy--entered .adeos-g9-nand-hierarchy__asset-layer.adeos-g9-is-stacking {
+          animation: stack-in 5s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         /* hover animations */
