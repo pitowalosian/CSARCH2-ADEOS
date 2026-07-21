@@ -15,6 +15,7 @@
 **Group Technical Discussions:**
 - This whole case project, we were discussing how to organize our exhibit using the files and repo given to us. So we agreed to have all png's, svg's in the assets folder, jsx and astro files in the components file for the interactive components and it should be different files for each section, MAKE SURE TO NOT TOUCH THE /LAYOUT FOLDER, make our own mdx for our page, and our own specific css for the page and specifics in the page!
 - We also agreed to have separate or standalone elements uploaded in the assets folder for easier access and easier manipulation of those assets!
+- For the ssd diagram interactable making, we had to add a cursor and a x,y coordinate to make the highlights much more precise!
 -   
 
 **Group Creative Discussions:**
