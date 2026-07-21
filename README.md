@@ -20,10 +20,17 @@
 - Minor detail, we just used the network link to try test the mobile view.
 
 **Group Creative Discussions:**
-- The group brainstormed creative decisions for the final completion of the project. We reviewed and incorporated the professor’s comments and suggestions, ensuring our design adjustments aligned with them and also enhanced the user interface and user experience of our website.
-- Additionally, we asked each other for constructive feedback on each other's parts, which includes animation designs, timing, flow, and layout of different sections. In this way, we were able to merge our ideas together to form common visual and functional aspects, which polished the final outcome of our work. 
+- We have maintained the proposed minimalist cyberpunk aesthetic using a dark navy background, neon cyan, blue, green, and purple highlights. We also based the animations on what you would normally see in a tech type of output, simple and easy though for performance. For example the ssd diagram, there is fade-in animations, one by one appearing animations, and highlights when clicked.
+- For the typography, Tomorrow was selected for headings, while Space Mono was used for labels, descriptions, controls, and output values.
+- We initially planned our design and wireframe in canva!
+- We also decided that major visual sections should function as full exhibit displays rather than being surrounded by repeated explanatory paragraphs. So that it would look easy and digestable for the viewers to see the exhibit!
+- We used connector lines, glowing borders, persistent highlights, and animated callouts to make the diagrams make it feel like interactive tech displays! Which is in line with our planned aesthetic.
+- Animations were added to multiple sections of the exhibit in response to the feedback that the earlier website felt similar to static presentation slides!
+- We agreed that the animations should be short and simple so they would be engaging enough, but not overwhelming enough for the viewers.
 
 **Group Realizations:**
+- In the SSD diagram section, we realized that we could use a coordinate system to track and map each part of the component much more accurately to highlight the correct parts. Hopefully we did a good job with it!
+- During the mid-milestone phase, we were wondering why the exhibit list had our styling? The page were you can see the list of exhibits listed, the homepage! So, we had to find where the problem lies and lo and behold, it was because of a exact naming for the css selector, so we took this as a lesson and when we are now in the compatibility phase of this project, we made sure to rename/prefix our files and class names so that the same mistake would not happen again.
 
 **Group Challenges Encountered:**
 
