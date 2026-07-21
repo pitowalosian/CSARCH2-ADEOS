@@ -123,31 +123,30 @@ body:has(.flash-memory-page) .component__bg {
 @media (max-width: 450px) {
     body:has(.flash-memory-page) .article h2,
     body:has(.flash-memory-page) .toc h2 {
-        font-size: 2.3rem;
+        font-size: 2.9rem;
     }
 
     body:has(.flash-memory-page) .article h3 {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
     }
 
     body:has(.flash-memory-page) .content__titlemeta h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
 
     body:has(.flash-memory-page) .toc li {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     body:has(.flash-memory-page) .article p,
     body:has(.flash-memory-page) .content__titlemeta span {
-        font-family: "Space Mono", monospace;
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     body:has(.flash-memory-page) .article li,
     body:has(.flash-memory-page) .article code span {
-        font-family: "Space Mono", monospace;
         font-size: 1.8rem;
+        margin-left: 0;
     }
 
     /* Updated styles for .component on mobile */
@@ -155,6 +154,5 @@ body:has(.flash-memory-page) .component__bg {
         min-height: 70vh; /* Increase the minimum height */
         width: 100%; /* Ensure it takes full width */
         aspect-ratio: 1/1.5; /* Change aspect ratio to square for better mobile display */
-        font-size: 1.2rem; /* Adjust font size inside the component */
     }
 }
