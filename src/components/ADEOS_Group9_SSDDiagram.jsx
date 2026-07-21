@@ -77,15 +77,14 @@ export default function SSDDiagram() {
                 <svg className="adeos-g9-ssd__board-art" viewBox="18 87 1404 629" preserveAspectRatio="xMidYMid meet">
                     <defs>
                         <clipPath id="adeos-g9-ssd-m2-mask">
-                            <polygon points="49,554 213,508 266,634 98,691" />
+                            <polygon points="54,480 90,465 220,666 185,680" />
                         </clipPath>
                         <clipPath id="adeos-g9-ssd-controller-mask">
-                            <polygon points="228,412 436,354 497,526 278,586" />
+                            <polygon points="188,450 355,397 432,500 260,554" />
                         </clipPath>
                         <clipPath id="adeos-g9-ssd-nand-mask">
-                            <polygon points="490,363 730,298 804,514 554,583" />
-                            <polygon points="730,295 1007,217 1089,454 804,533" />
-                            <polygon points="999,209 1299,125 1382,356 1071,446" />
+                            <polygon points="665,283 833,235 982,390 810,444" />
+                            <polygon points="1013,184 1162,138 1322,282 1166,334" />
                         </clipPath>
                     </defs>
                     <image className="adeos-g9-ssd__board-image" href={assetSrc(SSDStandalone)} width="1440" height="810" />
@@ -97,22 +96,25 @@ export default function SSDDiagram() {
                     </g>
                     <g className="adeos-g9-ssd__part-highlight adeos-g9-ssd__part-highlight--nand" clipPath="url(#adeos-g9-ssd-nand-mask)">
                         <image href={assetSrc(SSDStandalone)} width="1440" height="810" />
+                        <rect className="adeos-g9-ssd__nand-tint" x="18" y="87" width="1404" height="629" />
                     </g>
                 </svg>
             </div>
 
             <svg className="adeos-g9-ssd__connectors" viewBox="0 0 1000 562.5" aria-hidden="true">
                 <g className="adeos-g9-ssd__connector adeos-g9-ssd__connector--m2">
-                    <path d="M 326 389 L 334 405 L 349 428" />
-                    <circle cx="326" cy="389" r="5" />
+                    <path d="M 279 373 L 294 373 L 309 373" />
+                    <circle cx="279" cy="373" r="5" />
                 </g>
                 <g className="adeos-g9-ssd__connector adeos-g9-ssd__connector--controller">
-                    <path d="M 419 282 L 436 303 L 405 365" />
-                    <circle cx="419" cy="282" r="5" />
+                    <path d="M 330 300 L 350 318 L 380 341" />
+                    <circle cx="330" cy="300" r="5" />
                 </g>
                 <g className="adeos-g9-ssd__connector adeos-g9-ssd__connector--nand">
-                    <path d="M 684 210 L 701 226 L 720 260" />
-                    <circle cx="684" cy="210" r="5" />
+                    <path d="M 540 195 L 540 225 L 580 286" />
+                    <circle cx="540" cy="195" r="5" />
+                    <path d="M 660 195 L 690 215 L 715 245" />
+                    <circle cx="660" cy="195" r="5" />
                 </g>
             </svg>
 
@@ -202,6 +204,16 @@ export default function SSDDiagram() {
                     transition: opacity 220ms ease;
                 }
 
+                .adeos-g9-ssd__part-highlight--nand {
+                    filter: brightness(1.35) saturate(1.5) drop-shadow(0 0 8px rgba(65, 156, 255, 0.95));
+                }
+
+                .adeos-g9-ssd__nand-tint {
+                    fill: #278cff;
+                    opacity: 0.48;
+                    mix-blend-mode: screen;
+                }
+
                 .adeos-g9-ssd__connectors {
                     z-index: 3;
                     overflow: visible;
@@ -261,20 +273,20 @@ export default function SSDDiagram() {
 
                 .adeos-g9-ssd__control--m2 {
                     top: 64%;
-                    left: 15%;
+                    left: 8.7%;
                     width: 18%;
                 }
 
                 .adeos-g9-ssd__control--controller {
-                    top: 45%;
-                    left: 24%;
-                    width: 18%;
+                    top: 48%;
+                    left: 15.8%;
+                    width: 16%;
                 }
 
                 .adeos-g9-ssd__control--nand {
-                    top: 32%;
-                    left: 52%;
-                    width: 16%;
+                    top: 25%;
+                    left: 49%;
+                    width: 20%;
                 }
 
                 .adeos-g9-ssd[data-selected="m2"] .adeos-g9-ssd__part-highlight--m2,
@@ -381,20 +393,6 @@ export default function SSDDiagram() {
                         padding: 0.2rem 0.25rem;
                     }
 
-                    .adeos-g9-ssd__control--m2 {
-                        width: 22%;
-                        left: 12%;
-                    }
-
-                    .adeos-g9-ssd__control--controller {
-                        width: 21%;
-                        left: 22%;
-                    }
-
-                    .adeos-g9-ssd__control--nand {
-                        width: 20%;
-                        left: 50%;
-                    }
                 }
 
                 @media (prefers-reduced-motion: reduce) {
