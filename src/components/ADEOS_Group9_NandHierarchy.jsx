@@ -72,6 +72,7 @@ const stackLayers = [
     zIndex: 6,
     placement: { left: "32.2%", top: "20.0%", width: "36.6%" },
     hotspot: { left: "34.0%", top: "21.8%", width: "33.0%", height: "12.4%" },
+    compressY: "170%",
   },
   {
     id: "die",
@@ -79,6 +80,7 @@ const stackLayers = [
     zIndex: 5,
     placement: { left: "34.4%", top: "32.2%", width: "32.4%" },
     hotspot: { left: "36.4%", top: "33.6%", width: "28.4%", height: "11.0%" },
+    compressY: "110%",
   },
   {
     id: "planes",
@@ -86,6 +88,7 @@ const stackLayers = [
     zIndex: 4,
     placement: { left: "35.5%", top: "43.0%", width: "29.8%" },
     hotspot: { left: "37.6%", top: "44.3%", width: "25.6%", height: "10.2%" },
+    compressY: "60%",
   },
   {
     id: "blocks",
@@ -93,6 +96,7 @@ const stackLayers = [
     zIndex: 3,
     placement: { left: "37.6%", top: "53.0%", width: "25.6%" },
     hotspot: { left: "39.4%", top: "54.1%", width: "22.0%", height: "9.4%" },
+    compressY: "0%",
   },
   {
     id: "pages",
@@ -100,6 +104,7 @@ const stackLayers = [
     zIndex: 2,
     placement: { left: "39.2%", top: "62.5%", width: "22.6%" },
     hotspot: { left: "41.0%", top: "63.6%", width: "19.0%", height: "8.7%" },
+    compressY: "-60%",
   },
   {
     id: "cell",
@@ -107,6 +112,7 @@ const stackLayers = [
     zIndex: 1,
     placement: { left: "41.0%", top: "72.0%", width: "18.7%" },
     hotspot: { left: "42.5%", top: "72.9%", width: "15.8%", height: "7.9%" },
+    compressY: "-170%",
   },
 ];
 
@@ -116,6 +122,7 @@ function assetSrc(asset) {
 
 export default function NandHierarchy() {
   const [selected, setSelected] = useState(null);
+  const [hasStacked, setHasStacked] = useState(false);
   const [closing, setClosing] = useState(null);
 
   function selectPart(key) {
@@ -156,7 +163,8 @@ export default function NandHierarchy() {
           {stackLayers.map((layer) => (
             <img
               key={layer.id}
-              className={`adeos-g9-nand-hierarchy__asset-layer ${highlightedKey === layer.id ? "adeos-g9-is-highlighted" : ""}`}
+              className={`adeos-g9-nand-hierarchy__asset-layer ${highlightedKey === layer.id ? "adeos-g9-is-highlighted" : ""} ${!hasStacked ? "adeos-g9-is-stacking" : ""}`}
+              onAnimationEnd={() => setHasStacked(true)}
               src={assetSrc(layer.asset)}
               decoding="async"
               style={{
@@ -164,6 +172,7 @@ export default function NandHierarchy() {
                 top: layer.placement.top,
                 width: layer.placement.width,
                 zIndex: layer.zIndex,
+                "--compress-y": layer.compressY,
               }}
               alt=""
             />
@@ -609,6 +618,25 @@ export default function NandHierarchy() {
         }
 
         /*--- ANIMATIONS ---*/
+        /*stack in animation*/
+        @keyframes stack-in {
+          0% {
+            transform: translateY(var(--compress-y)) scale(0.7);
+            opacity: 0;
+          }
+          60% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+          }
+        }
+
+        .adeos-g9-nand-hierarchy__asset-layer.adeos-g9-is-stacking {
+          animation: stack-in 10s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
         /* hover animations */
         .adeos-g9-nand-hierarchy__stage {
           --lerp-0: 1;
