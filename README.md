@@ -27,6 +27,8 @@
 - We used connector lines, glowing borders, persistent highlights, and animated callouts to make the diagrams make it feel like interactive tech displays! Which is in line with our planned aesthetic.
 - Animations were added to multiple sections of the exhibit in response to the feedback that the earlier website felt similar to static presentation slides!
 - We agreed that the animations should be short and simple so they would be engaging enough, but not overwhelming enough for the viewers.
+- We reviewed and incorporated the professor’s comments and suggestions, ensuring our design adjustments aligned with them and also enhanced the user interface and user experience of our website.
+- Additionally, we asked each other for constructive feedback on each other's parts, which includes animation designs, timing, flow, and layout of different sections. In this way, we were able to merge our ideas together to form common visual and functional aspects, which polished the final outcome of our work. 
 
 **Group Realizations:**
 - In the SSD diagram section, we realized that we could use a coordinate system to track and map each part of the component much more accurately to highlight the correct parts. Hopefully we did a good job with it!
