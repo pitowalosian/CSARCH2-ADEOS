@@ -246,6 +246,10 @@ Interactive Scene 3: Explore Single-Level and Triple-Level Cells
 
 ## References
 
-- Prasad, A. (2026, February 7). *Flash Memory Explained: NAND vs NOR, Architecture, and Memory Organization*. DEV Community. https://dev.to/amanprasad/flash-memory-explained-nand-vs-nor-architecture-and-memory-organization-3abf#memory-organization-sector-block-and-page
-- Ele. (2025, March 18). *How does NAND reading work?* Electrical Engineering Stack Exchange. https://electronics.stackexchange.com/questions/336586/how-does-nand-reading-work
-- *NAND configuration possibilities: The challenges of NAND die stacking and the role of ATP AcuCurrent technology in ensuring SIGn.* (2025, May 5). Retrieved June 12, 2026, from https://www.atpinc.com/blog/what-is-nand-die-stacking
+ATP Electronics. (2025, May 5). NAND die stacking explained. https://www.atpinc.com/blog/what-is-nand-die-stacking
+Bigelow, S. J., & Jones, M. (2023, May 12). What is NAND flash memory? TechTarget. https://www.techtarget.com/searchstorage/definition/NAND-flash-memory
+Kingston Technology. (2026, April 16). 2D vs. 3D NAND: Differences between SLC, MLC, TLC, and QLC flash storage. https://www.kingston.com/en/blog/pc-performance/difference-between-slc-mlc-tlc-3d-nand
+KIOXIA Corporation. (n.d). What is multi-level cell technology realizing larger capacity flash memory? https://www.kioxia.com/en-jp/rd/technology/multi-level-cell.html
+KIOXIA Corporation. (n.d). What is NAND flash memory? https://www.kioxia.com/en-jp/rd/technology/nand-flash.html
+Prasad, A. (2026, February 7). Flash memory explained: NAND vs. NOR, architecture, and memory organization. DEV Community. https://dev.to/amanprasad/flash-memory-explained-nand-vs-nor-architecture-and-memory-organization-3abf
+Samsung Semiconductor. (2026, July 3). A brief history of data placement technologies. https://semiconductor.samsung.com/news-events/tech-blog/a-brief-history-of-data-placement-technologies/
