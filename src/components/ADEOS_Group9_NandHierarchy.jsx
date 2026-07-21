@@ -1,23 +1,23 @@
 import { useState } from "react";
 
-import backgroundElements from "../assets/Background Elements v2.svg";
-import blockAsset from "../assets/Block.svg";
-import blockBorder from "../assets/Block Border.svg";
-import cellAsset from "../assets/Cell.svg";
-import cellBorder from "../assets/Cell Border.svg";
-import chipAsset from "../assets/Chip.svg";
-import chipBorder from "../assets/Chip Border.svg";
-import dieAsset from "../assets/Die.svg";
-import dieBorder from "../assets/Die Border.svg";
-import pageAsset from "../assets/Page.svg";
-import pageBorder from "../assets/Page Border.svg";
-import planeAsset from "../assets/Plane.svg";
-import planeBorder from "../assets/Plane Border.svg";
+import backgroundElements from "../assets/ADEOS_Group9_BackgroundElements.svg";
+import blockAsset from "../assets/ADEOS_Group9_Block.svg";
+import blockBorder from "../assets/ADEOS_Group9_BlockBorder.svg";
+import cellAsset from "../assets/ADEOS_Group9_Cell.svg";
+import cellBorder from "../assets/ADEOS_Group9_CellBorder.svg";
+import chipAsset from "../assets/ADEOS_Group9_Chip.svg";
+import chipBorder from "../assets/ADEOS_Group9_ChipBorder.svg";
+import dieAsset from "../assets/ADEOS_Group9_Die.svg";
+import dieBorder from "../assets/ADEOS_Group9_DieBorder.svg";
+import pageAsset from "../assets/ADEOS_Group9_Page.svg";
+import pageBorder from "../assets/ADEOS_Group9_PageBorder.svg";
+import planeAsset from "../assets/ADEOS_Group9_Plane.svg";
+import planeBorder from "../assets/ADEOS_Group9_PlaneBorder.svg";
 
 const hierarchyParts = {
   chip: {
     title: "Chip",
-    text: "The NAND flash chip is the memory package found inside a storage device such as an SSD or flash drive. It may contain one or more dies.",
+    text: "Here, Chip represents a packaged NAND component mounted inside a storage device such as an SSD. A package can contain one or more silicon dies.",
     border: chipBorder,
     line: "M 492 246 L 418 246 L 371 226",
     dot: [492, 246],
@@ -25,7 +25,7 @@ const hierarchyParts = {
   },
   die: {
     title: "Die",
-    text: "A die is a separate piece of silicon inside the chip. Multiple dies can help the storage device perform operations in parallel.",
+    text: "A die is a piece of silicon inside the NAND package. Each die contains memory planes, and multiple dies can allow the controller to perform some operations in parallel.",
     border: dieBorder,
     line: "M 948 260 L 1020 199 L 1054 199",
     dot: [948, 260],
@@ -33,7 +33,7 @@ const hierarchyParts = {
   },
   planes: {
     title: "Planes",
-    text: "Each die is divided into planes. Planes help organize memory and can support parallel operations within the NAND device.",
+    text: "A die contains one or more planes. Each plane contains blocks and supporting circuitry, and some NAND operations can occur across planes in parallel.",
     border: planeBorder,
     line: "M 500 395 L 435 395 L 416 403",
     dot: [500, 395],
@@ -49,7 +49,7 @@ const hierarchyParts = {
   },
   pages: {
     title: "Pages",
-    text: "A page is a smaller group of memory cells. Pages are commonly treated as the unit for reading and writing data.",
+    text: "A page is a group of memory cells within a block. NAND is commonly read and programmed in page-sized units.",
     border: pageBorder,
     line: "M 548 554 L 462 594 L 416 594",
     dot: [548, 554],
@@ -57,7 +57,7 @@ const hierarchyParts = {
   },
   cell: {
     title: "Cell",
-    text: "Cells are the lowest level in this simplified hierarchy. They are the actual storage elements where data is physically represented by electrical charge.",
+    text: "Cells are the storage elements at the lowest level of this simplified hierarchy. Stored charge changes each cell's threshold voltage, which represents data.",
     border: cellBorder,
     line: "M 856 606 L 920 606 L 944 607",
     dot: [856, 606],
@@ -116,13 +116,13 @@ function assetSrc(asset) {
 
 export default function NandHierarchy() {
   const [selected, setSelected] = useState(null);
-  const [closing, setClosing] = useState(null); // key currently fading out
+  const [closing, setClosing] = useState(null);
 
   function selectPart(key) {
     if (selected === key) {
       setClosing(key);
       setSelected(null);
-      setTimeout(() => setClosing((c) => (c === key ? null : c)), 500); 
+      setTimeout(() => setClosing((current) => (current === key ? null : current)), 500);
     } else {
       setClosing(null);
       setSelected(key);
@@ -131,13 +131,13 @@ export default function NandHierarchy() {
 
   const activeKey = selected ?? closing;
   const activePart = activeKey ? hierarchyParts[activeKey] : null;
-  const isClosing = !selected && !!closing;
+  const isClosing = !selected && Boolean(closing);
   const highlightedKey = selected;
 
   return (
-    <section className="component nand-hierarchy" aria-labelledby="nand-hierarchy-title">
+    <section className="adeos-g9-component adeos-g9-nand-hierarchy" aria-labelledby="adeos-g9-nand-hierarchy-title">
       <img
-        className="component__bg nand-hierarchy__background-elements"
+        className="adeos-g9-component__bg adeos-g9-nand-hierarchy__background-elements"
         src={assetSrc(backgroundElements)}
         alt=""
         aria-hidden="true"
@@ -147,16 +147,16 @@ export default function NandHierarchy() {
         height="810"
       />
 
-      <header className="nand-hierarchy__header">
-        <h4 id="nand-hierarchy-title">Inside NAND Flash: The Storage Hierarchy</h4>
+      <header className="adeos-g9-nand-hierarchy__header">
+        <h4 id="adeos-g9-nand-hierarchy-title">Inside NAND Flash: The Storage Hierarchy</h4>
       </header>
 
-      <div className="nand-hierarchy__stage">
-        <div className="nand-hierarchy__stack-art" aria-hidden="true">
+      <div className="adeos-g9-nand-hierarchy__stage">
+        <div className="adeos-g9-nand-hierarchy__stack-art" aria-hidden="true">
           {stackLayers.map((layer) => (
             <img
               key={layer.id}
-              className={`nand-hierarchy__asset-layer ${highlightedKey === layer.id ? "is-highlighted" : ""}`}
+              className={`adeos-g9-nand-hierarchy__asset-layer ${highlightedKey === layer.id ? "adeos-g9-is-highlighted" : ""}`}
               src={assetSrc(layer.asset)}
               decoding="async"
               style={{
@@ -170,9 +170,9 @@ export default function NandHierarchy() {
           ))}
         </div>
 
-        <svg className="nand-hierarchy__connectors" viewBox="0 0 1440 810" preserveAspectRatio="none" aria-hidden="true">
+        <svg className="adeos-g9-nand-hierarchy__connectors" viewBox="0 0 1440 810" preserveAspectRatio="none" aria-hidden="true">
           {activePart && (
-            <g key={activeKey} className={`is-active ${isClosing ? "is-closing" : "is-selected"}`}>
+            <g key={activeKey} className={`adeos-g9-is-active ${isClosing ? "adeos-g9-is-closing" : "adeos-g9-is-selected"}`}>
               <path d={activePart.line} />
               <circle cx={activePart.dot[0]} cy={activePart.dot[1]} r="7" />
               <circle cx={activePart.target[0]} cy={activePart.target[1]} r="6" />
@@ -180,12 +180,12 @@ export default function NandHierarchy() {
           )}
         </svg>
 
-        <div className="nand-hierarchy__hotspots" aria-label="NAND flash hierarchy layer selectors">
+        <div className="adeos-g9-nand-hierarchy__hotspots" aria-label="NAND flash hierarchy layer selectors">
           {stackLayers.map((layer) => (
             <button
               key={layer.id}
               type="button"
-              className="nand-hierarchy__hotspot"
+              className="adeos-g9-nand-hierarchy__hotspot"
               style={{
                 left: layer.hotspot.left,
                 top: layer.hotspot.top,
@@ -203,19 +203,19 @@ export default function NandHierarchy() {
             <button
               key={activeKey}
               type="button"
-              className={`nand-hierarchy__tile nand-hierarchy__tile--${activeKey} is-active ${isClosing ? "is-closing" : "is-selected"}`}
+              className={`adeos-g9-nand-hierarchy__tile adeos-g9-nand-hierarchy__tile--${activeKey} adeos-g9-is-active ${isClosing ? "adeos-g9-is-closing" : "adeos-g9-is-selected"}`}
               onClick={() => selectPart(activeKey)}
               aria-pressed={!isClosing}
             >
-              <img className="nand-hierarchy__tile-border" src={assetSrc(activePart.border)} alt="" decoding="async" />
-              <span className="nand-hierarchy__tile-title">{activePart.title}</span>
-              <span className="nand-hierarchy__tile-body">{activePart.text}</span>
+              <img className="adeos-g9-nand-hierarchy__tile-border" src={assetSrc(activePart.border)} alt="" decoding="async" />
+              <span className="adeos-g9-nand-hierarchy__tile-title">{activePart.title}</span>
+              <span className="adeos-g9-nand-hierarchy__tile-body">{activePart.text}</span>
             </button>
         )}
       </div>
 
       {activePart && (
-        <aside className="nand-hierarchy__readout" aria-live="polite">
+        <aside className="adeos-g9-nand-hierarchy__readout" aria-live="polite">
           <span>Selected layer</span>
           <strong>{activePart.title}</strong>
           <p>{activePart.text}</p>
@@ -223,7 +223,7 @@ export default function NandHierarchy() {
       )}
 
       <style suppressHydrationWarning>{`
-        .component.nand-hierarchy .component__bg.nand-hierarchy__background-elements {
+        .adeos-g9-component.adeos-g9-nand-hierarchy .adeos-g9-component__bg.adeos-g9-nand-hierarchy__background-elements {
           left: -16%;
           top: -10%;
           width: 150%;
@@ -232,7 +232,7 @@ export default function NandHierarchy() {
           object-fit: fill;
         }
 
-        .nand-hierarchy__header {
+        .adeos-g9-nand-hierarchy__header {
           position: absolute;
           inset: 36px 24px auto;
           z-index: 6;
@@ -240,7 +240,7 @@ export default function NandHierarchy() {
           pointer-events: none;
         }
 
-        .nand-hierarchy__header h4 {
+        .adeos-g9-nand-hierarchy__header h4 {
           margin: 0;
           border: 0;
           color: #ffffff;
@@ -252,7 +252,7 @@ export default function NandHierarchy() {
           text-shadow: 0 0 10px rgba(255, 255, 255, 0.88), 0 0 22px rgba(255, 255, 255, 0.62);
         }
 
-        .nand-hierarchy__stage {
+        .adeos-g9-nand-hierarchy__stage {
           position: absolute;
           inset: 0;
           z-index: 1;
@@ -260,21 +260,21 @@ export default function NandHierarchy() {
           height: 100%;
         }
 
-        .nand-hierarchy__stack-art,
-        .nand-hierarchy__connectors,
-        .nand-hierarchy__hotspots {
+        .adeos-g9-nand-hierarchy__stack-art,
+        .adeos-g9-nand-hierarchy__connectors,
+        .adeos-g9-nand-hierarchy__hotspots {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
         }
 
-        .nand-hierarchy__stack-art {
+        .adeos-g9-nand-hierarchy__stack-art {
           z-index: 1;
           pointer-events: none;
         }
 
-        .nand-hierarchy__asset-layer {
+        .adeos-g9-nand-hierarchy__asset-layer {
           position: absolute;
           height: auto;
           pointer-events: none;
@@ -282,17 +282,17 @@ export default function NandHierarchy() {
           transition: opacity 0.12s ease, transform 0.12s ease;
         }
 
-        .nand-hierarchy__asset-layer.is-highlighted {
+        .adeos-g9-nand-hierarchy__asset-layer.adeos-g9-is-highlighted {
           transform: translateY(-2px);
         }
 
-        .nand-hierarchy__connectors {
+        .adeos-g9-nand-hierarchy__connectors {
           z-index: 4;
           pointer-events: none;
           overflow: visible;
         }
 
-        .nand-hierarchy__connectors path {
+        .adeos-g9-nand-hierarchy__connectors path {
           fill: none;
           stroke: var(--line);
           stroke-width: 3;
@@ -300,26 +300,26 @@ export default function NandHierarchy() {
           stroke-linejoin: round;
         }
 
-        .nand-hierarchy__connectors circle {
+        .adeos-g9-nand-hierarchy__connectors circle {
           fill: #0b0d22;
           stroke: var(--line);
           stroke-width: 3;
           opacity: 0;
         }
 
-        .nand-hierarchy__connectors g:not(.is-active) {
+        .adeos-g9-nand-hierarchy__connectors g:not(.adeos-g9-is-active) {
           opacity: 0;
         }
 
-        .nand-hierarchy__connectors g.is-active circle {
+        .adeos-g9-nand-hierarchy__connectors g.adeos-g9-is-active circle {
           opacity: 1;
         }
 
-        .nand-hierarchy__hotspots {
+        .adeos-g9-nand-hierarchy__hotspots {
           z-index: 7;
         }
 
-        .nand-hierarchy__hotspot {
+        .adeos-g9-nand-hierarchy__hotspot {
           position: absolute;
           border: 0;
           border-radius: 6px;
@@ -328,12 +328,12 @@ export default function NandHierarchy() {
           transform: skewY(-10deg);
         }
 
-        .nand-hierarchy__hotspot:focus-visible {
+        .adeos-g9-nand-hierarchy__hotspot:focus-visible {
           outline: 2px solid var(--green);
           outline-offset: 4px;
         }
 
-        .nand-hierarchy__tile {
+        .adeos-g9-nand-hierarchy__tile {
           position: absolute;
           z-index: 3;
           border: 0;
@@ -349,7 +349,7 @@ export default function NandHierarchy() {
           transition: opacity 0.12s ease 0.18s, transform 0.12s ease 0.18s;
         }
 
-        .nand-hierarchy__tile::before {
+        .adeos-g9-nand-hierarchy__tile::before {
           content: "";
           position: absolute;
           inset: 10px 10px 14px;
@@ -359,14 +359,14 @@ export default function NandHierarchy() {
           pointer-events: none;
         }
 
-        .nand-hierarchy__tile.is-active {
+        .adeos-g9-nand-hierarchy__tile.adeos-g9-is-active {
           opacity: 1;
           pointer-events: auto;
           transform: translateY(0);
           filter: none;
         }
 
-        .nand-hierarchy__tile-border {
+        .adeos-g9-nand-hierarchy__tile-border {
           position: absolute;
           inset: 0;
           z-index: 0;
@@ -379,15 +379,15 @@ export default function NandHierarchy() {
           user-select: none;
         }
 
-        .nand-hierarchy__tile-title,
-        .nand-hierarchy__tile-body {
+        .adeos-g9-nand-hierarchy__tile-title,
+        .adeos-g9-nand-hierarchy__tile-body {
           position: relative;
           z-index: 2;
           display: block;
           margin-left: 4%;
         }
 
-        .nand-hierarchy__tile-title {
+        .adeos-g9-nand-hierarchy__tile-title {
           margin-bottom: 10px;
           color: #ffffff;
           font-family: "Space Mono", "Noto Sans Variable", monospace;
@@ -397,7 +397,7 @@ export default function NandHierarchy() {
           text-shadow: 0 0 8px rgba(255, 255, 255, 0.45);
         }
 
-        .nand-hierarchy__tile-body {
+        .adeos-g9-nand-hierarchy__tile-body {
           color: var(--text);
           font-family: "Space Mono", "Noto Sans Variable", monospace;
           font-size: clamp(0.4rem, 1.2cqw, 1rem);
@@ -407,12 +407,12 @@ export default function NandHierarchy() {
           transition: opacity 0.2s ease;
         }
 
-        .nand-hierarchy__tile.is-active .nand-hierarchy__tile-body {
+        .adeos-g9-nand-hierarchy__tile.adeos-g9-is-active .adeos-g9-nand-hierarchy__tile-body {
           opacity: 1;
           transition-delay: 0.22s;
         }
 
-        .nand-hierarchy__tile--chip {
+        .adeos-g9-nand-hierarchy__tile--chip {
           left: 5.2%;
           top: 15.6%;
           width: 20%;
@@ -420,7 +420,7 @@ export default function NandHierarchy() {
           padding: 20px 18px 18px;
         }
 
-        .nand-hierarchy__tile--die {
+        .adeos-g9-nand-hierarchy__tile--die {
           right: 5.1%;
           top: 16.0%;
           width: 20.2%;
@@ -428,7 +428,7 @@ export default function NandHierarchy() {
           padding: 22px 19px 18px;
         }
 
-        .nand-hierarchy__tile--planes {
+        .adeos-g9-nand-hierarchy__tile--planes {
           left: 3.0%;
           top: 43.5%;
           width: 25.4%;
@@ -436,7 +436,7 @@ export default function NandHierarchy() {
           padding: 17px 20px 16px;
         }
 
-        .nand-hierarchy__tile--blocks {
+        .adeos-g9-nand-hierarchy__tile--blocks {
           right: 4.6%;
           top: 44.9%;
           width: 23.2%;
@@ -444,7 +444,7 @@ export default function NandHierarchy() {
           padding: 18px 20px 16px;
         }
 
-        .nand-hierarchy__tile--pages {
+        .adeos-g9-nand-hierarchy__tile--pages {
           left: 4.2%;
           top: 68.8%;
           width: 24.0%;
@@ -452,7 +452,7 @@ export default function NandHierarchy() {
           padding: 17px 21px 30px;
         }
 
-        .nand-hierarchy__tile--cell {
+        .adeos-g9-nand-hierarchy__tile--cell {
           right: 5.2%;
           top: 72.0%;
           width: 28.6%;
@@ -460,7 +460,7 @@ export default function NandHierarchy() {
           padding: 17px 22px 40px;
         }
 
-        .nand-hierarchy__readout {
+        .adeos-g9-nand-hierarchy__readout {
           display: none;
           margin: 0 18px 18px;
           padding: 14px 16px;
@@ -469,14 +469,14 @@ export default function NandHierarchy() {
           box-shadow: 0 0 18px rgba(101, 251, 255, 0.16);
         }
 
-        .nand-hierarchy__readout span {
+        .adeos-g9-nand-hierarchy__readout span {
           display: block;
           color: var(--muted);
           font-size: 0.72rem;
           text-transform: uppercase;
         }
 
-        .nand-hierarchy__readout strong {
+        .adeos-g9-nand-hierarchy__readout strong {
           display: block;
           margin-top: 2px;
           color: #ffffff;
@@ -484,7 +484,7 @@ export default function NandHierarchy() {
           font-size: 18.6px;
         }
 
-        .nand-hierarchy__readout p {
+        .adeos-g9-nand-hierarchy__readout p {
           margin: 8px 0 0;
           color: var(--text);
           font-family: "Space Mono", "Noto Sans Variable", monospace;
@@ -493,173 +493,177 @@ export default function NandHierarchy() {
         }
 
         @media (max-width: 900px) {
-          .nand-hierarchy {
+          .adeos-g9-nand-hierarchy {
             aspect-ratio: auto;
             min-height: 720px;
           }
 
-          .nand-hierarchy__header {
+          .adeos-g9-nand-hierarchy__header {
             inset: 28px 16px auto;
           }
 
-          .nand-hierarchy__header h2 {
+          .adeos-g9-nand-hierarchy__header h4 {
             font-size: 28px;
           }
 
-          .nand-hierarchy__stack-art,
-          .nand-hierarchy__hotspots {
+          .adeos-g9-nand-hierarchy__stack-art,
+          .adeos-g9-nand-hierarchy__hotspots {
             top: 82px;
             height: 360px;
           }
 
-          .nand-hierarchy__connectors {
+          .adeos-g9-nand-hierarchy__connectors {
             display: none;
           }
 
-          .nand-hierarchy__tile {
+          .adeos-g9-nand-hierarchy__tile {
             width: calc(50% - 28px);
             min-height: 76px;
             padding: 14px 16px;
           }
 
-          .nand-hierarchy__tile--chip,
-          .nand-hierarchy__tile--planes,
-          .nand-hierarchy__tile--pages {
+          .adeos-g9-nand-hierarchy__tile--chip,
+          .adeos-g9-nand-hierarchy__tile--planes,
+          .adeos-g9-nand-hierarchy__tile--pages {
             left: 18px;
           }
 
-          .nand-hierarchy__tile--die,
-          .nand-hierarchy__tile--blocks,
-          .nand-hierarchy__tile--cell {
+          .adeos-g9-nand-hierarchy__tile--die,
+          .adeos-g9-nand-hierarchy__tile--blocks,
+          .adeos-g9-nand-hierarchy__tile--cell {
             right: 18px;
           }
 
-          .nand-hierarchy__tile--chip,
-          .nand-hierarchy__tile--die {
+          .adeos-g9-nand-hierarchy__tile--chip,
+          .adeos-g9-nand-hierarchy__tile--die {
             top: 452px;
           }
 
-          .nand-hierarchy__tile--planes,
-          .nand-hierarchy__tile--blocks {
+          .adeos-g9-nand-hierarchy__tile--planes,
+          .adeos-g9-nand-hierarchy__tile--blocks {
             top: 546px;
           }
 
-          .nand-hierarchy__tile--pages,
-          .nand-hierarchy__tile--cell {
+          .adeos-g9-nand-hierarchy__tile--pages,
+          .adeos-g9-nand-hierarchy__tile--cell {
             top: 640px;
           }
 
-          .nand-hierarchy__tile-body {
+          .adeos-g9-nand-hierarchy__tile-body {
             display: none;
           }
 
-          .nand-hierarchy__readout {
+          .adeos-g9-nand-hierarchy__readout {
             display: block;
           }
         }
 
         @media (max-width: 560px) {
-          .nand-hierarchy {
+          .adeos-g9-nand-hierarchy {
             min-height: 840px;
           }
 
-          .nand-hierarchy__header {
+          .adeos-g9-nand-hierarchy__header {
             inset: 26px 14px auto;
           }
 
-          .nand-hierarchy__header h2 {
+          .adeos-g9-nand-hierarchy__header h4 {
             font-size: 24px;
           }
 
-          .nand-hierarchy__stack-art,
-          .nand-hierarchy__hotspots {
+          .adeos-g9-nand-hierarchy__stack-art,
+          .adeos-g9-nand-hierarchy__hotspots {
             top: 88px;
             height: 295px;
           }
 
-          .nand-hierarchy__tile {
+          .adeos-g9-nand-hierarchy__tile {
             left: 18px !important;
             right: 18px !important;
             width: auto;
           }
 
-          .nand-hierarchy__tile--chip {
+          .adeos-g9-nand-hierarchy__tile--chip {
             top: 410px;
           }
 
-          .nand-hierarchy__tile--die {
+          .adeos-g9-nand-hierarchy__tile--die {
             top: 482px;
           }
 
-          .nand-hierarchy__tile--planes {
+          .adeos-g9-nand-hierarchy__tile--planes {
             top: 554px;
           }
 
-          .nand-hierarchy__tile--blocks {
+          .adeos-g9-nand-hierarchy__tile--blocks {
             top: 626px;
           }
 
-          .nand-hierarchy__tile--pages {
+          .adeos-g9-nand-hierarchy__tile--pages {
             top: 698px;
           }
 
-          .nand-hierarchy__tile--cell {
+          .adeos-g9-nand-hierarchy__tile--cell {
             top: 770px;
           }
         }
 
         /*--- ANIMATIONS ---*/
         /* hover animations */
-        .nand-hierarchy__stage {
+        .adeos-g9-nand-hierarchy__stage {
           --lerp-0: 1;
           --lerp-1: 0.5625;
           --lerp-2: 0.25;
         }
 
-        .nand-hierarchy__asset-layer {
+        .adeos-g9-nand-hierarchy__asset-layer {
           transition: transform 0.2s;
         }
 
         /* hovered layer */
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(1):hover) .nand-hierarchy__asset-layer:nth-child(1),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(2):hover) .nand-hierarchy__asset-layer:nth-child(2),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(3):hover) .nand-hierarchy__asset-layer:nth-child(3),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(4):hover) .nand-hierarchy__asset-layer:nth-child(4),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(5):hover) .nand-hierarchy__asset-layer:nth-child(5),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(6):hover) .nand-hierarchy__asset-layer:nth-child(6) {
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(1):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(1),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(2):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(2),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(3):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(3),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(4):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(4),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(5):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(5),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(6):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(6) {
           transform: scale(calc(1 + var(--lerp-0) * 0.25));
           z-index: 10;
         }
 
         /* neighbor layers */
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(1):hover) .nand-hierarchy__asset-layer:nth-child(2),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(2):hover) .nand-hierarchy__asset-layer:nth-child(1),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(2):hover) .nand-hierarchy__asset-layer:nth-child(3),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(3):hover) .nand-hierarchy__asset-layer:nth-child(2),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(3):hover) .nand-hierarchy__asset-layer:nth-child(4),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(4):hover) .nand-hierarchy__asset-layer:nth-child(3),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(4):hover) .nand-hierarchy__asset-layer:nth-child(5),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(5):hover) .nand-hierarchy__asset-layer:nth-child(4),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(5):hover) .nand-hierarchy__asset-layer:nth-child(6),
-        .nand-hierarchy__stage:has(.nand-hierarchy__hotspot:nth-child(6):hover) .nand-hierarchy__asset-layer:nth-child(5) {
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(1):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(2),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(2):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(1),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(2):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(3),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(3):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(2),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(3):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(4),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(4):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(3),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(4):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(5),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(5):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(4),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(5):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(6),
+        .adeos-g9-nand-hierarchy__stage:has(.adeos-g9-nand-hierarchy__hotspot:nth-child(6):hover) .adeos-g9-nand-hierarchy__asset-layer:nth-child(5) {
           transform: scale(calc(1 + var(--lerp-1) * 0.15));
           z-index: 9;
         }
-        
-        /*on click animations*/
-        @keyframes fade-in {
+
+        @keyframes adeos-g9-fade-in {
           from { opacity: 0; }
           to { opacity: 1; }
         }
-        @keyframes fade-out {
+
+        @keyframes adeos-g9-fade-out {
           from { opacity: 1; }
           to { opacity: 0; }
         }
-        .nand-hierarchy__tile.is-selected, .nand-hierarchy__connectors g.is-selected {
-          animation: fade-in 0.5s ease-out forwards;
+
+        .adeos-g9-nand-hierarchy__tile.adeos-g9-is-selected,
+        .adeos-g9-nand-hierarchy__connectors g.adeos-g9-is-selected {
+          animation: adeos-g9-fade-in 0.5s ease-out forwards;
         }
-        .nand-hierarchy__tile.is-closing, .nand-hierarchy__connectors g.is-closing {
-          animation: fade-out 0.5s ease-out forwards;
+
+        .adeos-g9-nand-hierarchy__tile.adeos-g9-is-closing,
+        .adeos-g9-nand-hierarchy__connectors g.adeos-g9-is-closing {
+          animation: adeos-g9-fade-out 0.5s ease-out forwards;
           pointer-events: none;
         }
       `}</style>

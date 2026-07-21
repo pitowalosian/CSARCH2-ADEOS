@@ -1,7 +1,6 @@
-import background from "../assets/Intro-bg v3.svg";
-import leftBorder from "../assets/Left-Border.svg";
-import rightBorder from "../assets/Right-Border.svg";
-import introContent from "../assets/Intro-content.svg";
+import background from "../assets/ADEOS_Group9_IntroductionBackground.svg";
+import leftBorder from "../assets/ADEOS_Group9_IntroductionLeftBorder.svg";
+import rightBorder from "../assets/ADEOS_Group9_IntroductionRightBorder.svg";
 
 const parts = [
     {
@@ -11,7 +10,7 @@ const parts = [
     },
     {
         id: "right",
-        text: "The main idea of this exhibit is simple: files are stored as binary data, and SSDs preserve that data by controlling electrical charge inside tiny memory cells. By exploring the components of NAND flash memory, visitors can see how large files are built from small cells that represent binary values.",
+        text: "The main idea of this exhibit is simple: files are encoded as binary data, and an SSD controller maps that data across NAND flash memory cells. Stored charge changes each cell's threshold voltage, allowing sensing circuitry to recover the represented bit values.",
         border: rightBorder,
     }
 ]
@@ -23,52 +22,45 @@ function assetSrc(asset) {
 export default function Introduction() {
     return (
         <>
-            <section className="component" aria-labelledby="introduction-title">
+            <section className="adeos-g9-component adeos-g9-introduction" aria-labelledby="adeos-g9-introduction-title">
                 <img 
-                    className="component__bg"
+                    className="adeos-g9-component__bg"
                     src={assetSrc(background)}
                     alt=""
                     aria-hidden="true"
                     decoding="async"
                     loading="lazy"
                 />
-                <header className="introduction__header">
-                    <h4 id="introduction-title">
+                <header className="adeos-g9-introduction__header">
+                    <h4 id="adeos-g9-introduction-title">
                         Flash Memory: <br /> How SSDs Store Data
                     </h4>
                 </header>
-                <div className="introduction__text">
-                    {/* <img
-                        src={assetSrc(introContent)}
-                        alt=""
-                        aria-hidden="true"
-                        decoding="async"
-                        width="100%"
-                    /> */}
+                <div className="adeos-g9-introduction__text">
                     {parts.map((part) => (
-                        <div key={part.id} className="text-container">
+                        <div key={part.id} className="adeos-g9-introduction__panel">
                             <img
                                 src={assetSrc(part.border)}
-                                className={`introduction__text-bg--${part.id}`}
+                                className={`adeos-g9-introduction__text-bg--${part.id}`}
                                 alt=""
                                 aria-hidden="true"
                                 decoding="async"
                                 width="40%"
                             />
-                            <span className={`introduction__text--${part.id}`}>{part.text}</span>
+                            <span className={`adeos-g9-introduction__text--${part.id}`}>{part.text}</span>
                         </div>
                     ))}
                 </div>
             </section>
             <style suppressHydrationWarning> {`
-                .introduction__header {
+                .adeos-g9-introduction__header {
                     position: absolute;
                     inset: 20% 24px auto;
                     text-align: center;
                     pointer-events: none;
                 }
 
-                .introduction__header h4 {
+                .adeos-g9-introduction__header h4 {
                     margin: 0;
                     color: #ffffff;
                     font-family: "Tomorrow", "Noto Sans Variable", sans-serif;
@@ -79,7 +71,7 @@ export default function Introduction() {
                     text-shadow: 0 0 10px rgba(255, 255, 255, 0.88), 0 0 22px rgba(255, 255, 255, 0.62);
                 }
 
-                .introduction__text {
+                .adeos-g9-introduction__text {
                     position: absolute;
                     z-index: 2;
                     width: 100%;
@@ -93,26 +85,26 @@ export default function Introduction() {
                     grid-template-columns: 1fr 1fr;
                 }
                 
-                .text-container {
+                .adeos-g9-introduction__panel {
                     margin-top: 60%;
                 }
 
-                .introduction__text-bg--left {
+                .adeos-g9-introduction__text-bg--left {
                     position: absolute;
                     z-index: 1;
                     transform: translateX(26.5%);
                     object-fit: cover;
                 }
                 
-                .introduction__text-bg--right {
+                .adeos-g9-introduction__text-bg--right {
                     position: absolute;
                     z-index: 1;
                     transform: translateX(1%);
                     object-fit: cover;
                 }
 
-                .introduction__text--left,
-                .introduction__text--right {
+                .adeos-g9-introduction__text--left,
+                .adeos-g9-introduction__text--right {
                     position: absolute;
                     z-index: 3;
                     top: 48%;
@@ -124,79 +116,84 @@ export default function Introduction() {
                     padding: 1rem;
                 }
 
-                .introduction__text--left {
+                .adeos-g9-introduction__text--left {
                     left: 10.5%;
                 }
 
-                .introduction__text--right {
+                .adeos-g9-introduction__text--right {
                     right: 10%;
                 }
 
-                @media (max-width: 450px) {
-                    .introduction__header {
-                        inset: 15% 24px auto;
+                @media (max-width: 650px) {
+                    body .adeos-g9-component.adeos-g9-introduction {
+                        display: grid;
+                        gap: 1rem;
+                        min-height: 0;
+                        padding: 1.5rem 0.75rem 1rem;
+                        aspect-ratio: auto;
                     }
 
-                    .introduction__header h4 {
-                        font-size: 5rem;
+                    body .adeos-g9-component.adeos-g9-introduction .adeos-g9-component__bg {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
                     }
 
-                    .introduction__text {
-                        position: static;
-                        display: flex;
-                        flex-direction: column;
+                    .adeos-g9-introduction__header {
+                        position: relative;
+                        inset: auto;
+                        z-index: 2;
+                        padding: 0.5rem;
+                    }
+
+                    .adeos-g9-introduction__header h4 {
+                        font-size: 2rem;
+                    }
+
+                    .adeos-g9-introduction__text {
+                        position: relative;
+                        display: grid;
+                        grid-template-columns: 1fr;
                         width: 100%;
                         height: auto;
-                        padding: 1rem 0;
-                        font-size: 0.85rem;
-                        gap: 1.5rem;
+                        padding: 0;
+                        gap: 0.75rem;
                     }
 
-                    .text-container {
+                    .adeos-g9-introduction__panel {
                         position: relative;
-                        margin-top: 0%;
-                        height: auto;
+                        display: grid;
+                        place-items: center;
+                        min-height: 240px;
+                        margin: 0;
                         width: 100%;
                     }
 
-                    .introduction__text-bg--left,
-                    .introduction__text-bg--right {
-                        position: relative;
-                        display: block;
-                        margin: 0 auto;
-                        transform: none;
-                        width: 80%;
-                    }
-
-                    .introduction__text-bg--left {
-                        margin-top: 50%
-                    }
-
-                    .introduction__text--left,
-                    .introduction__text--right {
+                    .adeos-g9-introduction__text-bg--left,
+                    .adeos-g9-introduction__text-bg--right {
                         position: absolute;
                         inset: 0;
-                        top: 0;
-                        left: 0;
-                        right: 0;
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        margin: 0;
                         transform: none;
-                        max-width: 70%;
-                        margin: 0 auto;
+                        object-fit: fill;
+                    }
+
+                    .adeos-g9-introduction__text--left,
+                    .adeos-g9-introduction__text--right {
+                        position: relative;
+                        inset: auto;
+                        transform: none;
+                        max-width: none;
+                        margin: 0;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        font-size: 2rem;
-                        padding: 1rem 1.25rem;
-                    }
-
-                    .introduction__text--left {
-                        top: 65%;
-                        right: 5%;
-                    }
-
-                    .introduction__text--right {
-                        top: 20%;
-                        left: 5%;
+                        font-size: 0.75rem;
+                        line-height: 1.4;
+                        padding: 2.5rem 2rem;
                     }
                 }
             `}
