@@ -13,7 +13,7 @@
 - We have renamed our group's entire file list so that it can be compatible with the MAIN virtual musuem! We have changed our .svg, .png, .jsx, .mdx, .astro, .css and added ADEOS_Group9_"Filename"! We have also meticulously renamed/prefixed the css selectors and classes to adeos-g9 as well!
 
 **Group Technical Discussions:**
-- This whole case project, we were discussing how to organize our exh`ibit using the files and repo given to us. So we agreed to have all png's, svg's in the assets folder, jsx and astro files in the components file for the interactive components and it should be different files for each section, MAKE SURE TO NOT TOUCH THE /LAYOUT FOLDER, make our own mdx for our page, and our own specific css for the page and specifics in the page!
+- This whole case project, we were discussing how to organize our exhibit using the files and repo given to us. So we agreed to have all png's, svg's in the assets folder, jsx and astro files in the components file for the interactive components and it should be different files for each section, MAKE SURE TO NOT TOUCH THE /LAYOUT FOLDER, make our own mdx for our page, and our own specific css for the page and specifics in the page!
 - We also agreed to have separate or standalone elements uploaded in the assets folder for easier access and easier manipulation of those assets!
 - For the ssd diagram interactable making, we had to add a cursor and a x,y coordinate to make the highlights more accurate. We agreed to make the text pressable and when it is pressed, it highlights the part it is pointing. It was kind of tricky to map the highlight to the part being pointed to, so we added the x,y mapping feature temporarily to make the mapping of the highlights much more precise!
 - CSS selectors, filenames, components, and assets were given Group 9 prefixes so that we can avoid affecting the template homepage or conflicting with other exhibits when we are now merging with the main branch.
@@ -35,6 +35,7 @@
 - During the mid-milestone phase, we were wondering why the exhibit list had our styling? The page were you can see the list of exhibits listed, the homepage! So, we had to find where the problem lies and lo and behold, it was because of a exact naming for the css selector, so we took this as a lesson and when we are now in the compatibility phase of this project, we made sure to rename/prefix our files and class names so that the same mistake would not happen again.
 
 **Group Challenges Encountered:**
+- We renamed each file in the repository to this format: `ADEOS-Group9_{filename}` and each className to `adeos-g9-{className}`to ensure no duplicate files with other groups. However, during this event, we encountered numerous code breaks due to the sheer amount of filename changes. We overlooked some imports and className renames, which contributed to the errors we found.
 
 **Declaration of AI Usage:**
 
