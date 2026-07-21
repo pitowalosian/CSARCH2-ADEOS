@@ -87,7 +87,8 @@ This README contains the revised proposal for **Group 9: Adeos**. The revision a
 - Clarified the use of **Single-Level Cells (SLC)** and **Triple-Level Cells (TLC)**.
 - Corrected wording such as **SATA SSD**, **NAND**, **Single-Level Cell**, and **Triple-Level Cell**.
 - Expanded and added more details to the style guide snapshot with colors, fonts, typography examples, diagram/icon style, and visual effects.
-- Kept the exhibit interactive through clickable components, hover/tap information panels, zoom-in transitions, SLC/TLC toggles, Write/Erase actions, and an output display.
+- Kept the exhibit interactive through clickable components, zoom-in transitions, SLC/TLC toggles, Write/Erase actions, and an output display.
+- Added information tooltip when hovering above components of Nand flash cell and increased ammount of cells.
 
 **Feedback attachment:** [Proposal feedback screenshot](docs/feedback/proposal-feedback.png)  
 **Full original proposal:** [Initial proposal DOCX](docs/proposals/initial-proposal.docx)  
