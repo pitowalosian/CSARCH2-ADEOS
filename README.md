@@ -32,6 +32,7 @@
 
 **Group Realizations:**
 - In the SSD diagram section, we realized that we could use a coordinate system to track and map each part of the component much more accurately to highlight the correct parts. Hopefully we did a good job with it!
+- Throughout development, we learned that small UI details, such as animation timing, spacing, hover effects, and transitions, significantly improved the overall user experience.
 - During the mid-milestone phase, we were wondering why the exhibit list had our styling? The page were you can see the list of exhibits listed, the homepage! So, we had to find where the problem lies and lo and behold, it was because of a exact naming for the css selector, so we took this as a lesson and when we are now in the compatibility phase of this project, we made sure to rename/prefix our files and class names so that the same mistake would not happen again.
 
 **Group Challenges Encountered:**
