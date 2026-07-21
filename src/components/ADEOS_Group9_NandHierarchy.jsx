@@ -72,7 +72,7 @@ const stackLayers = [
     zIndex: 6,
     placement: { left: "32.2%", top: "20.0%", width: "36.6%" },
     hotspot: { left: "34.0%", top: "21.8%", width: "33.0%", height: "12.4%" },
-    compressY: "170%",
+    compressY: "160%",
   },
   {
     id: "die",
@@ -634,7 +634,7 @@ export default function NandHierarchy() {
         @keyframes stack-in {
           0% {
             transform: translateY(var(--compress-y)) scale(0.7);
-            opacity: 0;
+            opacity: 1;
           }
           60% {
             opacity: 1;
@@ -647,6 +647,7 @@ export default function NandHierarchy() {
 
         .adeos-g9-nand-hierarchy--entered .adeos-g9-nand-hierarchy__asset-layer.adeos-g9-is-stacking {
           animation: stack-in 5s cubic-bezier(0.22, 1, 0.36, 1) both;
+          animation-delay: 0.3s;
         }
 
         /* hover animations */
