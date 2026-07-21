@@ -1,10 +1,31 @@
+import { useEffect, useState } from "react";
 import background from "../assets/ADEOS_Group9_WearLevelBG.svg";
 
 const blocks = [
-    { id: "a", label: "A", text: "Block A" },
-    { id: "b", label: "B", text: "Block B" },
-    { id: "c", label: "C", text: "Block C" },
-    { id: "d", label: "D", text: "Block D" },
+    {
+        id: "a",
+        label: "A",
+        text: "Block A",
+        msg: "A write request arrives",
+    },
+    {
+        id: "b",
+        label: "B",
+        text: "Block B",
+        msg: "The next write goes to the next least used block",
+    },
+    {
+        id: "c",
+        label: "C",
+        text: "Block C",
+        msg: "Writes continue to rotate across all blocks",
+    },
+    {
+        id: "d",
+        label: "D",
+        text: "Block D",
+        msg: "All blocks receive writes evenly over time",
+    },
 ];
 
 function assetSrc(asset) {
@@ -12,6 +33,35 @@ function assetSrc(asset) {
 }
 
 export default function WearLevel() {
+    // Steps: 0=A, 1=B, 2=C, 3=D, 4=ALL, 5=OFF
+    const [activeStep, setActiveStep] = useState(0);
+
+    useEffect(() => {
+        let mounted = true;
+        const stepDurations = [1200, 1200, 1200, 1200, 1000, 400];
+        let step = 0;
+        const timers = [];
+
+        function scheduleNext() {
+            const duration = stepDurations[step];
+            const t = setTimeout(() => {
+                if (!mounted) return;
+                step = (step + 1) % stepDurations.length;
+                setActiveStep(step);
+                scheduleNext();
+            }, duration);
+            timers.push(t);
+        }
+
+        setActiveStep(0);
+        scheduleNext();
+
+        return () => {
+            mounted = false;
+            timers.forEach(clearTimeout);
+        };
+    }, []);
+
     return (
         <>
             <section className="adeos-g9-component wearlevel" aria-labelledby="wear-leveling-title">
@@ -29,16 +79,27 @@ export default function WearLevel() {
                 </header>
 
                 <div className="wearlevel__layout">
+                    <div className="wearlevel__center" aria-hidden="true">
+                        <div className="wearlevel__center-icon" />
+                    </div>
+
                     <div className="wearlevel__blocks" aria-label="Wear leveling blocks">
-                        {blocks.map((block) => (
-                            <div
-                                key={block.id}
-                                className={`wearlevel__block wearlevel__block--${block.id}`}
-                            >
-                                <span>{block.label}</span>
-                                <strong>{block.text}</strong>
-                            </div>
-                        ))}
+                        {blocks.map((block, idx) => {
+                            const isActive = activeStep === idx;
+                            const isAll = activeStep === 4;
+
+                            return (
+                                <div key={block.id} className="wearlevel__block-wrap">
+                                    <div className="wearlevel__label">{block.msg}</div>
+
+                                    <div className="wearlevel__percent">{isActive || isAll ? "25%" : ""}</div>
+
+                                    <div className={`wearlevel__block wearlevel__block--${block.id} ${isActive || isAll ? "is-glow" : ""}`}>
+                                        <strong>{block.text}</strong>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -95,6 +156,43 @@ export default function WearLevel() {
                     align-items: end;
                 }
 
+                .wearlevel__block-wrap {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .wearlevel__label {
+                    margin-bottom: 0.6rem;
+                    max-width: 160px;
+                    text-align: center;
+                    color: rgba(255, 255, 255, 0.88);
+                    font-family: "Courier New", monospace;
+                    font-size: clamp(0.8rem, 1.2vw, 1rem);
+                    line-height: 1.3;
+                    white-space: pre-wrap;
+                }
+
+                .wearlevel__center {
+                    position: absolute;
+                    top: 32%;
+                    left: 0;
+                    right: 0;
+                    display: flex;
+                    justify-content: center;
+                    pointer-events: none;
+                    z-index: 1;
+                }
+
+                .wearlevel__center-icon {
+                    width: 84px;
+                    height: 84px;
+                    border: 2px solid rgba(101, 251, 255, 0.9);
+                    border-radius: 8px;
+                    box-shadow: 0 0 26px rgba(101, 251, 255, 0.22);
+                    background: linear-gradient(180deg, rgba(10,20,40,0.25), rgba(0,0,0,0.28));
+                }
+
                 .wearlevel__block {
                     min-height: 4rem;
                     width: 100%;
@@ -126,40 +224,24 @@ export default function WearLevel() {
                     letter-spacing: 0.04em;
                 }
 
-                .wearlevel__block--a {
-                    animation: wearlevel-block-pulse 4s ease-in-out infinite;
-                    animation-delay: 0s;
+                .wearlevel__percent {
+                    margin-bottom: 0.35rem;
+                    color: #65fbff;
+                    font-weight: 700;
+                    font-size: 0.95rem;
+                    text-shadow: 0 0 6px rgba(101, 251, 255, 0.4);
+                    min-height: 1.1rem;
                 }
 
-                .wearlevel__block--b {
-                    animation: wearlevel-block-pulse 4s ease-in-out infinite;
-                    animation-delay: 0.9s;
+                .wearlevel__block.is-glow {
+                    transform: translateY(-6px);
+                    border-color: rgba(101, 251, 255, 0.96);
+                    background: rgba(101, 251, 255, 0.12);
+                    box-shadow: 0 0 28px rgba(101, 251, 255, 0.6), inset 0 0 12px rgba(0, 255, 200, 0.18);
                 }
 
-                .wearlevel__block--c {
-                    animation: wearlevel-block-pulse 4s ease-in-out infinite;
-                    animation-delay: 1.8s;
-                }
-
-                .wearlevel__block--d {
-                    animation: wearlevel-block-pulse 4s ease-in-out infinite;
-                    animation-delay: 2.7s;
-                }
-
-                @keyframes wearlevel-block-pulse {
-                    0%, 18%, 100% {
-                        transform: translateY(0);
-                        border-color: rgba(255, 255, 255, 0.16);
-                        background: rgba(5, 11, 30, 0.68);
-                        box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.06);
-                    }
-
-                    9% {
-                        transform: translateY(-4px);
-                        border-color: rgba(101, 251, 255, 0.96);
-                        background: rgba(101, 251, 255, 0.16);
-                        box-shadow: 0 0 22px rgba(101, 251, 255, 0.55), inset 0 0 12px rgba(0, 255, 200, 0.18);
-                    }
+                .wearlevel__block.is-glow strong {
+                    color: #eaffff;
                 }
 
                 @media (max-width: 860px) {
@@ -194,6 +276,8 @@ export default function WearLevel() {
                         padding: 1rem;
                     }
                 }
+
+                
             `}</style>
         </>
     );
