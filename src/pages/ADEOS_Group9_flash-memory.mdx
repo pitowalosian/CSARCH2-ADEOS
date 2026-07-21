@@ -12,6 +12,8 @@ import SSD_Diagram from "../components/ADEOS_Group9_SSDDiagram.jsx";
 import SLCvsTLC from "../components/ADEOS_Group9_SLCvsTLC.jsx";
 import TLC from "../components/ADEOS_Group9_TLC.astro";
 import SLC from "../components/ADEOS_Group9_SLC.astro";
+import WearLevel from "../components/ADEOS_Group9_WearLevel.jsx";
+import GarbageCollection from "../components/ADEOS_Group9_GarbageCollection.jsx";
 import "../styles/ADEOS_Group9_flash-memory.css";
 
 <span className="adeos-g9-flash-memory-page" hidden aria-hidden="true"></span>
@@ -127,6 +129,22 @@ The demos below visualize threshold-voltage states with movable charge markers. 
 <TLC />
 
 In SLC mode, each displayed cell has two possible states. In TLC mode, each displayed cell steps through eight modeled threshold-voltage ranges, demonstrating how 3 bits can be represented by one cell. The demo counts from `111` to `000` for clarity; actual NAND may assign bit patterns to voltage ranges differently.
+
+### Wear Leveling
+
+Wear leveling is a technique used in flash memory and solid-state drives (SSDs) to extend lifespan by evenly distributing write and erase operations across all memory blocks.
+<WearLevel />
+Types of Wear Leveling
+
+Dynamic Wear Leveling - writes new data to the flash memory blocks with the lowest number of erase cycles. It only manages blocks that are being actively written to and does not move existing data unless necessary.
+
+Static Wear Leveling - moves both new and existing data between blocks to ensure that rarely modified data does not remain stored on blocks that have experienced little wear. This allows all blocks in the SSD to age more evenly.
+
+Global Wear Leveling - manages wear across the entire storage device by considering all available flash memory blocks. It distributes write operations throughout the whole SSD rather than limiting the process to a specific section of memory.
+
+### Garbage Collection in SSD
+Garbage collection in SSDs is a storage management process that improves SSD performance by identifying data pages that are no longer valid, moving the valid data to new locations, and erasing the blocks containing invalid data so they can be reused. Since flash memory cannot overwrite existing data directly, garbage collection helps create free space for future write operations.
+<GarbageCollection client:visible />
 
 ## Summary and Key Takeaways
 
