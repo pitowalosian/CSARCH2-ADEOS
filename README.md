@@ -7,6 +7,11 @@
 
 **Final Development Status:**
 
+- We completed the full educational flow from the SSD architecture to the NAND Flash organization, memory celss, SLC/TLC, Wear Levelling, Garbage collection, the interactive demonstrations, summary, key takeaways, and the full reference list!
+- We have added more animations to the page to make it feel less like a Powerpoint!
+- Even if the mobile compatability has been removed from the rubric, we have polished the mobile view and responsiveness! It is now mobile friendly with tap interactions, accessible lables for mobile, and fixing animations from pc to mobile.
+- We have renamed our group's entire file list so that it can be compatible with the MAIN virtual musuem! We have changed our .svg, .png, .jsx, .mdx, .astro, .css and added ADEOS_Group9_"Filename"! We have also meticulously renamed/prefixed the css selectors and classes to adeos-g9 as well!
+
 **Group Technical Discussions:**
 
 **Group Creative Discussions:**
