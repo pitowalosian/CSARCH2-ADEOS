@@ -38,16 +38,20 @@ export default function Introduction() {
                 </header>
                 <div className="adeos-g9-introduction__text">
                     {parts.map((part) => (
-                        <div key={part.id} className="adeos-g9-introduction__panel">
-                            <img
-                                src={assetSrc(part.border)}
-                                className={`adeos-g9-introduction__text-bg--${part.id}`}
-                                alt=""
-                                aria-hidden="true"
-                                decoding="async"
-                                width="40%"
-                            />
-                            <span className={`adeos-g9-introduction__text--${part.id}`}>{part.text}</span>
+                        <div
+                            key={part.id}
+                            className={`adeos-g9-introduction__panel adeos-g9-introduction__panel--${part.id}`}
+                        >
+                            <div className={`adeos-g9-introduction__frame adeos-g9-introduction__frame--${part.id}`}>
+                                <img
+                                    src={assetSrc(part.border)}
+                                    className={`adeos-g9-introduction__text-bg--${part.id}`}
+                                    alt=""
+                                    aria-hidden="true"
+                                    decoding="async"
+                                />
+                                <span className={`adeos-g9-introduction__text--${part.id}`}>{part.text}</span>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -58,6 +62,7 @@ export default function Introduction() {
                     inset: 20% 24px auto;
                     text-align: center;
                     pointer-events: none;
+                    animation: adeos-g9-introduction-rise 600ms ease-out 180ms both;
                 }
 
                 .adeos-g9-introduction__header h4 {
@@ -84,44 +89,93 @@ export default function Introduction() {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                 }
+
+                .adeos-g9-introduction .adeos-g9-component__bg {
+                    animation: adeos-g9-introduction-background 700ms ease-out both;
+                }
                 
                 .adeos-g9-introduction__panel {
+                    position: relative;
                     margin-top: 60%;
+                    animation: adeos-g9-introduction-rise 600ms ease-out both;
                 }
 
-                .adeos-g9-introduction__text-bg--left {
-                    position: absolute;
-                    z-index: 1;
-                    transform: translateX(26.5%);
-                    object-fit: cover;
+                .adeos-g9-introduction__panel--left {
+                    animation-delay: 420ms;
                 }
-                
+
+                .adeos-g9-introduction__panel--right {
+                    animation-delay: 620ms;
+                }
+
+                .adeos-g9-introduction__frame {
+                    position: absolute;
+                    top: 0;
+                    width: 80%;
+                    aspect-ratio: 1.805 / 1;
+                }
+
+                .adeos-g9-introduction__frame--left {
+                    right: 0;
+                }
+
+                .adeos-g9-introduction__frame--right {
+                    left: 0;
+                }
+
+                .adeos-g9-introduction__text-bg--left,
                 .adeos-g9-introduction__text-bg--right {
                     position: absolute;
+                    inset: 0;
                     z-index: 1;
-                    transform: translateX(1%);
-                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: fill;
                 }
 
                 .adeos-g9-introduction__text--left,
                 .adeos-g9-introduction__text--right {
                     position: absolute;
                     z-index: 3;
-                    top: 48%;
-                    transform: translateY(47%);
-                    max-width: 34.5%;
+                    top: 23.5%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-sizing: border-box;
+                    width: 91.8%;
+                    height: 73.5%;
                     color: #ffffff;
                     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
                     text-align: center;
-                    padding: 1rem;
+                    padding: 0.5rem 1rem;
                 }
 
                 .adeos-g9-introduction__text--left {
-                    left: 10.5%;
+                    left: 0.6%;
                 }
 
                 .adeos-g9-introduction__text--right {
-                    right: 10%;
+                    left: 7.3%;
+                }
+
+                @keyframes adeos-g9-introduction-background {
+                    from {
+                        opacity: 0.35;
+                    }
+                    to {
+                        opacity: 0.96;
+                    }
+                }
+
+                @keyframes adeos-g9-introduction-rise {
+                    from {
+                        opacity: 0;
+                        transform: translateY(14px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
                 }
 
                 @media (max-width: 650px) {
@@ -169,6 +223,13 @@ export default function Introduction() {
                         width: 100%;
                     }
 
+                    .adeos-g9-introduction__frame {
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        aspect-ratio: auto;
+                    }
+
                     .adeos-g9-introduction__text-bg--left,
                     .adeos-g9-introduction__text-bg--right {
                         position: absolute;
@@ -183,17 +244,20 @@ export default function Introduction() {
 
                     .adeos-g9-introduction__text--left,
                     .adeos-g9-introduction__text--right {
-                        position: relative;
-                        inset: auto;
                         transform: none;
                         max-width: none;
                         margin: 0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
                         font-size: 0.75rem;
                         line-height: 1.4;
-                        padding: 2.5rem 2rem;
+                        padding: 0.75rem 1.25rem;
+                    }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .adeos-g9-introduction .adeos-g9-component__bg,
+                    .adeos-g9-introduction__header,
+                    .adeos-g9-introduction__panel {
+                        animation: none;
                     }
                 }
             `}
